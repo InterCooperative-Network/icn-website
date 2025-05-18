@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MatrixInvite from '../components/MatrixInvite.astro';
+import GitHubRepoCard from '../components/GitHubRepoCard.astro';
+---
+
+<Layout title="Governance" description="Participate in cooperative, community-based governance.">
+  <h1>Governance on the InterCooperative Network</h1>
+  <p>We use AgoraNet for structured deliberation and Matrix for discussion. All proposals are public and community-governed.</p>
+
+  <ul class="list-disc ml-6 text-white mt-6 space-y-2">
+    <li><a href="https://gov.intercooperative.network" target="_blank">AgoraNet: Deliberation & Proposals</a></li>
+    <li><a href="https://chat.intercooperative.network" target="_blank">Matrix: Real-Time Governance Channels</a></li>
+    <li><a href="https://github.com/InterCooperative-Network/icn-governance" target="_blank">GitHub: Governance Source</a></li>
+  </ul>
+
+  <MatrixInvite />
+  <GitHubRepoCard repo="InterCooperative-Network/icn-governance" />
+</Layout> 
