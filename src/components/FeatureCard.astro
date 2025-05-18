@@ -1,0 +1,46 @@
+---
+// src/components/FeatureCard.astro
+export interface Props {
+  title: string;
+  description: string;
+  link: string;
+  iconName?: string; // Corresponds to a key in the icons object below
+  buttonText?: string;
+  buttonClass?: string;
+}
+
+const { 
+    title, 
+    description, 
+    link, 
+    iconName, 
+    buttonText = "Learn More",
+    buttonClass = "button-secondary"
+} = Astro.props;
+
+// Basic SVG icons map. For a real project, consider Astro Icons or a dedicated SVG sprite.
+const icons: { [key: string]: string } = {
+  users: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  lightbulb: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M12 22V18M9 14a5 5 0 0 1 .9-2.95A5.13 5.13 0 0 1 12 6a5.13 5.13 0 0 1 2.1 1.05A5 5 0 0 1 15 14Z"/><line x1="12" x2="12" y1="2" y2="6"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/><line x1="1" x2="3" y1="12" y2="12"/><line x1="21" x2="23" y1="12" y2="12"/><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/></svg>`,
+  code: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+  // Add more icons as needed
+};
+
+const iconSvg = iconName && icons[iconName] ? icons[iconName] : 
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`; // Default fallback icon
+---
+
+<div class="card flex flex-col h-full">
+  {iconName && (
+    <div class="mb-4 text-accent-emerald w-10 h-10 p-2 bg-emerald-500/10 rounded-lg flex items-center justify-center" set:html={iconSvg}>
+      <!-- SVG icon is injected here by set:html -->
+    </div>
+  )}
+  <h3 class="text-xl font-semibold mb-2 text-gradient-teal-gold">{title}</h3>
+  <p class="text-text-secondary text-base mb-4 flex-grow">{description}</p>
+  <div class="mt-auto">
+    <a href={link} class:list={["button text-sm w-full sm:w-auto", buttonClass]}>
+      {buttonText}
+    </a>
+  </div>
+</div> 

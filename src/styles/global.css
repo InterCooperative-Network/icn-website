@@ -1,0 +1,175 @@
+/* src/styles/global.css */
+:root {
+  --color-bg: #161A1E; /* Midnight */
+  --color-bg-secondary: #1F2428; /* Slightly lighter for cards/sections */
+  --color-accent-teal: #22D3EE;
+  --color-accent-emerald: #10B981;
+  --color-accent-gold: #FFD166;
+  --color-text-primary: #F3F4F6; /* Off-white */
+  --color-text-secondary: #A0AEC0; /* Lighter gray for subtext */
+  --color-border: #3A414C;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: 'Fira Code', 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+
+  --header-height: 4rem; /* 64px */
+}
+
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* 16px */
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-accent-teal); /* Default heading color */
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; } /* ~40px */
+h2 { font-size: 2rem; }   /* ~32px */
+h3 { font-size: 1.75rem; } /* ~28px */
+
+p {
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: var(--color-accent-teal);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-accent-gold);
+}
+
+/* Utility Classes */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.2s ease-out, background-color 0.2s ease-in-out;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  background-color: var(--color-accent-gold);
+  color: var(--color-bg);
+  border-color: var(--color-accent-gold);
+}
+.button-primary:hover {
+  background-color: #ffc740; /* Slightly lighter gold */
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: var(--color-accent-teal);
+  border-color: var(--color-accent-teal);
+}
+.button-secondary:hover {
+  background-color: var(--color-accent-teal);
+  color: var(--color-bg);
+}
+
+.button-emerald {
+  background-color: var(--color-accent-emerald);
+  color: var(--color-bg);
+  border-color: var(--color-accent-emerald);
+}
+
+.button-emerald:hover {
+    background-color: #0da070; /* Slightly darker emerald */
+}
+
+/* Add a subtle gradient text class */
+.text-gradient-teal-gold {
+  background: linear-gradient(to right, var(--color-accent-teal), var(--color-accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.text-gradient-emerald-teal {
+  background: linear-gradient(to right, var(--color-accent-emerald), var(--color-accent-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Basic card styling */
+.card {
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(23, 225, 194, 0.15); /* Teal glow on hover */
+} 

@@ -1,0 +1,81 @@
+---
+// src/components/HeroSection.astro
+export interface Props {
+  title?: string;
+  tagline?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  showImage?: boolean;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+const {
+  title = "Revolutionizing Cooperation, Digitally.",
+  tagline = "The InterCooperative Network is building the foundational layer for a new, equitable digital economy. Join us in creating the future of decentralized collaboration.",
+  primaryButtonText = "Get Involved",
+  primaryButtonLink = "/community#join",
+  secondaryButtonText = "Read the Vision",
+  secondaryButtonLink = "/about",
+  showImage = true,
+  imageUrl = "/images/hero-graphic.svg", // Replace with a real or placeholder image
+  imageAlt = "Abstract representation of interconnected nodes"
+} = Astro.props;
+---
+
+<section class="bg-bg text-text-primary py-16 md:py-24 relative overflow-hidden">
+  <!-- Optional: Subtle background elements -->
+  <div class="absolute inset-0 opacity-5">
+    <!-- Example: A very faint grid or dot pattern -->
+    <!-- <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-border)" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#smallGrid)" /></svg> -->
+  </div>
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6">
+          <span class="block text-gradient-teal-gold">{title.split(",")[0]},</span>
+          <span class="block text-gradient-emerald-teal">{title.split(",")[1]?.trim()}</span>
+        </h1>
+        <p class="text-lg md:text-xl text-text-secondary mb-8 max-w-xl mx-auto md:mx-0">
+          {tagline}
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href={primaryButtonLink} class="button button-primary text-lg">
+            {primaryButtonText}
+          </a>
+          <a href={secondaryButtonLink} class="button button-secondary text-lg">
+            {secondaryButtonText}
+          </a>
+        </div>
+      </div>
+      {showImage && (
+        <div class="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0">
+          <!-- Placeholder for a cool graphic. You can use an SVG or an optimized image. -->
+          <svg class="w-full h-full text-accent-teal opacity-60" fill="currentColor" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M48.5,-60.3C62.8,-50.3,74.3,-35.5,78.4,-19.2C82.5,-2.9,79.2,15.1,70.7,30.2C62.2,45.3,48.5,57.5,33.1,64.3C17.7,71.1,0.6,72.5,-16.2,68.7C-33.1,64.9,-49.6,55.9,-62,43.1C-74.4,30.3,-82.7,13.7,-82.4,-3.1C-82.1,-19.9,-73.3,-37,-60.3,-47.7C-47.3,-58.4,-30.1,-62.8,-14.9,-64.9C0.3,-67,14.2,-67.4,26.5,-67.3C38.8,-67.2,48.5,-60.3,48.5,-60.3Z" transform="translate(100 100) scale(1.1)" fill="var(--color-accent-teal)"/>
+            <path d="M40.5,-50.3C50.8,-40.3,64.3,-35.5,70.4,-19.2C78.5,-2.9,71.2,15.1,60.7,30.2C52.2,45.3,38.5,57.5,23.1,64.3C10.7,71.1,-1.6,72.5,-10.2,68.7C-23.1,64.9,-39.6,55.9,-52,43.1C-60.4,30.3,-72.7,13.7,-70.4,-3.1C-70.1,-19.9,-63.3,-37,-50.3,-47.7C-37.3,-58.4,-20.1,-62.8,-4.9,-64.9C10.3,-67,20.2,-67.4,30.5,-60.3C35.8,-57.2,40.5,-50.3,40.5,-50.3Z" transform="translate(90 110) scale(0.9)" fill="var(--color-accent-emerald)" style="mix-blend-mode: screen; opacity: 0.7;"/>
+        </svg>
+          <!-- <img src={imageUrl} alt={imageAlt} class="w-full h-full object-contain" /> -->
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Additional styles for the hero if needed */
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top left, hsla(188, 80%, 50%, 0.1), transparent 50%),
+                radial-gradient(ellipse at bottom right, hsla(160, 70%, 45%, 0.1), transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+</style> 

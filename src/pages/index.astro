@@ -1,0 +1,86 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+
+const pageTitle = "Welcome to the InterCooperative Network";
+const pageDescription = "Pioneering a decentralized and cooperative digital economy. Learn how ICN empowers communities and builds the commons.";
+
+const features = [
+  {
+    title: "Join the Community",
+    description: "Connect with us on Matrix, join discussions on GitHub, and help shape the future of ICN.",
+    link: "/community#join",
+    icon: "users", // Placeholder for an icon name
+    buttonText: "Connect Now",
+    buttonClass: "button-emerald"
+  },
+  {
+    title: "Explore Our Vision",
+    description: "Dive deep into the ICN manifesto, understand our core principles, and see the roadmap ahead.",
+    link: "/about",
+    icon: "lightbulb", // Placeholder
+    buttonText: "Read Manifesto",
+    buttonClass: "button-secondary"
+  },
+  {
+    title: "Contribute to ICN",
+    description: "Whether you're a developer, designer, or visionary, there's a place for you to contribute.",
+    link: "/docs/contributing", // Link to a future contributing guide
+    icon: "code", // Placeholder
+    buttonText: "Start Contributing",
+    buttonClass: "button-primary"
+  }
+];
+
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <HeroSection 
+    title="Forge a New Economy, Together."
+    tagline="ICN is a decentralized framework for cooperative digital infrastructure. We empower communities to build, own, and govern the tools they rely on."
+    primaryButtonText="Explore ICN Core"
+    primaryButtonLink="/docs/core-concepts" 
+    secondaryButtonText="Join a Discussion"
+    secondaryButtonLink="/community#discussions"
+  />
+
+  <section id="features" class="py-16 md:py-24 bg-bg-secondary">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient-emerald-teal">Why ICN Matters</h2>
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+          We're not just building software; we're cultivating a resilient ecosystem for digital commons and cooperative enterprise.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {features.map(feature => (
+          <FeatureCard 
+            title={feature.title}
+            description={feature.description}
+            link={feature.link}
+            iconName={feature.icon} 
+            buttonText={feature.buttonText}
+            buttonClass={feature.buttonClass}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="call-to-action" class="py-16 md:py-24 bg-bg">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gradient-teal-gold">Ready to Build the Future?</h2>
+        <p class="text-lg text-text-secondary max-w-xl mx-auto mb-8">
+            The InterCooperative Network thrives on community participation. Your skills, ideas, and passion are vital to our collective success.
+        </p>
+        <a href="/community#join" class="button button-primary text-xl px-8 py-4">
+            Become an ICN Pioneer
+        </a>
+    </div>
+</section>
+
+  <!-- You can add more sections here: News, Roadmap, Partners, etc. -->
+
+</Layout>
