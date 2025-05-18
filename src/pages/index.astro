@@ -10,26 +10,26 @@ const pageDescription = "Pioneering a decentralized and cooperative digital econ
 const features = [
   {
     title: "Join the Community",
-    description: "Connect with us on Matrix, join discussions on GitHub, and help shape the future of ICN.",
+    description: "Connect with other members of our decentralized network.",
     link: "/community#join",
-    icon: "users", // Placeholder for an icon name
-    buttonText: "Connect Now",
-    buttonClass: "button-emerald"
+    icon: "chat-bubble",
+    buttonText: "Join Chat",
+    buttonClass: "button-teal"
   },
   {
-    title: "Explore Our Vision",
-    description: "Dive deep into the ICN manifesto, understand our core principles, and see the roadmap ahead.",
+    title: "Run a Node",
+    description: "Set up a node and participate in the federated ICN infrastructure.",
+    link: "/docs/run-a-node",
+    icon: "network-nodes",
+    buttonText: "Start Here",
+    buttonClass: "button-dark-outline"
+  },
+  {
+    title: "Read the Vision",
+    description: "Learn about our goals and principles for a cooperative future.",
     link: "/about",
-    icon: "lightbulb", // Placeholder
-    buttonText: "Read Manifesto",
-    buttonClass: "button-secondary"
-  },
-  {
-    title: "Contribute to ICN",
-    description: "Whether you're a developer, designer, or visionary, there's a place for you to contribute.",
-    link: "/docs/contributing", // Link to a future contributing guide
-    icon: "code", // Placeholder
-    buttonText: "Start Contributing",
+    icon: "document-text",
+    buttonText: "Read More",
     buttonClass: "button-primary"
   }
 ];
@@ -38,23 +38,17 @@ const features = [
 
 <Layout title={pageTitle} description={pageDescription}>
   <HeroSection 
-    title="Forge a New Economy, Together."
-    tagline="ICN is a decentralized framework for cooperative digital infrastructure. We empower communities to build, own, and govern the tools they rely on."
-    primaryButtonText="Explore ICN Core"
-    primaryButtonLink="/docs/core-concepts" 
-    secondaryButtonText="Join a Discussion"
-    secondaryButtonLink="/community#discussions"
+    title="The InterCooperative Network"
+    tagline="Building a post-capitalist ecosystem for cooperation and mutual aid"
+    primaryButtonText="Get Involved"
+    primaryButtonLink="/community#join" 
+    secondaryButtonText="Learn More"
+    secondaryButtonLink="/about"
   />
 
-  <section id="features" class="py-16 md:py-24 bg-bg-secondary">
+  <section id="features" class="py-16 md:py-24 bg-bg">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient-emerald-teal">Why ICN Matters</h2>
-        <p class="text-lg text-text-secondary max-w-2xl mx-auto">
-          We're not just building software; we're cultivating a resilient ecosystem for digital commons and cooperative enterprise.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12">
         {features.map(feature => (
           <FeatureCard 
             title={feature.title}

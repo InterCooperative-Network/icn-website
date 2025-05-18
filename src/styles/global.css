@@ -1,6 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* src/styles/global.css */
 :root {
-  --color-bg: #161A1E; /* Midnight */
+  --color-bg: #101214; /* Midnight - updated to deeper dark */
   --color-bg-secondary: #1F2428; /* Slightly lighter for cards/sections */
   --color-accent-teal: #22D3EE;
   --color-accent-emerald: #10B981;
@@ -142,6 +146,25 @@ a:hover {
     background-color: #0da070; /* Slightly darker emerald */
 }
 
+.button-teal {
+  background-color: var(--color-accent-teal);
+  color: var(--color-bg);
+  border-color: var(--color-accent-teal);
+}
+.button-teal:hover {
+  background-color: #1BC8E2; /* Slightly darker teal */
+}
+
+.button-dark-outline {
+  background-color: transparent;
+  color: var(--color-accent-teal);
+  border-color: var(--color-border); /* Using the existing border color */
+}
+.button-dark-outline:hover {
+  background-color: var(--color-border); /* Or a very subtle transparent teal/gray */
+  color: var(--color-bg-secondary);
+}
+
 /* Add a subtle gradient text class */
 .text-gradient-teal-gold {
   background: linear-gradient(to right, var(--color-accent-teal), var(--color-accent-gold));
@@ -153,6 +176,14 @@ a:hover {
 
 .text-gradient-emerald-teal {
   background: linear-gradient(to right, var(--color-accent-emerald), var(--color-accent-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.text-gradient-cyan-teal {
+  background: linear-gradient(to right, var(--color-accent-teal), #06B6D4); /* Using accent-teal and a cyan hex for now */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -13,35 +13,35 @@ export interface Props {
 }
 
 const {
-  title = "Revolutionizing Cooperation, Digitally.",
-  tagline = "The InterCooperative Network is building the foundational layer for a new, equitable digital economy. Join us in creating the future of decentralized collaboration.",
+  title = "The InterCooperative Network",
+  tagline = "Building a post-capitalist ecosystem for cooperation and mutual aid",
   primaryButtonText = "Get Involved",
   primaryButtonLink = "/community#join",
-  secondaryButtonText = "Read the Vision",
+  secondaryButtonText = "Learn More",
   secondaryButtonLink = "/about",
-  showImage = true,
-  imageUrl = "/images/hero-graphic.svg", // Replace with a real or placeholder image
+  showImage = false,
+  imageUrl = "/images/hero-graphic.svg",
   imageAlt = "Abstract representation of interconnected nodes"
 } = Astro.props;
 ---
 
 <section class="bg-bg text-text-primary py-16 md:py-24 relative overflow-hidden">
   <!-- Optional: Subtle background elements -->
+  {/* 
   <div class="absolute inset-0 opacity-5">
-    <!-- Example: A very faint grid or dot pattern -->
-    <!-- <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-border)" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#smallGrid)" /></svg> -->
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-border)" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#smallGrid)" /></svg>
   </div>
+  */}
   <div class="container mx-auto px-4 relative z-10">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="text-center md:text-left">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6">
-          <span class="block text-gradient-teal-gold">{title.split(",")[0]},</span>
-          <span class="block text-gradient-emerald-teal">{title.split(",")[1]?.trim()}</span>
+    <div class="grid md:grid-cols-1 gap-12 items-center">
+      <div class="text-center">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 text-gradient-cyan-teal">
+          {title}
         </h1>
-        <p class="text-lg md:text-xl text-text-secondary mb-8 max-w-xl mx-auto md:mx-0">
+        <p class="text-lg md:text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
           {tagline}
         </p>
-        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <a href={primaryButtonLink} class="button button-primary text-lg">
             {primaryButtonText}
           </a>
@@ -66,16 +66,5 @@ const {
 
 <style>
   /* Additional styles for the hero if needed */
-  section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at top left, hsla(188, 80%, 50%, 0.1), transparent 50%),
-                radial-gradient(ellipse at bottom right, hsla(160, 70%, 45%, 0.1), transparent 50%);
-    z-index: 0;
-    pointer-events: none;
-  }
+  /* Removed section::before pseudo-element with radial gradients */
 </style> 

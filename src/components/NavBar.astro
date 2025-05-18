@@ -1,9 +1,9 @@
 ---
 // src/components/NavBar.astro
 const navLinks = [
-  { href: "/", text: "Home" },
-  { href: "/about", text: "About ICN" },
-  { href: "/community", text: "Community" },
+  { href: "/about", text: "About" },
+  { href: "/projects", text: "Projects" }, // Assuming a future /projects page
+  { href: "/community#discussions", text: "Discussions" }, // Link to discussions section on community page
   { href: "/docs", text: "Docs" },
   // { href: "/blog", text: "Blog" }, // Uncomment when ready
 ];
@@ -11,12 +11,13 @@ const navLinks = [
 
 <header class="bg-bg-secondary/80 backdrop-blur-md sticky top-0 z-50 shadow-lg">
   <div class="container mx-auto flex items-center justify-between h-header px-4">
-    <a href="/" class="flex items-center space-x-2">
-      <!-- Placeholder for Logo -->
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-accent-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+    <a href="/" class="flex items-center space-x-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 12a4.5 4.5 0 014.5-4.5M7.5 12a4.5 4.5 0 004.5 4.5m4.5-4.5a4.5 4.5 0 01-4.5 4.5m4.5-4.5a4.5 4.5 0 00-4.5-4.5" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V12m0-4.5V3M16.5 12H12m-4.5 0H3" />
       </svg>
-      <span class="font-bold text-xl text-text-primary hover:text-accent-teal transition-colors">InterCoop<span class="text-accent-gold">Net</span></span>
+      <span class="font-semibold text-lg sm:text-xl text-text-primary hover:text-accent-teal transition-colors uppercase tracking-wider">INTERCOOPERATIVE NETWORK</span>
     </a>
 
     <!-- Desktop Navigation -->
@@ -24,18 +25,14 @@ const navLinks = [
       {navLinks.map(link => (
         <a 
           href={link.href} 
-          class="text-text-secondary hover:text-accent-teal font-medium transition-colors px-3 py-2 rounded-md text-sm"
-          aria-current={Astro.url.pathname === link.href ? "page" : false}
+          class="text-text-secondary hover:text-accent-teal font-medium transition-colors px-3 py-2 rounded-md text-sm lg:text-base"
+          aria-current={Astro.url.pathname === link.href || (link.href.includes('#') && Astro.url.pathname === link.href.split('#')[0]) ? "page" : false}
         >
           {link.text}
         </a>
       ))}
     </nav>
     
-    <a href="/community#join" class="hidden md:inline-block button button-primary text-sm">
-        Join Us
-    </a>
-
     <!-- Mobile Menu Button -->
     <button id="menu-toggle" class="md:hidden text-text-primary hover:text-accent-teal focus:outline-none focus:ring-2 focus:ring-accent-teal rounded-lg p-2" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -48,14 +45,11 @@ const navLinks = [
       <a 
         href={link.href} 
         class="text-text-primary hover:text-accent-teal block px-3 py-3 rounded-md text-base font-medium w-11/12 text-center hover:bg-bg transition-colors"
-        aria-current={Astro.url.pathname === link.href ? "page" : false}
+        aria-current={Astro.url.pathname === link.href || (link.href.includes('#') && Astro.url.pathname === link.href.split('#')[0]) ? "page" : false}
       >
         {link.text}
       </a>
     ))}
-    <a href="/community#join" class="mt-2 w-11/12 button button-primary text-sm">
-        Join Us
-    </a>
   </div>
 </header>
 
