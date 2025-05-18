@@ -35,12 +35,12 @@ const iconSvg = iconName && icons[iconName] ? icons[iconName] :
 
 <div class="card flex flex-col h-full">
   {iconName && (
-    <div class="mb-4 text-accent-teal w-10 h-10 flex items-center justify-center" set:html={iconSvg}>
+    <div class="mb-4 text-accent-teal w-12 h-12 flex items-center justify-center" set:html={iconSvg}>
       <!-- SVG icon is injected here by set:html -->
     </div>
   )}
   <h3 class="text-xl font-semibold mb-2 text-accent-teal">{title}</h3>
-  <p class="text-text-secondary text-base mb-4 flex-grow">{description}</p>
+  <p class="text-text-primary text-base mb-4 flex-grow">{description}</p>
   <div class="mt-auto">
     <a href={link} class:list={["button text-sm w-full sm:w-auto", buttonClass]}>
       {buttonText}

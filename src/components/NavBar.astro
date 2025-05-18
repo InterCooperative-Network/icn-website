@@ -25,7 +25,7 @@ const navLinks = [
       {navLinks.map(link => (
         <a 
           href={link.href} 
-          class="text-text-secondary hover:text-accent-teal font-medium transition-colors px-3 py-2 rounded-md text-sm lg:text-base"
+          class="text-text-primary hover:text-accent-gold font-medium transition-colors px-3 py-2 rounded-md text-sm lg:text-base"
           aria-current={Astro.url.pathname === link.href || (link.href.includes('#') && Astro.url.pathname === link.href.split('#')[0]) ? "page" : false}
         >
           {link.text}
