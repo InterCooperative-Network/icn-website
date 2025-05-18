@@ -7,12 +7,18 @@ import Footer from '../components/Footer.astro';
 export interface Props {
 	title: string;
     description?: string;
+    ogImage?: string;
 }
 
 const { 
     title = 'InterCooperative Network', 
-    description = 'Building the commons for a new economy.' 
+    description = 'Building the commons for a new economy.',
+    ogImage = '/social-preview.png'
 } = Astro.props;
+
+const siteUrl = Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const imageUrl = new URL(ogImage, siteUrl).href;
 ---
 
 <!doctype html>
@@ -24,6 +30,24 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | ICN</title>
+
+        {/* Open Graph / Facebook Meta Tags */}
+        <meta property="og:type" content="website">
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="InterCooperative Network" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageUrl} />
+        {/* <meta name="twitter:site" content="@YourTwitterHandle"> Optional Twitter handle */}
+        {/* <meta name="twitter:creator" content="@YourTwitterHandle"> Optional Twitter handle for content creator */}
+
+        <link rel="canonical" href={canonicalUrl} />
 
         <!-- Inter font from Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

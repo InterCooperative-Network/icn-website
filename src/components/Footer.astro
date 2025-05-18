@@ -5,12 +5,15 @@ const currentYear = new Date().getFullYear();
 // Social links can be kept or updated based on priorities
 const socialLinks = [
   { href: "https://github.com/InterCooperative-Network", label: "GitHub", iconName: "github" }, 
-  // { href: "#", label: "Matrix", iconName: "matrix" }, 
+  { href: "https://matrix.to/#/#icn:matrix.org", label: "Matrix", iconName: "matrix" },
+  { href: "mailto:contact@intercooperative.network", label: "Email", iconName: "email" }
 ];
 
 // Simplified icons for example, ideally use Astro Icons or full SVGs
 const icons: { [key: string]: string } = {
   github: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
+  matrix: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.79 3.23C20.43 2.88 19.95 2.68 19.45 2.7L4.55 4.45c-.42.07-.8.27-1.08.56S3 5.61 3 6.05V18c0 .55.22 1.05.59 1.41.37.37.86.59 1.41.59h.02c.01 0 .02 0 .03-.01l2.03-.2c.47-.05.92-.24 1.27-.54l8.36-7.45c.05-.04.09-.09.14-.14l.02-.02.01-.01c.01 0 .01-.01.02-.01h.01c.01 0 .01 0 .01-.01s0 0 0-.01c0-.01 0-.01-.01-.02v-.02c0-.01 0-.01-.01-.02 0-.01-.01-.01-.01-.02l-2.08-2.08c-.01-.01-.01-.01-.02-.01h-.01c-.01 0-.01 0-.02-.01l-.02-.01c-.05-.02-.09-.04-.14-.06L5.1 6.22c-.17-.07-.35-.1-.55-.1H4.5c-.02 0-.03 0-.05.01V6.05c0-.02 0-.03.01-.05l14.9-1.75c.02 0 .03-.01.05-.01h.01c.01 0 .02 0 .03.01l.03.01c.02 0 .03.01.05.01.01 0 .02.01.03.01.02.01.03.01.05.02l.03.02c.02.01.03.02.05.03l.02.02c.02.01.03.02.04.04l.02.02c.01.01.02.02.02.03l.01.02c.01.01.01.02.01.03v.01c0 .01 0 .01.01.02l2.08 2.08c.01.01.01.01.02.01h.01c.01 0 .01 0 .02.01l.02.01c.05.02.09.04.14.06l8.35 6.22c.17.07.35.1.55.1h.05c.02 0 .03 0 .05-.01v.07c0 .02-.01.03-.01.05L4.55 19.75c-.02 0-.03.01-.05.01h-.01c-.01 0-.02 0-.03-.01l-.03-.01c-.02 0-.03-.01-.05-.01-.01 0-.02-.01-.03-.01-.02-.01-.03-.01-.05-.02l-.03-.02c-.02-.01-.03-.02-.05-.03l-.02-.02c-.02-.01-.03-.02-.04-.04l-.02-.02c-.01-.01-.02-.02-.02-.03l-.01-.02c-.01-.01-.01-.02-.01-.03v-.01c0-.01 0-.01-.01-.02L3.59 18.13c.01-.01.01-.01.02-.01h.01c.01 0 .01 0 .02.01l.02.01c.05.02.09.04.14.06l8.35 6.22c.17.07.35.1.55.1H13.2c1.1 0 2-.9 2-2V6.05c0-.55-.22-1.05-.59-1.41S13.76 4 13.2 4h-.02c-.01 0-.02 0-.03.01l-2.03.2c-.47.05-.92.24-1.27.54L1.5 12.2c-.05.04-.09.09-.14.14l-.02.02-.01.01v.02c0 .01 0 .01.01.02V18c0 .02.01.03.01.05l14.9 1.75c.02 0 .03.01.05.01h.01c.01 0 .02 0 .03-.01l.03-.01c.02 0 .03-.01.05-.01.01 0 .02-.01.03-.01.02-.01.03-.01.05-.02l.03-.02c.02-.01.03-.02.05-.03l.02-.02c.02-.01.03-.02.04-.04l.02-.02c.01-.01.02-.02.02-.03l.01-.02c.01-.01.01-.02.01-.03v-.01c0-.01 0-.01.01-.02L20.79 3.23z"></path></svg>`,
+  email: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`
 };
 
 // Updated footer copy from new mockup
@@ -21,9 +24,10 @@ const microcopyContent = [
 ];
 
 const footerNavLinks = [
-    { href: "#/join", text: "Join Now" }, // Assuming /join for Join Now
-    { href: "#/contact", text: "Contact" },
-    { href: "/community#discussions", text: "Discussions" }
+    { href: "/get-started", text: "Join Now" },
+    { href: "mailto:contact@intercooperative.network", text: "Contact" },
+    { href: "/community#discussions", text: "Discussions" },
+    { href: "/blog", text: "Blog" }
 ];
 ---
 

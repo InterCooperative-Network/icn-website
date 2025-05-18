@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MatrixInvite from '../components/MatrixInvite.astro';
+---
+
+<Layout title="Get Started with ICN" description="Your first steps to joining the InterCooperative Network.">
+  <section class="py-12">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-bold text-center mb-12">Get Started with ICN</h1>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Step 1: Join the Community -->
+        <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col">
+          <div class="text-3xl font-bold text-blue-600 mb-4">1.</div>
+          <h2 class="text-2xl font-semibold mb-3">Join the Conversation</h2>
+          <p class="text-gray-700 mb-4 flex-grow">
+            The heart of ICN is its community. Join our Matrix channels to introduce yourself, ask questions, and connect with fellow cooperators.
+          </p>
+          <MatrixInvite /> 
+        </div>
+
+        <!-- Step 2: Explore Projects -->
+        <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col">
+          <div class="text-3xl font-bold text-blue-600 mb-4">2.</div>
+          <h2 class="text-2xl font-semibold mb-3">Explore Active Projects</h2>
+          <p class="text-gray-700 mb-4 flex-grow">
+            See what's being built and where you can contribute. From wallets to network infrastructure, there's a variety of initiatives.
+          </p>
+          <a href="/projects" class="mt-auto inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+            Browse Projects
+          </a>
+        </div>
+
+        <!-- Step 3: Set Up Your Wallet / Identity (Placeholder) -->
+        <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col">
+          <div class="text-3xl font-bold text-blue-600 mb-4">3.</div>
+          <h2 class="text-2xl font-semibold mb-3">Set Up Your ICN Identity</h2>
+          <p class="text-gray-700 mb-4 flex-grow">
+            Your ICN identity (and associated wallet) will be key to participating in governance, using services, and managing assets on the network.
+          </p>
+          <a href="/wallet-setup" class="mt-auto inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+            Wallet Setup Guide
+          </a>
+           <p class="text-xs text-gray-500 mt-2 text-center">(Link placeholder - update when wallet guide is ready)</p>
+        </div>
+
+      </div>
+
+      <div class="mt-16 text-center">
+        <h2 class="text-2xl font-semibold mb-4">Ready to Dive Deeper?</h2>
+        <p class="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
+          Check out our documentation for in-depth guides, or find a specific area to contribute on our community page.
+        </p>
+        <div class="space-x-4">
+          <a href="https://docs.intercooperative.network" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+            Read the Docs
+          </a>
+          <a href="/community#contribute" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+            Find Ways to Contribute
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Page-specific styles if any */
+</style> 

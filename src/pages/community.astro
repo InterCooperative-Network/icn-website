@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MatrixInvite from '../components/MatrixInvite.astro'; // Assuming this component will be updated later
+---
+
+<Layout title="ICN Community" description="Join the conversation, attend events, and find resources.">
+  <section class="py-12">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-bold text-center mb-8">Join the ICN Community</h1>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Chat with us on Matrix</h2>
+          <p class="mb-4">The primary hub for real-time discussion, Q&A, and collaboration within the InterCooperative Network is our Matrix space. All are welcome!</p>
+          <MatrixInvite />
+          <p class="mt-4 text-sm">New to Matrix? <a href="https://matrix.org/docs/guides/introduction" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">Learn more here.</a></p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Upcoming Events</h2>
+          <p class="mb-4">Stay tuned for announcements about governance meetings, developer calls, AMAs (Ask Me Anything sessions), and community workshops.</p>
+          {/* Placeholder for events list or calendar embed */}
+          <div class="bg-gray-100 p-6 rounded-lg">
+            <p class="text-gray-600 italic">No upcoming events scheduled at this moment. Check back soon or join our Matrix space for the latest updates!</p>
+            {/* Example Event Item (to be made dynamic later) */}
+            <!--
+            <div class="mt-4 border-t pt-4">
+              <h3 class="font-semibold">Governance Meeting</h3>
+              <p class="text-sm text-gray-700">Date: July 30, 2024, 17:00 UTC</p>
+              <p class="text-sm text-gray-700">Location: ICN Matrix Dev Channel</p>
+              <a href="#" class="text-blue-500 hover:underline text-sm">Add to Calendar</a>
+            </div>
+            -->
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Community Resources</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="font-semibold text-lg mb-2">Forum / GitHub Discussions</h3>
+            <p class="text-sm mb-3">For longer-form discussions, proposals, and asynchronous collaboration. <a href="https://github.com/orgs/InterCooperative-Network/discussions" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">(Link to GitHub Discussions)</a></p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="font-semibold text-lg mb-2">Documentation Hub</h3>
+            <p class="text-sm mb-3">Our comprehensive guides, tutorials, and technical references. <a href="https://docs.intercooperative.network" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">Visit Docs</a></p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="font-semibold text-lg mb-2">Contribution Guide</h3>
+            <p class="text-sm mb-3">Learn how to contribute to ICN projects, from code to documentation. <a href="/contribute" class="text-blue-500 hover:underline">(Link to /contribute page - to be created)</a></p> 
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <aside class="bg-blue-50 p-8 my-12 text-center">
+    <h2 class="text-3xl font-bold mb-4">Get Involved!</h2>
+    <p class="mb-6 max-w-2xl mx-auto">Whether you're a developer, designer, writer, or just passionate about a cooperative internet, there's a place for you in ICN. Join our Matrix, explore projects, or start a discussion.</p>
+    <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300">Join the Discussion on Matrix</a>
+    {/* This link should ideally point to the MatrixInvite component or a direct Matrix link */}
+  </aside>
+
+</Layout>
+
+<style>
+  /* You can add page-specific styles here if needed */
+</style> 

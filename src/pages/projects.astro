@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GitHubRepoCard from '../components/GitHubRepoCard.astro';
+---
+
+<Layout title="ICN Projects" description="Explore and contribute to active projects.">
+  <h1>Projects</h1>
+  <p>See what's active, in development, or up for discussion in the InterCooperative Network.</p>
+  <div class="grid md:grid-cols-2 gap-6 mt-8">
+    <GitHubRepoCard repo="InterCooperative-Network/icn-wallet" />
+    <GitHubRepoCard repo="InterCooperative-Network/icn-agoranet" />
+    <GitHubRepoCard repo="InterCooperative-Network/icn-web-ui" />
+    <GitHubRepoCard repo="InterCooperative-Network/icn-explorer" />
+    <GitHubRepoCard repo="InterCooperative-Network/icn-core" />
+    <!-- Add more as needed -->
+  </div>
+</Layout> 
