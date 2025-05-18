@@ -1,0 +1,28 @@
+---
+// Placeholder for GitHubRepoCard component
+export interface Props {
+  repo: string;
+}
+
+const { repo } = Astro.props;
+const repoLink = `https://github.com/${repo}`;
+// In a real component, you might fetch repo details from GitHub API here
+---
+
+<div class="github-repo-card my-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold mb-2 text-sky-400">GitHub Repository</h2>
+  <p class="text-gray-400 mb-1">Explore the codebase for:</p>
+  <a href={repoLink} target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:text-sky-300 text-xl font-medium hover:underline">
+    {repo}
+  </a>
+  <p class="text-gray-500 mt-4 text-sm">
+    (Further details like stars, forks, and description would be fetched and displayed here)
+  </p>
+  <a href={repoLink}
+     target="_blank"
+     rel="noopener noreferrer"
+     class="mt-4 inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105"
+  >
+    View on GitHub
+  </a>
+</div> 

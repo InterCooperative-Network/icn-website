@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MatrixInvite from '../components/MatrixInvite.astro';
+import GitHubRepoCard from '../components/GitHubRepoCard.astro';
+---
+
+<Layout title="ICN Infrastructure">
+  <h1>Infrastructure Overview</h1>
+  <p>Explore the domains, services, and public infrastructure that power the InterCooperative Network.</p>
+
+  <ul class="list-disc ml-6 text-white mt-6 space-y-2">
+    <li><strong>Public Website:</strong> <a href="https://www.intercooperative.network">www.intercooperative.network</a></li>
+    <li><strong>Docs:</strong> <a href="https://docs.intercooperative.network">docs.intercooperative.network</a></li>
+    <li><strong>Wallet:</strong> <a href="https://wallet.intercooperative.network">wallet.intercooperative.network</a></li>
+    <li><strong>AgoraNet:</strong> <a href="https://gov.intercooperative.network">gov.intercooperative.network</a></li>
+    <li><strong>Matrix:</strong> <a href="https://chat.intercooperative.network">chat.intercooperative.network</a></li>
+  </ul>
+
+  <MatrixInvite />
+  <GitHubRepoCard repo="InterCooperative-Network/icn-core" />
+</Layout> 
