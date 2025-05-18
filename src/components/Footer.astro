@@ -1,27 +1,56 @@
 ---
-// src/components/Footer.astro
+// src/components/Footer.astro - Updated with new Brand Sheet Content
 const currentYear = new Date().getFullYear();
+
+// Social links can be kept or updated based on priorities
 const socialLinks = [
-  { href: "https://github.com/InterCooperative-Network", label: "GitHub", icon: "github" }, // Add actual icon SVGs or a component later
-  { href: "#", label: "Matrix", icon: "matrix" }, // Replace with your Matrix link
-  // { href: "#", label: "Twitter", icon: "twitter" }, // Optional
-  // { href: "#", label: "Mastodon", icon: "mastodon" }, // Optional
+  { href: "https://github.com/InterCooperative-Network", label: "GitHub", iconName: "github" }, 
+  // { href: "#", label: "Matrix", iconName: "matrix" }, 
 ];
 
-// Simple SVG icons (replace with more robust solution or Astro Icons if needed)
+// Simplified icons for example, ideally use Astro Icons or full SVGs
 const icons: { [key: string]: string } = {
-  github: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
-  matrix: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M208 32H48a16 16 0 00-16 16v160a16 16 0 0016 16h160a16 16 0 0016-16V48a16 16 0 00-16-16zm-40 104h-24v24a8 8 0 01-16 0v-24H96a8 8 0 010-16h32V96a8 8 0 0116 0v24h24a8 8 0 010 16z"/></svg>`,
-  // Add other SVGs as needed
+  github: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
 };
 
+// Updated footer copy from new mockup
+const footerMainText = "Tired of systems stuck in the 17th century? This is real infrastructure for a new world.";
+const microcopyContent = [
+  "No monarchs. No bosses.",
+  "Just people, technology, and real democracy."
+];
+
+const footerNavLinks = [
+    { href: "#/join", text: "Join Now" }, // Assuming /join for Join Now
+    { href: "#/contact", text: "Contact" },
+    { href: "/community#discussions", text: "Discussions" }
+];
 ---
 
-<footer class="bg-bg-secondary border-t border-border mt-auto py-8 text-sm">
-  <div class="container mx-auto px-4 text-center text-text-secondary">
-    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-      <p>&copy; {currentYear} InterCooperative Network. All rights reserved (unless specified otherwise).</p>
-      
+<footer class="bg-midnight-navy border-t border-soft-black/30 mt-auto pt-12 pb-8 text-sm">
+  <div class="container mx-auto px-4 text-center text-slate-gray">
+    <p class="text-lg mb-6 text-white">{footerMainText}</p>
+    
+    <nav class="mb-8">
+      <ul class="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-2">
+        {footerNavLinks.map(link => (
+          <li>
+            <a href={link.href} class="text-slate-gray hover:text-sky-blue font-medium hover:underline transition-colors duration-150">
+              {link.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="mb-8 space-y-1 italic text-slate-gray">
+        {microcopyContent.map(line => (
+            <p class="text-sm">{line}</p>
+        ))}
+    </div>
+    
+    <div class="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 border-t border-soft-black/30 pt-6 mt-8">
+      <p class="text-xs">&copy; {currentYear} InterCooperative Network.</p>
       <div class="flex space-x-4">
         {socialLinks.map(link => (
           <a 
@@ -29,16 +58,12 @@ const icons: { [key: string]: string } = {
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label={link.label}
-            class="text-text-secondary hover:text-accent-teal transition-colors"
-            set:html={icons[link.icon] || link.label} />
+            class="text-slate-gray hover:text-sky-blue transition-colors duration-150"
+          >
+            {icons[link.iconName] ? <Fragment set:html={icons[link.iconName]} /> : link.label}
+          </a>
         ))}
       </div>
     </div>
-    <p class="mt-4">Building a commons-based, cooperatively owned digital future.</p>
-    <p class="mt-2">
-        <a href="/privacy" class="hover:text-accent-emerald">Privacy Policy</a> 
-        <span class="mx-2">|</span>
-        <a href="/terms" class="hover:text-accent-emerald">Terms of Service</a>
-    </p>
   </div>
 </footer> 

@@ -3,8 +3,9 @@
 export interface Props {
   title: string;
   description: string;
-  link: string;
   iconName?: string; // Corresponds to a key in the icons object below
+  // Made link, buttonText, and buttonClass optional for minimalism
+  link?: string;
   buttonText?: string;
   buttonClass?: string;
 }
@@ -12,38 +13,41 @@ export interface Props {
 const { 
     title, 
     description, 
-    link, 
     iconName, 
-    buttonText = "Learn More",
-    buttonClass = "button-secondary"
+    link, // Will be undefined if not passed
+    buttonText,
+    buttonClass
 } = Astro.props;
 
 // Basic SVG icons map. For a real project, consider Astro Icons or a dedicated SVG sprite.
 const icons: { [key: string]: string } = {
-  users: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
-  lightbulb: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M12 22V18M9 14a5 5 0 0 1 .9-2.95A5.13 5.13 0 0 1 12 6a5.13 5.13 0 0 1 2.1 1.05A5 5 0 0 1 15 14Z"/><line x1="12" x2="12" y1="2" y2="6"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/><line x1="1" x2="3" y1="12" y2="12"/><line x1="21" x2="23" y1="12" y2="12"/><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/></svg>`,
-  code: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+  users: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  lightbulb: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M12 22V18M9 14a5 5 0 0 1 .9-2.95A5.13 5.13 0 0 1 12 6a5.13 5.13 0 0 1 2.1 1.05A5 5 0 0 1 15 14Z"/><line x1="12" x2="12" y1="2" y2="6"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/><line x1="1" x2="3" y1="12" y2="12"/><line x1="21" x2="23" y1="12" y2="12"/><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/></svg>`,
+  code: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
   // Added new icons based on mockup descriptions
-  'chat-bubble': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
-  'network-nodes': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="19" cy="5" r="2"></circle><circle cx="5" cy="19" r="2"></circle><circle cx="5" cy="5" r="2"></circle><circle cx="19" cy="19" r="2"></circle><path d="M12 15v4M12 5v4M15 12h4M5 12h4M17.5 6.5l-3 3M6.5 17.5l3-3M17.5 17.5l-3-3M6.5 6.5l3 3"></path></svg>`,
-  'document-text': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
+  'chat-bubble': `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
+  'network-nodes': `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="19" cy="5" r="2"></circle><circle cx="5" cy="19" r="2"></circle><circle cx="5" cy="5" r="2"></circle><circle cx="19" cy="19" r="2"></circle><path d="M12 15v4M12 5v4M15 12h4M5 12h4M17.5 6.5l-3 3M6.5 17.5l3-3M17.5 17.5l-3-3M6.5 6.5l3 3"></path></svg>`,
+  'document-text': `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
 };
 
 const iconSvg = iconName && icons[iconName] ? icons[iconName] : 
-  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`; // Default fallback icon
+  `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`; // Default fallback icon
 ---
 
-<div class="card flex flex-col h-full">
+<div class="card flex flex-col h-full text-left group p-6">
   {iconName && (
-    <div class="mb-4 text-accent-teal w-12 h-12 flex items-center justify-center" set:html={iconSvg}>
-      <!-- SVG icon is injected here by set:html -->
+    <div class="mb-5 text-coop-teal w-10 h-10 flex items-center justify-start transition-transform duration-200 ease-in-out group-hover:scale-110">
+      <Fragment set:html={iconSvg} />
     </div>
   )}
-  <h3 class="text-xl font-semibold mb-2 text-accent-teal">{title}</h3>
-  <p class="text-text-primary text-base mb-4 flex-grow">{description}</p>
-  <div class="mt-auto">
-    <a href={link} class:list={["button text-sm w-full sm:w-auto", buttonClass]}>
-      {buttonText}
-    </a>
-  </div>
+  <h3 class="text-xl font-bold mb-3 text-white">{title}</h3>
+  <p class="text-white text-base mb-4 flex-grow">{description}</p>
+  {/* Conditionally render button/link if provided */} 
+  {link && buttonText && (
+    <div class="mt-auto pt-4">
+      <a href={link} class:list={["button text-sm", buttonClass || "button-secondary"]}>
+        {buttonText}
+      </a>
+    </div>
+  )}
 </div> 

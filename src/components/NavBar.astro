@@ -2,30 +2,30 @@
 // src/components/NavBar.astro
 const navLinks = [
   { href: "/about", text: "About" },
-  { href: "/projects", text: "Projects" }, // Assuming a future /projects page
-  { href: "/community#discussions", text: "Discussions" }, // Link to discussions section on community page
+  { href: "/projects", text: "Projects" },
+  { href: "/community#discussions", text: "Discussions" },
   { href: "/docs", text: "Docs" },
   // { href: "/blog", text: "Blog" }, // Uncomment when ready
 ];
 ---
 
-<header class="bg-bg-secondary/80 backdrop-blur-md sticky top-0 z-50 shadow-lg">
-  <div class="container mx-auto flex items-center justify-between h-header px-4">
+<header class="bg-midnight-navy/80 backdrop-blur-md sticky top-0 z-50 border-b border-soft-black/50 shadow-sm">
+  <div class="container mx-auto flex items-center justify-between h-[var(--header-height)] px-4">
     <a href="/" class="flex items-center space-x-3">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-coop-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 12a4.5 4.5 0 014.5-4.5M7.5 12a4.5 4.5 0 004.5 4.5m4.5-4.5a4.5 4.5 0 01-4.5 4.5m4.5-4.5a4.5 4.5 0 00-4.5-4.5" />
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V12m0-4.5V3M16.5 12H12m-4.5 0H3" />
       </svg>
-      <span class="font-semibold text-lg sm:text-xl text-text-primary hover:text-accent-teal transition-colors uppercase tracking-wider">INTERCOOPERATIVE NETWORK</span>
+      <span class="font-semibold text-sm text-white hover:text-sky-blue transition-colors uppercase tracking-wider">INTERCOOPERATIVE NETWORK</span>
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex space-x-4 lg:space-x-6">
+    <nav class="hidden md:flex space-x-8 lg:space-x-10">
       {navLinks.map(link => (
         <a 
           href={link.href} 
-          class="text-text-primary hover:text-accent-gold font-medium transition-colors px-3 py-2 rounded-md text-sm lg:text-base"
+          class="text-slate-gray hover:text-sky-blue font-medium transition-colors text-base"
           aria-current={Astro.url.pathname === link.href || (link.href.includes('#') && Astro.url.pathname === link.href.split('#')[0]) ? "page" : false}
         >
           {link.text}
@@ -34,17 +34,17 @@ const navLinks = [
     </nav>
     
     <!-- Mobile Menu Button -->
-    <button id="menu-toggle" class="md:hidden text-text-primary hover:text-accent-teal focus:outline-none focus:ring-2 focus:ring-accent-teal rounded-lg p-2" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="menu-toggle" class="md:hidden text-white hover:text-sky-blue focus:outline-none" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
     </button>
   </div>
 
-  <!-- Mobile Menu (conditionally rendered via JS or Astro Islands if more complex interactivity needed later) -->
-  <div id="mobile-menu" class="md:hidden hidden bg-bg-secondary/95 backdrop-blur-md absolute top-full left-0 w-full shadow-xl flex flex-col items-center space-y-1 py-4">
+  <!-- Mobile Menu (conditionally rendered via JS) -->
+  <div id="mobile-menu" class="md:hidden hidden bg-midnight-navy/95 backdrop-blur-md absolute top-full left-0 w-full shadow-xl flex flex-col items-center space-y-1 py-4">
     {navLinks.map(link => (
       <a 
         href={link.href} 
-        class="text-text-primary hover:text-accent-teal block px-3 py-3 rounded-md text-base font-medium w-11/12 text-center hover:bg-bg transition-colors"
+        class="text-slate-gray hover:text-sky-blue block px-3 py-3 rounded-md text-base font-medium w-11/12 text-center hover:bg-soft-black transition-colors"
         aria-current={Astro.url.pathname === link.href || (link.href.includes('#') && Astro.url.pathname === link.href.split('#')[0]) ? "page" : false}
       >
         {link.text}
@@ -61,25 +61,26 @@ const navLinks = [
   if (menuToggle && mobileMenu) {
     menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
       mobileMenu.classList.toggle('hidden');
-      mobileMenu.classList.toggle('flex'); // Use flex for centering items
-      // Toggle body class for scroll lock if needed, handled in Layout.astro for now
-      document.body.classList.toggle('mobile-menu-open'); // Added from Layout.astro
+      if (!isExpanded) {
+        mobileMenu.classList.add('flex');
+      } else {
+        mobileMenu.classList.remove('flex');
+      }
+      document.body.classList.toggle('mobile-menu-open');
     });
   }
-
 </script>
 
 <style>
   /* Style for the active navigation link */
   nav a[aria-current="page"],
   #mobile-menu a[aria-current="page"] {
-    color: var(--color-accent-teal);
+    color: var(--color-coop-teal); /* Active link is Coop Teal */
     font-weight: 600;
-    /* border-bottom: 2px solid var(--color-accent-gold); */ /* Optional: underline for active link */
   }
   #mobile-menu a[aria-current="page"] {
-      background-color: var(--color-bg);
+      background-color: var(--color-soft-black);
   }
 </style> 

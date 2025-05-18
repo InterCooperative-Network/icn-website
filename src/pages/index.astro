@@ -4,77 +4,55 @@ import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 
-const pageTitle = "Welcome to the InterCooperative Network";
-const pageDescription = "Pioneering a decentralized and cooperative digital economy. Learn how ICN empowers communities and builds the commons.";
+// Homepage copy from new mockup
+const pageTitle = "ICN: 21st Century Governance & Economy Infrastructure";
+const pageDescription = "InterCooperative Network: The digital backbone for real 21st-century self-governance and economic cooperation. Infrastructure for people—not empires.";
 
+// Updated Three Pillars content from new visual mockup
 const features = [
   {
-    title: "Join the Community",
-    description: "Connect with other members of our decentralized network.",
-    link: "/community#join",
-    icon: "chat-bubble",
-    buttonText: "Join Chat",
-    buttonClass: "button-teal"
+    title: "Community",
+    description: "Govern together.",
+    icon: "chat-bubble", // 💬
+    // link and buttonText removed for minimalism as per new mockup
   },
   {
-    title: "Run a Node",
-    description: "Set up a node and participate in the federated ICN infrastructure.",
-    link: "/docs/run-a-node",
-    icon: "network-nodes",
-    buttonText: "Start Here",
-    buttonClass: "button-secondary"
+    title: "Cooperative",
+    description: "Share prosperity.",
+    icon: "network-nodes", // 🌐
   },
   {
-    title: "Read the Vision",
-    description: "Learn about our goals and principles for a cooperative future.",
-    link: "/about",
-    icon: "document-text",
-    buttonText: "Read More",
-    buttonClass: "button-primary"
+    title: "Federation",
+    description: "Connect globally.",
+    icon: "document-text", // 🛰️
   }
 ];
 
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <HeroSection 
-    title="The InterCooperative Network"
-    tagline="Building a post-capitalist ecosystem for cooperation and mutual aid"
-    primaryButtonText="Get Involved"
-    primaryButtonLink="/community#join" 
-    secondaryButtonText="Learn More"
-    secondaryButtonLink="/about"
-  />
+  <HeroSection /> {/* Props are now primarily set by defaults in HeroSection.astro */}
 
-  <section id="features" class="py-16 md:py-24 bg-bg">
+  <!-- Three Pillars Section -->
+  <section id="three-pillars" class="py-16 md:py-20 bg-soft-black">
     <div class="container mx-auto px-4">
-      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12">
+      <div class="flex flex-col md:flex-row gap-8">
         {features.map(feature => (
-          <FeatureCard 
-            title={feature.title}
-            description={feature.description}
-            link={feature.link}
-            iconName={feature.icon} 
-            buttonText={feature.buttonText}
-            buttonClass={feature.buttonClass}
-          />
+          <div class="w-full md:w-1/3">
+            <FeatureCard 
+              title={feature.title}
+              description={feature.description}
+              iconName={feature.icon}
+              link={undefined}
+              buttonText={undefined}
+              buttonClass={undefined}
+            />
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section id="call-to-action" class="py-16 md:py-24 bg-bg">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gradient-teal-gold">Ready to Build the Future?</h2>
-        <p class="text-lg text-text-secondary max-w-xl mx-auto mb-8">
-            The InterCooperative Network thrives on community participation. Your skills, ideas, and passion are vital to our collective success.
-        </p>
-        <a href="/community#join" class="button button-primary text-xl px-8 py-4">
-            Become an ICN Pioneer
-        </a>
-    </div>
-</section>
-
-  <!-- You can add more sections here: News, Roadmap, Partners, etc. -->
+  <!-- Footer content will be handled by Footer.astro -->
 
 </Layout>

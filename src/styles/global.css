@@ -2,21 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* src/styles/global.css */
+/* src/styles/global.css - Updated with new Brand Sheet */
 :root {
-  --color-bg: #101214; /* Midnight - updated to deeper dark */
-  --color-bg-secondary: #1F2428; /* Slightly lighter for cards/sections */
-  --color-accent-teal: #22D3EE;
-  --color-accent-emerald: #10B981;
-  --color-accent-gold: #FFD166;
-  --color-text-primary: #F3F4F6; /* Off-white */
-  --color-text-secondary: #A0AEC0; /* Lighter gray for subtext */
-  --color-border: #3A414C;
+  /* Brand Palette from Sheet */
+  --color-coop-teal: #25DED0;
+  --color-midnight-navy: #071D22;
+  --color-soft-black: #0A232B;
+  --color-solar-yellow: #FFD463;
+  --color-sky-blue: #74E7F2;
+  --color-mint-green: #33FFB4;
+  --color-light-gray: #E2F0ED;
+  --color-slate-gray: #748D92;
+  --color-white: #FFFFFF;
+  
+  /* Applied to general theme */
+  --color-bg: var(--color-midnight-navy);
+  --color-bg-secondary: var(--color-soft-black); /* For cards, secondary sections */
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-slate-gray);
+  --color-accent-primary: var(--color-coop-teal);
+  --color-accent-secondary: var(--color-solar-yellow);
+  --color-link: var(--color-sky-blue);
+  --color-link-hover: var(--color-mint-green);
+  --color-border-subtle: var(--color-light-gray);
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-mono: 'Fira Code', 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
 
-  --header-height: 4rem; /* 64px */
+  --header-height: 4.5rem;
 }
 
 /* Reset and Base Styles */
@@ -29,7 +42,7 @@
 }
 
 html {
-  font-size: 100%; /* 16px */
+  font-size: 100%;
   scroll-behavior: smooth;
   background-color: var(--color-bg);
   color: var(--color-text-primary);
@@ -37,7 +50,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  line-height: 1.6;
+  font-weight: 400; /* Regular weight for body */
+  line-height: 1.6; /* As per brand sheet for body copy */
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
@@ -54,153 +68,108 @@ input, button, textarea, select {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+  font-family: var(--font-sans); /* Using Inter as Satoshi alt */
+  font-weight: 700; /* Bold for headings */
   line-height: 1.2;
-  color: var(--color-accent-teal); /* Default heading color */
-  margin-bottom: 1rem;
+  color: var(--color-white);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em; /* Roomy letter-spacing for headings */
 }
 
-h1 { font-size: 2.5rem; } /* ~40px */
-h2 { font-size: 2rem; }   /* ~32px */
-h3 { font-size: 1.75rem; } /* ~28px */
+h1 { font-size: 2.75rem; letter-spacing: 0.02em; } /* Base H1, can be overridden by components */
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; } 
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   color: var(--color-text-secondary);
 }
 
 a {
-  color: var(--color-accent-teal);
+  color: var(--color-link);
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-  color: var(--color-accent-gold);
+  color: var(--color-link-hover);
 }
 
 /* Utility Classes */
 .container {
   width: 90%;
-  max-width: 1200px;
+  max-width: 1100px; /* Adjusted for content density */
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Buttons */
+/* Buttons - per Implementation Tips */
 .button {
   display: inline-block;
-  padding: 0.75em 1.5em;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: 0.8em 1.8em;
+  border-radius: 6px;
+  font-weight: 700; /* Bold button text */
   text-align: center;
-  transition: transform 0.2s ease-out, background-color 0.2s ease-in-out;
+  transition: transform 0.2s ease-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
   cursor: pointer;
   border: 2px solid transparent;
+  letter-spacing: 0.05em;
 }
 
 .button:hover {
   transform: translateY(-2px);
 }
+.button:focus-visible {
+  outline: 2px solid var(--color-mint-green);
+  outline-offset: 2px;
+}
 
+/* Primary CTA: Solar Yellow background, Midnight Navy text */
 .button-primary {
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg);
-  border-color: var(--color-accent-gold);
+  background-color: var(--color-solar-yellow);
+  color: var(--color-midnight-navy);
+  border-color: var(--color-solar-yellow);
 }
 .button-primary:hover {
-  background-color: #ffc740; /* Slightly lighter gold */
+  background-color: #FFC84A; /* Slightly lighter yellow */
+  border-color: #FFC84A;
 }
 
+/* Secondary CTA: Coop Teal outline, Coop Teal text */
 .button-secondary {
   background-color: transparent;
-  color: var(--color-accent-teal);
-  border-color: var(--color-accent-teal);
+  color: var(--color-coop-teal);
+  border-color: var(--color-coop-teal);
 }
 .button-secondary:hover {
-  background-color: var(--color-accent-teal);
-  color: var(--color-bg);
+  background-color: rgba(37, 222, 208, 0.1); /* Coop Teal with low opacity */
+  color: var(--color-coop-teal);
 }
 
-.button-emerald {
-  background-color: var(--color-accent-emerald);
-  color: var(--color-bg);
-  border-color: var(--color-accent-emerald);
-}
-
-.button-emerald:hover {
-    background-color: #0da070; /* Slightly darker emerald */
-}
-
-.button-teal {
-  background-color: var(--color-accent-teal);
-  color: var(--color-bg);
-  border-color: var(--color-accent-teal);
-}
-.button-teal:hover {
-  background-color: #1BC8E2; /* Slightly darker teal */
-}
-
-.button-dark-outline {
-  background-color: transparent;
-  color: var(--color-accent-teal);
-  border-color: var(--color-border); /* Using the existing border color */
-}
-.button-dark-outline:hover {
-  background-color: var(--color-border); /* Or a very subtle transparent teal/gray */
-  color: var(--color-bg-secondary);
-}
-
-/* Add a subtle gradient text class */
-.text-gradient-teal-gold {
-  background: linear-gradient(to right, var(--color-accent-teal), var(--color-accent-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}
-
-.text-gradient-emerald-teal {
-  background: linear-gradient(to right, var(--color-accent-emerald), var(--color-accent-teal));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}
-
-.text-gradient-cyan-teal {
-  background: linear-gradient(to right, var(--color-accent-teal), #06B6D4); /* Using accent-teal and a cyan hex for now */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}
-
-/* Basic card styling */
+/* Card styling - updated to new Brand Style Guide */
 .card {
-  background-color: var(--color-bg-secondary);
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid transparent;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: var(--color-soft-black); /* Soft Black for card backgrounds */
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid var(--color-soft-black); /* No contrasting border, color blocks instead */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(23, 225, 194, 0.15); /* Teal glow on hover */
-} 
+  box-shadow: 0 12px 40px rgba(37, 222, 208, 0.1); /* Subtle Coop Teal glow on hover */
+}
+
+/* Text Gradients - can be removed if not used, or updated */
+.text-gradient-teal-gold {
+  background: linear-gradient(to right, var(--color-coop-teal), var(--color-solar-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* The #features .grid styles below were removed as layout is handled by Tailwind in index.astro */ 
