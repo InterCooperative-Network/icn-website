@@ -20,7 +20,7 @@ echo "Starting documentation sync from $DOCS_SOURCE_DIR to $DOCS_DEST_DIR"
 
 # List of topics (directory names in icn-docs)
 # These should match the slugs used in the Astro pages (e.g., api.astro loads api.md)
-topics=("api" "architecture" "economy" "governance" "networking" "observability" "philosophy" "rfcs" "onboarding")
+topics=("api" "architecture" "economy" "governance" "networking" "observability" "philosophy" "rfcs" "onboarding" "cli")
 
 # Counter for found files
 found_count=0
