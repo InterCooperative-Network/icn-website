@@ -13,8 +13,11 @@ const post = {
 <Layout 
   title={post.title + " | ICN Blog"} 
   description={`Read the blog post titled "${post.title}" by ${post.author} on the InterCooperative Network blog.`}
-  ogImage={post.image} {/* This will override the default social preview if an image is set */}
+  ogImage={post.image}
 >
+  <div class="p-4 mb-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-800 rounded">
+    🚧 This post is a work in progress. Check back soon for more!
+  </div>
   <article class="py-12">
     <div class="container mx-auto px-6 max-w-3xl">
       
