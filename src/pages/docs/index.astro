@@ -1,0 +1,35 @@
+import Layout from '../../layouts/Layout.astro';
+
+const topics = [
+  { name: 'API', slug: 'api', description: 'ICN API specifications and usage.' },
+  { name: 'Architecture', slug: 'architecture', description: 'Overall system architecture of ICN.' },
+  { name: 'Economy', slug: 'economy', description: 'Economic model, mana, and resource allocation.' },
+  { name: 'Governance', slug: 'governance', description: 'AgoraNet, proposals, and federated governance.' },
+  { name: 'Networking', slug: 'networking', description: 'Distributed mesh computation and network protocols.' },
+  { name: 'Observability', slug: 'observability', description: 'Monitoring, logging, and tracing within ICN.' },
+  { name: 'Philosophy', slug: 'philosophy', description: 'Core principles and vision of ICN.' },
+  { name: 'RFCs', slug: 'rfcs', description: 'Requests for Comments and design proposals.' },
+  { name: 'Onboarding', slug: 'onboarding', description: 'Guides for new communities and contributors.' },
+];
+
+<Layout title="ICN Documentation">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 text-center">ICN Documentation</h1>
+    <p class="text-lg text-center mb-12">
+      Welcome to the InterCooperative Network documentation. Explore the various aspects of ICN,
+      from its core philosophy to technical specifications.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {topics.map(topic => (
+        <a href={`/docs/${topic.slug}`} class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-2xl font-semibold mb-2">{topic.name}</h2>
+          <p class="text-gray-700">{topic.description}</p>
+        </a>
+      ))}
+    </div>
+    <p class="text-center mt-12 text-sm text-gray-600">
+      All documentation is mirrored from the <a href="https://github.com/intercoopnet/icn-docs" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">icn-docs repository</a>.
+      Changes should be made there.
+    </p>
+  </div>
+</Layout> 
