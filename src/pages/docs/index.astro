@@ -1,25 +1,17 @@
 ---
-// Intentionally empty frontmatter for this page
-// Adding a comment to try and refresh linter state
+// Super minimal docs/index.astro for testing - NO LAYOUT
+const pageTitle = "Docs Index (Super Minimal Test)";
 ---
-import Layout from '../../layouts/Layout.astro';
-
-<Layout title="ICN Documentation">
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-center">ICN Documentation</h1>
-    <p class="text-lg text-center mb-12">
-      Welcome to the InterCooperative Network documentation. Explore the various aspects of ICN,
-      from its core philosophy to technical specifications.
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="/docs/somepage" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-        <h2 class="text-2xl font-semibold mb-2">Some Topic</h2>
-        <p class="text-gray-700">This is a static description.</p>
-      </a>
-    </div>
-    <p class="text-center mt-12 text-sm text-gray-600">
-      All documentation is mirrored from the <a href="https://github.com/intercoopnet/icn-docs" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">icn-docs repository</a>.
-      Changes should be made there.
-    </p>
-  </div>
-</Layout>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+</head>
+<body>
+    <h1>{pageTitle}</h1>
+    <p>This is a test page with no layout import. If this builds, the issue is with importing or using Layout.astro.</p>
+    <a href="/">Go to Home</a>
+</body>
+</html>
