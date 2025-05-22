@@ -1,11 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import githubPages from '@astrojs/github-pages';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  integrations: [tailwind(), githubPages()],
+  integrations: [tailwind()],
+  site: 'https://icn-org.github.io/icn-website',
   base: '/icn-website/',
 });
