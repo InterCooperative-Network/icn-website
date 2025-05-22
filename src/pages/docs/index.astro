@@ -1,17 +1,9 @@
 ---
-// Super minimal docs/index.astro for testing - NO LAYOUT
-const pageTitle = "Docs Index (Super Minimal Test)";
+// Minimal docs/index.astro using MINIMAL Layout.astro
+import Layout from '../../layouts/Layout.astro';
+const pageTitle = "Docs Index (Using Minimal Layout)";
 ---
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-</head>
-<body>
-    <h1>{pageTitle}</h1>
-    <p>This is a test page with no layout import. If this builds, the issue is with importing or using Layout.astro.</p>
+<Layout title={pageTitle}>
+    <p>This page is now using the minimal Layout.astro. If this builds, the import itself is working in CI.</p>
     <a href="/">Go to Home</a>
-</body>
-</html>
+</Layout>
