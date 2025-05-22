@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Clean Cache
+        run: |
+          npm cache clean --force
+          rm -rf node_modules/.vite
+          rm -rf .astro
+
       - name: Install dependencies
         run: npm ci
 
