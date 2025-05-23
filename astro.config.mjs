@@ -6,6 +6,6 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   output: 'static',
   integrations: [tailwind()],
-  site: 'https://icn-org.github.io/icn-website',
-  base: '/icn-website/',
+  site: 'https://intercooperative.network',
+  base: '/',
 });
