@@ -27,7 +27,7 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Add .nojekyll and CNAME
+      - name: Set custom domain and disable Jekyll
         run: |
           echo "intercooperative.network" > dist/CNAME
           touch dist/.nojekyll
@@ -37,4 +37,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          force_orphan: true
