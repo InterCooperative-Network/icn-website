@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -29,10 +29,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Astro site
         run: npm run build
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload build artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./dist
