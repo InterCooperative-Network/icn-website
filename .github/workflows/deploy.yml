@@ -27,8 +27,14 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Add .nojekyll and CNAME
+        run: |
+          echo "intercooperative.network" > dist/CNAME
+          touch dist/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          force_orphan: true
