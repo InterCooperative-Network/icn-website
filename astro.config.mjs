@@ -7,5 +7,5 @@ export default defineConfig({
   output: 'static',
   integrations: [tailwind()],
   site: 'https://intercooperative.network',
-  base: '/',
+  base: '',
 });

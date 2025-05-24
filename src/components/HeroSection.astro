@@ -30,7 +30,7 @@ const {
   primaryButtonLink = "/get-started",
   secondaryButtonText = "How It Works",
   secondaryButtonLink = "#/how-it-works",
-  showImage = true,
+  showImage = false,
   imageUrl = "/images/hero-globe.png", 
   imageAlt = "Abstract network globe representing interconnectedness"
 } = Astro.props;
@@ -61,11 +61,11 @@ const {
       </div>
       
       <!-- Image Area (Right) -->
-      {showImage && (
+      {/* {showImage && (
         <div class="md:w-[45%] mt-10 md:mt-0 flex items-center justify-center md:justify-end">
           <img src={imageUrl} alt={imageAlt} class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl object-contain" />
         </div>
-      )}
+      )} */}
     </div>
   </div>
 </section>
