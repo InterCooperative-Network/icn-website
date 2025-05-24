@@ -32,7 +32,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload Pages Artifact
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./dist
