@@ -22,7 +22,24 @@ export default {
 			},
 			height: {
 				'header': 'var(--header-height)',
-			}
+			},
+			keyframes: {
+				float: {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				fadeIn: {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				},
+			},
+			animation: {
+				float: 'float 6s ease-in-out infinite',
+				'fade-in': 'fadeIn 1s ease-out forwards', // forwards keeps it at 100% opacity
+				'fade-in-delay-200': 'fadeIn 1s ease-out 200ms forwards',
+				'fade-in-delay-400': 'fadeIn 1s ease-out 400ms forwards',
+				'fade-in-delay-600': 'fadeIn 1s ease-out 600ms forwards',
+			},
 		},
 	},
 	plugins: [],
