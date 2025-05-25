@@ -179,11 +179,13 @@ a:hover {
 }
 
 .btn-primary {
-  @apply btn bg-gradient-to-r from-emerald-400 to-teal-500 text-white hover:brightness-110;
+  /* @apply btn bg-gradient-to-r from-emerald-400 to-teal-500 text-white hover:brightness-110; */ /* Old emerald/teal */
+  @apply btn bg-[color:var(--color-solar-yellow)] text-[color:var(--color-midnight-navy)] border-2 border-[color:var(--color-solar-yellow)] hover:bg-opacity-90 hover:border-opacity-90;
 }
 
 .btn-secondary {
-  @apply btn border border-emerald-400 text-emerald-300 hover:bg-emerald-900/10;
+  /* @apply btn border border-emerald-400 text-emerald-300 hover:bg-emerald-900/10; */ /* Old emerald/teal */
+  @apply btn border-2 border-[color:var(--color-accent-glow)] text-[color:var(--color-accent-glow)] hover:bg-[color:var(--color-accent-glow)] hover:bg-opacity-10;
 }
 
 /* The #features .grid styles below were removed as layout is handled by Tailwind in index.astro */ 
