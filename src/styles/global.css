@@ -5,12 +5,13 @@
 /* src/styles/global.css - Updated with new Brand Sheet */
 :root {
   /* Brand Palette from Sheet */
-  --color-coop-teal: #25DED0;
+  --color-nav-active-link: #25DED0;
   --color-midnight-navy: #071D22;
   --color-soft-black: #0A232B;
   --color-solar-yellow: #FFD463;
   --color-sky-blue: #74E7F2;
   --color-mint-green: #33FFB4;
+  --color-accent-glow: #33FFB4;
   --color-light-gray: #E2F0ED;
   --color-slate-gray: #748D92;
   --color-white: #FFFFFF;
@@ -20,7 +21,7 @@
   --color-bg-secondary: var(--color-soft-black); /* For cards, secondary sections */
   --color-text-primary: var(--color-white);
   --color-text-secondary: var(--color-slate-gray);
-  --color-accent-primary: var(--color-coop-teal);
+  --color-accent-primary: var(--color-accent-glow);
   --color-accent-secondary: var(--color-solar-yellow);
   --color-link: var(--color-sky-blue);
   --color-link-hover: var(--color-mint-green);
@@ -140,12 +141,12 @@ a:hover {
 /* Secondary CTA: Coop Teal outline, Coop Teal text */
 .button-secondary {
   background-color: transparent;
-  color: var(--color-coop-teal);
-  border-color: var(--color-coop-teal);
+  color: var(--color-accent-glow);
+  border-color: var(--color-accent-glow);
 }
 .button-secondary:hover {
-  background-color: rgba(37, 222, 208, 0.1); /* Coop Teal with low opacity */
-  color: var(--color-coop-teal);
+  background-color: rgba(51, 255, 180, 0.1);
+  color: var(--color-accent-glow);
 }
 
 /* Card styling - updated to new Brand Style Guide */
@@ -165,7 +166,7 @@ a:hover {
 
 /* Text Gradients - can be removed if not used, or updated */
 .text-gradient-teal-gold {
-  background: linear-gradient(to right, var(--color-coop-teal), var(--color-solar-yellow));
+  background: linear-gradient(to right, var(--color-nav-active-link), var(--color-solar-yellow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

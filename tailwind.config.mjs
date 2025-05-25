@@ -15,6 +15,7 @@ export default {
 				'text-primary': 'var(--color-text-primary)',
 				'text-secondary': 'var(--color-text-secondary)',
 				'border': 'var(--color-border)',
+				'nav-active-link': 'var(--color-nav-active-link)',
 			},
 			fontFamily: {
 				'sans': ['Inter', 'sans-serif'], // Ensure Inter is primary
