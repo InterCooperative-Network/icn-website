@@ -84,7 +84,7 @@ const howToGetInvolved = [
               <div id="matrix-invite"><MatrixInvite /></div>
             ) : (
               <a href={item.cta.href} target={item.cta.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" 
-                 class="mt-auto inline-block button button-primary text-white font-bold py-2 px-4 rounded-lg text-center transition duration-300">
+                 class="btn btn-primary mt-auto">
                 {item.cta.text}
               </a>
             )}
@@ -98,7 +98,7 @@ const howToGetInvolved = [
             <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
             <p class="text-gray-700 mb-4 flex-grow">{item.description}</p>
             <a href={item.cta.href} target={item.cta.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" 
-               class="mt-auto inline-block button button-primary text-white font-bold py-2 px-4 rounded-lg text-center transition duration-300">
+               class="btn btn-primary mt-auto">
               {item.cta.text}
             </a>
           </div>
