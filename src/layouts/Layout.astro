@@ -1,20 +1,73 @@
 ---
-// Minimal Layout.astro for testing
+// src/layouts/Layout.astro
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
+
 export interface Props {
 	title: string;
+	description?: string;
 }
-const { title } = Astro.props;
+
+const { title, description } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title} | Minimal Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description || 'InterCooperative Network'} />
+    <title>{title} | InterCooperative Network</title>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <ViewTransitions />
 </head>
-<body>
-    <h1>Layout Test: {title}</h1>
-    <slot />
-    <p>Minimal footer</p>
+<body class="bg-midnight-navy text-gray-100 antialiased font-sans">
+    <NavBar />
+    <main id="main-content">
+        <slot />
+    </main>
+    <Footer />
+    <style is:global>
+        :root {
+            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Lexend', sans-serif;
+            
+            /* Color Palette (example, adjust as needed) */
+            --color-midnight-navy: #0A192F; /* Dark background */
+            --color-sky-blue: #64FFDA; /* Accent, primary button */
+            --color-slate-gray: #8892B0; /* Body text, secondary elements */
+            --color-light-slate: #A8B2D1; /* Lighter text, borders */
+            --color-white: #E6F1FF; /* Headings, highlights */
+            --color-bg-secondary: #112240; /* Slightly lighter bg for sections */
+            --color-coop-teal: #17A2B8; /* A distinct teal for callouts or icons */
+        }
+
+        html {
+            font-family: var(--font-sans);
+            background-color: var(--color-midnight-navy);
+            color: var(--color-slate-gray);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            color: var(--color-white);
+            font-weight: 700; /* Bolder headings by default */
+        }
+        
+        /* Tailwind's preflight usually handles this, but good for base body styles */
+        body {
+             min-height: 100vh;
+             display: flex;
+             flex-direction: column;
+        }
+        main#main-content {
+            flex-grow: 1;
+        }
+    </style>
 </body>
 </html> 
