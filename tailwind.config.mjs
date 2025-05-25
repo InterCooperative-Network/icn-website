@@ -4,9 +4,12 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'bg': 'var(--color-bg)',
+				'midnight-navy': 'var(--color-midnight-navy)',
+				'accent-glow': 'var(--color-accent-glow)',
+				'slate-gray': 'var(--color-slate-gray)',
+				'light-slate': 'var(--color-light-slate)',
+				'white': 'var(--color-white)',
 				'bg-secondary': 'var(--color-bg-secondary)',
-				'accent-teal': 'var(--color-accent-teal)',
 				'accent-emerald': 'var(--color-accent-emerald)',
 				'accent-gold': 'var(--color-accent-gold)',
 				'text-primary': 'var(--color-text-primary)',
