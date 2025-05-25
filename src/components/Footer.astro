@@ -31,29 +31,54 @@ const footerNavLinks = [
 ];
 ---
 
-<footer class="bg-midnight-navy border-t border-soft-black/30 mt-auto pt-12 pb-8 text-sm">
-  <div class="container mx-auto px-4 text-center text-slate-gray">
-    <p class="text-lg mb-6 text-white">{footerMainText}</p>
+<footer class="bg-midnight-navy border-t border-slate-gray/40 mt-auto pt-12 pb-8 text-sm">
+  <div class="container mx-auto px-4 text-center md:text-left text-slate-gray">
     
-    <nav class="mb-8">
-      <ul class="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-2">
-        {footerNavLinks.map(link => (
-          <li>
-            <a href={link.href} class="text-slate-gray hover:text-sky-blue font-medium hover:underline transition-colors duration-150">
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 text-center md:text-left">
+      <!-- Column 1: Slogan -->
+      <div>
+        <p class="text-lg font-semibold text-accent-glow mb-4">{footerMainText}</p>
+      </div>
 
-    <div class="mb-8 space-y-1 italic text-slate-gray">
-        {microcopyContent.map(line => (
-            <p class="text-sm">{line}</p>
-        ))}
+      <!-- Column 2: Navigation -->
+      <div>
+        <h5 class="font-semibold text-white mb-3 uppercase tracking-wider text-sm">Navigate</h5>
+        <ul class="space-y-2">
+          {footerNavLinks.map(link => (
+            <li>
+              <a href={link.href} class="text-slate-gray hover:text-sky-blue hover:underline transition-colors duration-150">
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3: Connect & Microcopy -->
+      <div>
+        <h5 class="font-semibold text-white mb-3 uppercase tracking-wider text-sm">Connect</h5>
+        <div class="flex justify-center md:justify-start space-x-4 mb-4">
+          {socialLinks.map(link => (
+            <a 
+              href={link.href} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label={link.label}
+              class="text-slate-gray hover:text-sky-blue transition-colors duration-150"
+            >
+              {icons[link.iconName] ? <Fragment set:html={icons[link.iconName]} /> : link.label}
+            </a>
+          ))}
+        </div>
+        <div class="space-y-1 italic text-xs">
+          {microcopyContent.map(line => (
+              <p>{line}</p>
+          ))}
+        </div>
+      </div>
     </div>
     
-    <div class="mb-6 text-sm text-slate-gray">
+    <div class="mb-6 text-sm text-slate-gray text-center">
       <span>Spot an issue or have a suggestion? </span>
       <a href="https://matrix.to/#/#icn:matrix.org" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">Join our Matrix</a>
       <span> or </span>
@@ -61,21 +86,8 @@ const footerNavLinks = [
       <span>!</span>
     </div>
     
-    <div class="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 border-t border-soft-black/30 pt-6 mt-8">
-      <p class="text-xs">&copy; {currentYear} InterCooperative Network.</p>
-      <div class="flex space-x-4">
-        {socialLinks.map(link => (
-          <a 
-            href={link.href} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label={link.label}
-            class="text-slate-gray hover:text-sky-blue transition-colors duration-150"
-          >
-            {icons[link.iconName] ? <Fragment set:html={icons[link.iconName]} /> : link.label}
-          </a>
-        ))}
-      </div>
+    <div class="border-t border-soft-black/30 pt-6 mt-8 text-center">
+      <p class="text-xs">&copy; {currentYear} InterCooperative Network. All rights reserved.</p>
     </div>
   </div>
 </footer> 
