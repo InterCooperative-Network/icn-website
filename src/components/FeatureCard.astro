@@ -36,7 +36,7 @@ const iconSvg = iconName && icons[iconName] ? icons[iconName] :
 
 <div class="card flex flex-col h-full group p-6 bg-bg-secondary rounded-lg text-center items-center">
   {iconName && (
-    <div class="mb-5 text-accent-glow w-10 h-10 flex items-center justify-center transition-transform duration-200 ease-in-out group-hover:scale-110">
+    <div class="mb-5 w-14 h-14 rounded-full bg-accent-glow/10 text-accent-glow flex items-center justify-center transition group-hover:scale-110">
       <Fragment set:html={iconSvg} />
     </div>
   )}
