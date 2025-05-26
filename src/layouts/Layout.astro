@@ -2,6 +2,7 @@
 // src/layouts/Layout.astro
 import NavBar from '../components/NavBar.astro';
 import Footer from '../components/Footer.astro';
+import StickyCTA from '../components/StickyCTA.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
@@ -32,6 +33,7 @@ const { title, description } = Astro.props;
         <slot />
     </main>
     <Footer />
+    <StickyCTA />
     <style is:global>
         :root {
             --font-sans: 'Inter', sans-serif;

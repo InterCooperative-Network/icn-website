@@ -33,12 +33,13 @@ const features = [
 <Layout title={pageTitle} description={pageDescription}>
   <HeroSection /> {/* Props are now primarily set by defaults in HeroSection.astro */}
 
-  <div class="w-full h-12 bg-gradient-to-b from-midnight-navy to-bg-secondary"></div>
-
-  <!-- Three Pillars Section -->
+  {/* Three Pillars Section - Title moved up, gradient div removed */}
   <section id="how-it-works" class="py-16 md:py-20 bg-bg-secondary relative">
     <div class="absolute inset-0 opacity-5 bg-[url('/images/pattern-grid.svg')] bg-repeat"></div>
     <div class="container mx-auto px-4 relative">
+      <h2 class="text-center text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-12 md:mb-16">
+        Explore the Pillars of ICN
+      </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 mb-12">
         {features.map(feature => (
           <FeatureCard 
@@ -48,15 +49,14 @@ const features = [
           />
         ))}
       </div>
-      <h2 class="text-center text-3xl font-extrabold text-white tracking-tight">Explore ICN</h2>
-      <p class="text-center mt-2 max-w-sm mx-auto">
+      <p class="text-center mt-12 max-w-sm mx-auto">
         <a href="/get-started" class="text-accent-glow font-semibold hover:underline transition">Get Started →</a>
       </p>
     </div>
   </section>
 
   <!-- Quick Links Section -->
-  <section class="py-12 md:py-16 bg-midnight-navy">
+  <section id="join" class="py-12 md:py-16 bg-midnight-navy">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold mb-8 text-accent-glow">Begin Exploring the ICN</h2>
       <div class="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 justify-center items-center">
