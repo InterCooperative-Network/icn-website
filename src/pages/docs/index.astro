@@ -1,9 +1,180 @@
 ---
-// Minimal docs/index.astro using MINIMAL Layout.astro
+// Comprehensive docs/index.astro with proper navigation
 import Layout from '../../layouts/Layout.astro';
-const pageTitle = "Docs Index (Using Minimal Layout)";
+const pageTitle = "ICN Documentation";
 ---
+
 <Layout title={pageTitle}>
-    <p>This page is now using the minimal Layout.astro. If this builds, the import itself is working in CI.</p>
-    <a href="/">Go to Home</a>
+    <div class="container mx-auto px-4 py-8">
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold mb-4">ICN Documentation</h1>
+            <p class="text-xl text-gray-700 mb-6">
+                Comprehensive documentation for the InterCooperative Network (ICN) - a federated compute, 
+                resource, and governance protocol designed for cooperatives, communities, and federations.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Getting Started -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+                <h2 class="text-xl font-semibold mb-3 text-blue-700">Getting Started</h2>
+                <p class="text-gray-600 mb-4">Start your journey with ICN development and contribution.</p>
+                <ul class="space-y-2">
+                    <li><a href="/docs/onboarding" class="text-blue-600 hover:underline">Developer Onboarding Guide</a></li>
+                    <li><a href="/docs/architecture" class="text-blue-600 hover:underline">System Architecture</a></li>
+                    <li><a href="/docs/philosophy" class="text-blue-600 hover:underline">ICN Philosophy</a></li>
+                </ul>
+            </div>
+
+            <!-- Core Technology -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+                <h2 class="text-xl font-semibold mb-3 text-green-700">Core Technology</h2>
+                <p class="text-gray-600 mb-4">Deep dive into ICN's technical architecture and implementation.</p>
+                <ul class="space-y-2">
+                    <li><a href="/docs/api" class="text-blue-600 hover:underline">Core Crates API Reference</a></li>
+                    <li><a href="/docs/networking" class="text-blue-600 hover:underline">Networking Architecture</a></li>
+                    <li><a href="/docs/observability" class="text-blue-600 hover:underline">Observability & Monitoring</a></li>
+                </ul>
+            </div>
+
+            <!-- Economic System -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+                <h2 class="text-xl font-semibold mb-3 text-yellow-700">Economic System</h2>
+                <p class="text-gray-600 mb-4">Understand ICN's regenerative mana system and tokenized economy.</p>
+                <ul class="space-y-2">
+                    <li><a href="/docs/economy" class="text-blue-600 hover:underline">Mana System</a></li>
+                    <li><a href="/docs/governance" class="text-blue-600 hover:underline">Governance System</a></li>
+                    <li><span class="text-gray-400">Token Economy (Coming Soon)</span></li>
+                </ul>
+            </div>
+
+            <!-- Tools & CLI -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+                <h2 class="text-xl font-semibold mb-3 text-purple-700">Tools & CLI</h2>
+                <p class="text-gray-600 mb-4">Command-line tools and developer utilities for ICN.</p>
+                <ul class="space-y-2">
+                    <li><a href="/docs/cli" class="text-blue-600 hover:underline">CLI Command Reference</a></li>
+                    <li><span class="text-gray-400">SDK Documentation (Coming Soon)</span></li>
+                    <li><span class="text-gray-400">IDE Integrations (Coming Soon)</span></li>
+                </ul>
+            </div>
+
+            <!-- RFCs & Standards -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+                <h2 class="text-xl font-semibold mb-3 text-red-700">RFCs & Standards</h2>
+                <p class="text-gray-600 mb-4">Technical specifications and protocol definitions.</p>
+                <ul class="space-y-2">
+                    <li><a href="/docs/rfcs" class="text-blue-600 hover:underline">All RFCs</a></li>
+                    <li><a href="/docs/rfc-0010-governance-core" class="text-blue-600 hover:underline">RFC 0010: Governance Core</a></li>
+                    <li><span class="text-gray-400">Protocol Specifications (Coming Soon)</span></li>
+                </ul>
+            </div>
+
+            <!-- Community & Contribution -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-indigo-500">
+                <h2 class="text-xl font-semibold mb-3 text-indigo-700">Community</h2>
+                <p class="text-gray-600 mb-4">Join the ICN community and contribute to the project.</p>
+                <ul class="space-y-2">
+                    <li><a href="/contribute" class="text-blue-600 hover:underline">Contribution Guide</a></li>
+                    <li><a href="/community" class="text-blue-600 hover:underline">Community</a></li>
+                    <li><a href="https://github.com/InterCooperative-Network" class="text-blue-600 hover:underline" target="_blank">GitHub Organization</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Key Concepts Section -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6">Key Concepts</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Federated Architecture</h3>
+                    <p class="text-gray-700">
+                        ICN operates as a federation of autonomous nodes forming cooperatives, communities, 
+                        and larger federations while maintaining local sovereignty.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Regenerative Mana System</h3>
+                    <p class="text-gray-700">
+                        A sustainable resource management model where capacity credits regenerate over time, 
+                        preventing abuse while ensuring fair access.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Mesh Computing</h3>
+                    <p class="text-gray-700">
+                        Distributed job execution across the network with automated bidding, selection, 
+                        and verification processes.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Explicit Governance</h3>
+                    <p class="text-gray-700">
+                        Transparent, verifiable governance through formal proposals, voting mechanisms, 
+                        and policy enforcement via CCL contracts.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div class="mt-12 bg-blue-50 rounded-lg p-8">
+            <h2 class="text-2xl font-bold mb-4">Quick Start</h2>
+            <p class="text-gray-700 mb-6">
+                Ready to get started with ICN? Follow these steps to set up your development environment 
+                and run your first ICN node.
+            </p>
+            
+            <div class="bg-white rounded-lg p-4 mb-4">
+                <code class="text-sm">
+                    # Clone the repository<br/>
+                    git clone https://github.com/InterCooperative-Network/icn-core.git<br/>
+                    cd icn-core<br/><br/>
+                    
+                    # Install Rust and dependencies<br/>
+                    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh<br/>
+                    rustup toolchain install nightly<br/>
+                    rustup default nightly<br/><br/>
+                    
+                    # Build and test<br/>
+                    cargo build<br/>
+                    cargo test<br/><br/>
+                    
+                    # Run your first node<br/>
+                    cargo run --bin icn-node
+                </code>
+            </div>
+            
+            <a href="/docs/onboarding" class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">
+                Read the Full Onboarding Guide →
+            </a>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="mt-12 pt-8 border-t border-gray-200">
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div>
+                    <h3 class="font-semibold mb-2">Need Help?</h3>
+                    <p class="text-gray-600">
+                        <a href="https://github.com/InterCooperative-Network/icn-core/discussions" class="text-blue-600 hover:underline">GitHub Discussions</a>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Found an Issue?</h3>
+                    <p class="text-gray-600">
+                        <a href="https://github.com/InterCooperative-Network/icn-core/issues" class="text-blue-600 hover:underline">Report on GitHub</a>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Want to Contribute?</h3>
+                    <p class="text-gray-600">
+                        <a href="/contribute" class="text-blue-600 hover:underline">Contribution Guide</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </Layout>
