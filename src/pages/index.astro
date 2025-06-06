@@ -4,70 +4,265 @@ import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 
-// Homepage copy from new mockup
-const pageTitle = "ICN: 21st Century Governance & Economy Infrastructure";
-const pageDescription = "InterCooperative Network: The digital backbone for real 21st-century self-governance and economic cooperation. Infrastructure for people—not empires.";
+// Homepage copy
+const pageTitle = "ICN: Digital Infrastructure for Cooperative Communities";
+const pageDescription = "InterCooperative Network provides federated compute, governance, and economic infrastructure designed for cooperatives, communities, and federations. Build, govern, and own the systems that shape your world.";
 
-// Updated Three Pillars content from new visual mockup
+// Core features highlighting ICN's unique value propositions
 const features = [
   {
-    title: "Community",
-    description: "Grow together",
-    icon: "chat-bubble", // 💬
-    // link and buttonText removed for minimalism as per new mockup
+    title: "Federated Computing",
+    description: "Distributed mesh computing with automated job bidding, execution, and verification across the network.",
+    icon: "cpu-chip",
+    details: "Execute computational tasks across a decentralized network of nodes with built-in reputation systems and economic incentives."
   },
   {
-    title: "Cooperative",
-    description: "Share prosperity",
-    icon: "network-nodes", // 🌐
+    title: "Regenerative Economics",
+    description: "Sustainable mana-based resource system that regenerates over time, preventing abuse while ensuring fair access.",
+    icon: "arrow-path",
+    details: "Our unique economic model uses regenerating capacity credits influenced by reputation and community policies."
   },
   {
-    title: "Federation",
-    description: "Connect globally",
-    icon: "document-text", // 🛰️
+    title: "Community Governance",
+    description: "Transparent, verifiable governance through formal proposals, voting mechanisms, and smart policy enforcement.",
+    icon: "users",
+    details: "Participate in federated decision-making with explicit, versioned policies compiled to verifiable WASM contracts."
+  },
+  {
+    title: "Decentralized Identity",
+    description: "Self-sovereign identity for individuals, cooperatives, communities, and federations using DIDs.",
+    icon: "identification",
+    details: "Manage your digital identity without relying on centralized authorities or corporate platforms."
+  },
+  {
+    title: "Verifiable Execution",
+    description: "Every significant action produces signed receipts anchored in a content-addressable DAG.",
+    icon: "shield-check",
+    details: "Complete audit trail and transparency through cryptographically verifiable execution receipts."
+  },
+  {
+    title: "Open Source",
+    description: "100% open source infrastructure built by and for the community, not corporate interests.",
+    icon: "code-bracket",
+    details: "Modern Rust implementation with comprehensive documentation and contributor-friendly development practices."
+  }
+];
+
+// Key principles that guide ICN development
+const principles = [
+  {
+    title: "People, Not Empires",
+    description: "Infrastructure designed for communities and cooperatives, not corporate extraction.",
+    icon: "❤️"
+  },
+  {
+    title: "Transparent Governance",
+    description: "All decisions are made through explicit, verifiable governance processes.",
+    icon: "🗳️"
+  },
+  {
+    title: "Sustainable by Design",
+    description: "Economic models that promote regeneration and prevent resource abuse.",
+    icon: "🌱"
   }
 ];
 
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <HeroSection /> {/* Props are now primarily set by defaults in HeroSection.astro */}
+  <HeroSection />
 
-  {/* Three Pillars Section - Title moved up, gradient div removed */}
-  <section id="how-it-works" class="py-16 md:py-20 bg-bg-secondary relative">
-    <div class="absolute inset-0 opacity-5 bg-[url('/images/pattern-grid.svg')] bg-repeat"></div>
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-bg-secondary relative">
+    <div class="absolute inset-0 opacity-5 bg-[url('/images/pattern-dots.svg')] bg-repeat"></div>
     <div class="container mx-auto px-4 relative">
-      <h2 class="text-center text-4xl lg:text-5xl font-bold text-white tracking-normal mb-12 md:mb-16">
-        Explore the Pillars of ICN
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 mb-12">
-        {features.map(feature => (
-          <FeatureCard 
-            title={feature.title}
-            description={feature.description}
-            iconName={feature.icon}
-          />
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+          Why Choose ICN?
+        </h2>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          ICN provides the foundational infrastructure for a new kind of digital economy—one that's 
+          owned and governed by the communities that use it.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {features.map((feature, index) => (
+          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s;`}>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-r from-accent-primary to-accent-blue rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Icon based on feature.icon -->
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                <p class="text-slate-gray mb-4">{feature.description}</p>
+                <p class="text-sm text-light-slate">{feature.details}</p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
-      <p class="text-center mt-12 max-w-sm mx-auto">
-        <a href="/get-started" class="text-accent-glow font-semibold hover:underline transition">Get Started →</a>
-      </p>
     </div>
   </section>
 
-  <!-- Quick Links Section -->
-  <section id="join" class="py-12 md:py-16 bg-midnight-navy">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-accent-glow">Begin Exploring the ICN</h2>
-      <div class="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 justify-center items-center">
-        <a href="/docs" class="btn btn-secondary">Read the Docs</a>
-        <a href="/infrastructure" class="btn btn-secondary">Explore Infrastructure</a>
-        <a href="/projects" class="btn btn-secondary">View Projects</a>
-        <a href="/get-started" class="btn btn-primary">Get Started</a>
+  <!-- Principles Section -->
+  <section class="py-20 bg-midnight-navy relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-accent-primary/5 to-accent-blue/5"></div>
+    <div class="container mx-auto px-4 relative">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+          Our Core Principles
+        </h2>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          These fundamental values guide every decision we make and every line of code we write.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {principles.map((principle, index) => (
+          <div class="text-center scroll-reveal" style={`animation-delay: ${index * 0.2}s;`}>
+            <div class="text-6xl mb-6">{principle.icon}</div>
+            <h3 class="text-2xl font-bold text-white mb-4">{principle.title}</h3>
+            <p class="text-light-slate text-lg">{principle.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Footer content will be handled by Footer.astro -->
+  <!-- Documentation & Resources Section -->
+  <section class="py-20 bg-bg-secondary">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+          Get Started with ICN
+        </h2>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          Explore our comprehensive documentation, join the community, or dive straight into development.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Documentation -->
+        <div class="card card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-blue to-accent-purple rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">Documentation</h3>
+          <p class="text-slate-gray mb-6">Complete guides, API references, and architectural documentation.</p>
+          <a href="/docs" class="btn btn-outline w-full">Explore Docs</a>
+        </div>
+        
+        <!-- Community -->
+        <div class="card card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-primary to-accent-glow rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">Community</h3>
+          <p class="text-slate-gray mb-6">Join discussions, get help, and connect with other developers.</p>
+          <a href="/community" class="btn btn-outline w-full">Join Community</a>
+        </div>
+        
+        <!-- GitHub -->
+        <div class="card card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-purple to-accent-blue rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">Source Code</h3>
+          <p class="text-slate-gray mb-6">Explore the codebase, contribute, and report issues on GitHub.</p>
+          <a href="https://github.com/InterCooperative-Network/icn-core" class="btn btn-outline w-full" target="_blank">View on GitHub</a>
+        </div>
+        
+        <!-- Get Started -->
+        <div class="card card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-glow to-accent-primary rounded-lg flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">Quick Start</h3>
+          <p class="text-slate-gray mb-6">Set up your development environment and run your first ICN node.</p>
+          <a href="/get-started" class="btn btn-primary w-full">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Latest Updates Section -->
+  <section class="py-20 bg-midnight-navy">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+          Latest Updates
+        </h2>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          Stay up to date with the latest developments in the ICN ecosystem.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Phase 4 Progress -->
+        <div class="card card-hover">
+          <div class="mb-4">
+            <span class="bg-accent-primary text-midnight-navy text-xs font-semibold px-3 py-1 rounded-full">DEVELOPMENT</span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">Phase 4: Federation Devnet</h3>
+          <p class="text-slate-gray mb-4">Major progress on federation support, mesh computing infrastructure, and governance systems.</p>
+          <a href="/blog/phase-4-progress" class="text-accent-glow hover:underline">Read more →</a>
+        </div>
+        
+        <!-- Governance System -->
+        <div class="card card-hover">
+          <div class="mb-4">
+            <span class="bg-accent-blue text-white text-xs font-semibold px-3 py-1 rounded-full">GOVERNANCE</span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">New Governance Framework</h3>
+          <p class="text-slate-gray mb-4">RFC 0010 introduces comprehensive governance mechanisms for federated decision-making.</p>
+          <a href="/docs/rfc-0010-governance-core" class="text-accent-glow hover:underline">View RFC →</a>
+        </div>
+        
+        <!-- Community Growth -->
+        <div class="card card-hover">
+          <div class="mb-4">
+            <span class="bg-accent-purple text-white text-xs font-semibold px-3 py-1 rounded-full">COMMUNITY</span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-4">Growing Community</h3>
+          <p class="text-slate-gray mb-4">Join our active community of developers, cooperatives, and digital commons advocates.</p>
+          <a href="/community" class="text-accent-glow hover:underline">Join us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  // Scroll reveal animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all scroll-reveal elements
+  document.querySelectorAll('.scroll-reveal').forEach(el => {
+    observer.observe(el);
+  });
+</script>

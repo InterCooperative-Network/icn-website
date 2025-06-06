@@ -1,180 +1,439 @@
 ---
-// Comprehensive docs/index.astro with proper navigation
+// Enhanced docs/index.astro with better organization and design
 import Layout from '../../layouts/Layout.astro';
+
 const pageTitle = "ICN Documentation";
+const pageDescription = "Comprehensive documentation for the InterCooperative Network - a federated compute, resource, and governance protocol designed for cooperatives, communities, and federations.";
+
+// Documentation sections organized by user journey
+const quickStart = [
+  {
+    title: "Developer Onboarding",
+    description: "Get started with ICN development in minutes",
+    link: "/docs/onboarding",
+    icon: "rocket-launch",
+    status: "available"
+  },
+  {
+    title: "System Architecture",
+    description: "Understand ICN's technical architecture",
+    link: "/docs/architecture", 
+    icon: "cpu-chip",
+    status: "available"
+  },
+  {
+    title: "ICN Philosophy",
+    description: "Learn about the principles behind ICN",
+    link: "/docs/philosophy",
+    icon: "heart",
+    status: "available"
+  }
+];
+
+const coreFeatures = [
+  {
+    title: "Mesh Computing",
+    description: "Distributed job execution with automatic bidding and verification",
+    link: "/docs/mesh-computing",
+    icon: "globe-americas",
+    status: "coming-soon"
+  },
+  {
+    title: "Mana Economics",
+    description: "Regenerative resource system for sustainable computing",
+    link: "/docs/economy",
+    icon: "arrow-path",
+    status: "available"
+  },
+  {
+    title: "Governance System", 
+    description: "Federated decision-making and policy enforcement",
+    link: "/docs/governance",
+    icon: "users",
+    status: "available"
+  },
+  {
+    title: "Decentralized Identity",
+    description: "Self-sovereign identity with DIDs and verifiable credentials",
+    link: "/docs/identity",
+    icon: "identification",
+    status: "coming-soon"
+  }
+];
+
+const developerTools = [
+  {
+    title: "Core API Reference",
+    description: "Complete API documentation for ICN core crates",
+    link: "/docs/api",
+    icon: "code-bracket",
+    status: "available"
+  },
+  {
+    title: "CLI Tools",
+    description: "Command-line interface documentation",
+    link: "/docs/cli", 
+    icon: "terminal",
+    status: "available"
+  },
+  {
+    title: "Networking Guide",
+    description: "P2P networking and libp2p integration",
+    link: "/docs/networking",
+    icon: "signal",
+    status: "available"
+  },
+  {
+    title: "Observability",
+    description: "Monitoring, metrics, and debugging",
+    link: "/docs/observability",
+    icon: "chart-bar",
+    status: "available"
+  }
+];
+
+const specifications = [
+  {
+    title: "All RFCs",
+    description: "Request for Comments and technical specifications",
+    link: "/docs/rfcs",
+    icon: "document-text",
+    status: "available"
+  },
+  {
+    title: "Governance Core (RFC 0010)",
+    description: "Comprehensive governance mechanisms specification",
+    link: "/docs/rfc-0010-governance-core",
+    icon: "shield-check",
+    status: "available"
+  },
+  {
+    title: "Protocol Specifications",
+    description: "Low-level protocol and message format definitions",
+    link: "/docs/protocol",
+    icon: "cog",
+    status: "coming-soon"
+  }
+];
 ---
 
-<Layout title={pageTitle}>
-    <div class="container mx-auto px-4 py-8">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold mb-4">ICN Documentation</h1>
-            <p class="text-xl text-gray-700 mb-6">
-                Comprehensive documentation for the InterCooperative Network (ICN) - a federated compute, 
-                resource, and governance protocol designed for cooperatives, communities, and federations.
-            </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Getting Started -->
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
-                <h2 class="text-xl font-semibold mb-3 text-blue-700">Getting Started</h2>
-                <p class="text-gray-600 mb-4">Start your journey with ICN development and contribution.</p>
-                <ul class="space-y-2">
-                    <li><a href="/docs/onboarding" class="text-blue-600 hover:underline">Developer Onboarding Guide</a></li>
-                    <li><a href="/docs/architecture" class="text-blue-600 hover:underline">System Architecture</a></li>
-                    <li><a href="/docs/philosophy" class="text-blue-600 hover:underline">ICN Philosophy</a></li>
-                </ul>
-            </div>
-
-            <!-- Core Technology -->
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
-                <h2 class="text-xl font-semibold mb-3 text-green-700">Core Technology</h2>
-                <p class="text-gray-600 mb-4">Deep dive into ICN's technical architecture and implementation.</p>
-                <ul class="space-y-2">
-                    <li><a href="/docs/api" class="text-blue-600 hover:underline">Core Crates API Reference</a></li>
-                    <li><a href="/docs/networking" class="text-blue-600 hover:underline">Networking Architecture</a></li>
-                    <li><a href="/docs/observability" class="text-blue-600 hover:underline">Observability & Monitoring</a></li>
-                </ul>
-            </div>
-
-            <!-- Economic System -->
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
-                <h2 class="text-xl font-semibold mb-3 text-yellow-700">Economic System</h2>
-                <p class="text-gray-600 mb-4">Understand ICN's regenerative mana system and tokenized economy.</p>
-                <ul class="space-y-2">
-                    <li><a href="/docs/economy" class="text-blue-600 hover:underline">Mana System</a></li>
-                    <li><a href="/docs/governance" class="text-blue-600 hover:underline">Governance System</a></li>
-                    <li><span class="text-gray-400">Token Economy (Coming Soon)</span></li>
-                </ul>
-            </div>
-
-            <!-- Tools & CLI -->
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
-                <h2 class="text-xl font-semibold mb-3 text-purple-700">Tools & CLI</h2>
-                <p class="text-gray-600 mb-4">Command-line tools and developer utilities for ICN.</p>
-                <ul class="space-y-2">
-                    <li><a href="/docs/cli" class="text-blue-600 hover:underline">CLI Command Reference</a></li>
-                    <li><span class="text-gray-400">SDK Documentation (Coming Soon)</span></li>
-                    <li><span class="text-gray-400">IDE Integrations (Coming Soon)</span></li>
-                </ul>
-            </div>
-
-            <!-- RFCs & Standards -->
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
-                <h2 class="text-xl font-semibold mb-3 text-red-700">RFCs & Standards</h2>
-                <p class="text-gray-600 mb-4">Technical specifications and protocol definitions.</p>
-                <ul class="space-y-2">
-                    <li><a href="/docs/rfcs" class="text-blue-600 hover:underline">All RFCs</a></li>
-                    <li><a href="/docs/rfc-0010-governance-core" class="text-blue-600 hover:underline">RFC 0010: Governance Core</a></li>
-                    <li><span class="text-gray-400">Protocol Specifications (Coming Soon)</span></li>
-                </ul>
-            </div>
-
-            <!-- Community & Contribution -->
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-indigo-500">
-                <h2 class="text-xl font-semibold mb-3 text-indigo-700">Community</h2>
-                <p class="text-gray-600 mb-4">Join the ICN community and contribute to the project.</p>
-                <ul class="space-y-2">
-                    <li><a href="/contribute" class="text-blue-600 hover:underline">Contribution Guide</a></li>
-                    <li><a href="/community" class="text-blue-600 hover:underline">Community</a></li>
-                    <li><a href="https://github.com/InterCooperative-Network" class="text-blue-600 hover:underline" target="_blank">GitHub Organization</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Key Concepts Section -->
-        <div class="mt-12">
-            <h2 class="text-2xl font-bold mb-6">Key Concepts</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-gray-50 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold mb-3">Federated Architecture</h3>
-                    <p class="text-gray-700">
-                        ICN operates as a federation of autonomous nodes forming cooperatives, communities, 
-                        and larger federations while maintaining local sovereignty.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold mb-3">Regenerative Mana System</h3>
-                    <p class="text-gray-700">
-                        A sustainable resource management model where capacity credits regenerate over time, 
-                        preventing abuse while ensuring fair access.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold mb-3">Mesh Computing</h3>
-                    <p class="text-gray-700">
-                        Distributed job execution across the network with automated bidding, selection, 
-                        and verification processes.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold mb-3">Explicit Governance</h3>
-                    <p class="text-gray-700">
-                        Transparent, verifiable governance through formal proposals, voting mechanisms, 
-                        and policy enforcement via CCL contracts.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Start Section -->
-        <div class="mt-12 bg-blue-50 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-4">Quick Start</h2>
-            <p class="text-gray-700 mb-6">
-                Ready to get started with ICN? Follow these steps to set up your development environment 
-                and run your first ICN node.
-            </p>
-            
-            <div class="bg-white rounded-lg p-4 mb-4">
-                <code class="text-sm">
-                    # Clone the repository<br/>
-                    git clone https://github.com/InterCooperative-Network/icn-core.git<br/>
-                    cd icn-core<br/><br/>
-                    
-                    # Install Rust and dependencies<br/>
-                    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh<br/>
-                    rustup toolchain install nightly<br/>
-                    rustup default nightly<br/><br/>
-                    
-                    # Build and test<br/>
-                    cargo build<br/>
-                    cargo test<br/><br/>
-                    
-                    # Run your first node<br/>
-                    cargo run --bin icn-node
-                </code>
-            </div>
-            
-            <a href="/docs/onboarding" class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">
-                Read the Full Onboarding Guide →
-            </a>
-        </div>
-
-        <!-- Footer Links -->
-        <div class="mt-12 pt-8 border-t border-gray-200">
-            <div class="grid md:grid-cols-3 gap-6 text-center">
-                <div>
-                    <h3 class="font-semibold mb-2">Need Help?</h3>
-                    <p class="text-gray-600">
-                        <a href="https://github.com/InterCooperative-Network/icn-core/discussions" class="text-blue-600 hover:underline">GitHub Discussions</a>
-                    </p>
-                </div>
-                <div>
-                    <h3 class="font-semibold mb-2">Found an Issue?</h3>
-                    <p class="text-gray-600">
-                        <a href="https://github.com/InterCooperative-Network/icn-core/issues" class="text-blue-600 hover:underline">Report on GitHub</a>
-                    </p>
-                </div>
-                <div>
-                    <h3 class="font-semibold mb-2">Want to Contribute?</h3>
-                    <p class="text-gray-600">
-                        <a href="/contribute" class="text-blue-600 hover:underline">Contribution Guide</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-midnight-navy via-bg-secondary to-midnight-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-1/4 right-1/4 w-48 h-48 bg-accent-primary rounded-full blur-3xl animate-pulse-glow"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-32 h-32 bg-accent-blue rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 1s;"></div>
     </div>
+    
+    <div class="container mx-auto px-4 relative">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-8">
+          <span class="bg-accent-primary/10 text-accent-primary border border-accent-primary/30 text-sm font-semibold px-4 py-2 rounded-full">
+            DOCUMENTATION
+          </span>
+        </div>
+        
+        <h1 class="text-5xl lg:text-6xl font-bold text-white mb-6">
+          ICN Documentation
+        </h1>
+        
+        <p class="text-xl text-light-slate mb-8 max-w-3xl mx-auto">
+          Everything you need to understand, implement, and contribute to the InterCooperative Network. 
+          From quick starts to deep technical specifications.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#quick-start" class="btn btn-primary">
+            Get Started
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </a>
+          <a href="https://github.com/InterCooperative-Network/icn-core" class="btn btn-secondary" target="_blank">
+            View on GitHub
+            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start Section -->
+  <section id="quick-start" class="py-20 bg-bg-secondary">
+    <div class="container mx-auto px-4">
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6 text-center">Quick Start</h2>
+        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
+          New to ICN? Start here to understand the fundamentals and get your development environment set up.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {quickStart.map((item, index) => (
+          <div class="card card-hover text-center scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="w-16 h-16 bg-gradient-to-r from-accent-primary to-accent-blue rounded-xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4">{item.title}</h3>
+            <p class="text-slate-gray mb-6">{item.description}</p>
+            <a href={item.link} class="btn btn-outline w-full">
+              Read Guide
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Section -->
+  <section class="py-20 bg-midnight-navy">
+    <div class="container mx-auto px-4">
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6 text-center">Core Features</h2>
+        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
+          Deep dive into ICN's core capabilities and understand how they work together.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {coreFeatures.map((feature, index) => (
+          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="mb-4">
+              {feature.status === 'available' ? (
+                <span class="bg-accent-primary/20 text-accent-primary text-xs font-semibold px-3 py-1 rounded-full border border-accent-primary/30">
+                  AVAILABLE
+                </span>
+              ) : (
+                <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-3 py-1 rounded-full">
+                  COMING SOON
+                </span>
+              )}
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-3">{feature.title}</h3>
+            <p class="text-slate-gray mb-4">{feature.description}</p>
+            <a href={feature.link} class="text-accent-glow hover:underline text-sm">
+              Learn more →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Tools Section -->
+  <section class="py-20 bg-bg-secondary">
+    <div class="container mx-auto px-4">
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6 text-center">Developer Tools & APIs</h2>
+        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
+          Comprehensive reference materials and tools for building on ICN.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {developerTools.map((tool, index) => (
+          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-accent-blue to-accent-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-white mb-2">{tool.title}</h3>
+                <p class="text-slate-gray text-sm mb-3">{tool.description}</p>
+                <a href={tool.link} class="text-accent-glow hover:underline text-sm">
+                  View docs →
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Specifications Section -->
+  <section class="py-20 bg-midnight-navy">
+    <div class="container mx-auto px-4">
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6 text-center">RFCs & Specifications</h2>
+        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
+          Technical specifications, protocol definitions, and formal governance proposals.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {specifications.map((spec, index) => (
+          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-gradient-to-r from-accent-purple to-accent-primary rounded-xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-white mb-4">{spec.title}</h3>
+              <p class="text-slate-gray mb-6">{spec.description}</p>
+              <a href={spec.link} class="btn btn-outline w-full">
+                View Specification
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Setup Section -->
+  <section class="py-20 bg-bg-secondary">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-6">Quick Setup</h2>
+          <p class="text-xl text-light-slate">
+            Get ICN running locally in just a few commands.
+          </p>
+        </div>
+
+        <div class="bg-bg-tertiary rounded-xl p-8 border border-border/50">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-semibold text-white">Installation</h3>
+                                      <button class="text-accent-glow hover:text-white text-sm" id="copy-btn">
+               Copy commands
+             </button>
+          </div>
+          
+          <pre class="bg-midnight-navy rounded-lg p-6 overflow-x-auto text-sm">
+<code class="text-light-slate"># Clone the repository
+git clone https://github.com/InterCooperative-Network/icn-core.git
+cd icn-core
+
+# Install Rust toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup toolchain install nightly
+rustup default nightly
+
+# Build and test
+cargo build --release
+cargo test
+
+# Run your first node
+cargo run --bin icn-node</code>
+          </pre>
+          
+          <div class="mt-6 p-4 bg-accent-primary/10 border border-accent-primary/30 rounded-lg">
+            <div class="flex items-start space-x-3">
+              <svg class="w-5 h-5 text-accent-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div>
+                <p class="text-accent-primary font-semibold text-sm">Need help?</p>
+                <p class="text-light-slate text-sm">
+                  Check out our <a href="/docs/onboarding" class="underline">detailed onboarding guide</a> 
+                  or join our <a href="/community" class="underline">community discussions</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Section -->
+  <section class="py-20 bg-midnight-navy">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white mb-6">Need Help?</h2>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          Our community is here to help you succeed with ICN.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-primary to-accent-glow rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Community Discussions</h3>
+          <p class="text-slate-gray text-sm mb-4">Ask questions and get help from the community</p>
+          <a href="https://github.com/InterCooperative-Network/icn-core/discussions" class="text-accent-glow hover:underline text-sm" target="_blank">
+            Join Discussions →
+          </a>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Report Issues</h3>
+          <p class="text-slate-gray text-sm mb-4">Found a bug or have a feature request?</p>
+          <a href="https://github.com/InterCooperative-Network/icn-core/issues" class="text-accent-glow hover:underline text-sm" target="_blank">
+            Report Issue →
+          </a>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent-purple to-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Contribute</h3>
+          <p class="text-slate-gray text-sm mb-4">Help improve ICN for everyone</p>
+          <a href="/contribute" class="text-accent-glow hover:underline text-sm">
+            Contribution Guide →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  // Scroll reveal animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all scroll-reveal elements
+  document.querySelectorAll('.scroll-reveal').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Copy to clipboard function
+  document.getElementById('copy-btn')?.addEventListener('click', function() {
+    const codeElement = document.querySelector('pre code');
+    if (!codeElement?.textContent) return;
+    
+    navigator.clipboard.writeText(codeElement.textContent).then(() => {
+      // Show temporary success message
+      const button = this;
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+        button.textContent = originalText;
+      }, 2000);
+    });
+  });
+</script>

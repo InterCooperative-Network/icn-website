@@ -6,31 +6,68 @@
 :root {
   /* Brand Palette from Sheet */
   --color-nav-active-link: #25DED0;
-  --color-midnight-navy: #071D22;
+  --color-midnight-navy: #0A0E1A;     /* Deeper main background */
   --color-soft-black: #0A232B;
   --color-solar-yellow: #FFD463;
   --color-sky-blue: #74E7F2;
   --color-mint-green: #33FFB4;
-  --color-accent-glow: #33FFB4;
+  --color-accent-glow: #32FFD2;       /* Bright glow accent */
   --color-light-gray: #E2F0ED;
-  --color-slate-gray: #748D92;
-  --color-white: #FFFFFF;
+  --color-slate-gray: #94A3B8;        /* Body text */
+  --color-white: #F8FAFC;             /* Headings, highlights */
   
   /* Applied to general theme */
   --color-bg: var(--color-midnight-navy);
-  --color-bg-secondary: var(--color-soft-black); /* For cards, secondary sections */
+  --color-bg-secondary: #111827;      /* Card backgrounds, sections */
+  --color-bg-tertiary: #1F2937;       /* Elevated surfaces */
   --color-text-primary: var(--color-white);
   --color-text-secondary: var(--color-slate-gray);
-  --color-accent-primary: var(--color-accent-glow);
+  --color-accent-primary: #00D4AA;    /* Primary teal - more vibrant */
   --color-accent-secondary: var(--color-solar-yellow);
   --color-link: var(--color-sky-blue);
   --color-link-hover: var(--color-mint-green);
   --color-border-subtle: var(--color-light-gray);
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 
   --header-height: 4.5rem;
+
+  /* Updated Color Palette - Modern Dark Theme */
+  --color-accent-purple: #8B5CF6;     /* Secondary purple accent */
+  --color-accent-blue: #3B82F6;       /* Blue accent */
+  --color-border: #334155;            /* Borders, dividers */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-blue) 100%);
+  --gradient-hero: linear-gradient(135deg, var(--color-midnight-navy) 0%, #1e293b 50%, var(--color-bg-secondary) 100%);
+  --gradient-card: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgb(50 255 210 / 0.3);
+  
+  /* Spacing */
+  --section-padding: 4rem 0;
+  --container-padding: 1rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
 }
 
 /* Reset and Base Styles */
@@ -47,10 +84,10 @@ html {
   scroll-behavior: smooth;
   background-color: var(--color-bg);
   color: var(--color-text-primary);
+  font-family: var(--font-sans);
 }
 
 body {
-  font-family: var(--font-sans);
   font-weight: 400; /* Regular weight for body */
   line-height: 1.6; /* As per brand sheet for body copy */
   min-height: 100vh;
@@ -69,17 +106,17 @@ input, button, textarea, select {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans); /* Using Inter as Satoshi alt */
+  font-family: var(--font-display);
   font-weight: 700; /* Bold for headings */
   line-height: 1.2;
   color: var(--color-white);
   margin-bottom: 1.5rem;
-  letter-spacing: 0.05em; /* Roomy letter-spacing for headings */
+  letter-spacing: -0.025em;
 }
 
-h1 { font-size: 2.75rem; letter-spacing: 0.02em; } /* Base H1, can be overridden by components */
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; } 
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 p {
   margin-bottom: 1.25rem;
@@ -151,12 +188,13 @@ a:hover {
 
 /* Card styling - updated to new Brand Style Guide */
 .card {
-  background-color: var(--color-soft-black); /* Soft Black for card backgrounds */
+  background-color: var(--color-bg-secondary);
   border-radius: 8px;
   padding: 2rem;
-  border: 1px solid var(--color-soft-black); /* No contrasting border, color blocks instead */
+  border: 1px solid var(--color-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--gradient-card);
 }
 
 .card:hover {
@@ -175,17 +213,145 @@ a:hover {
 
 /* New Unified Button Styles */
 .btn {
-  @apply inline-block px-6 py-3 rounded-xl font-semibold shadow transition;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-navy;
 }
 
 .btn-primary {
-  /* @apply btn bg-gradient-to-r from-emerald-400 to-teal-500 text-white hover:brightness-110; */ /* Old emerald/teal */
-  @apply btn bg-[color:var(--color-solar-yellow)] text-[color:var(--color-midnight-navy)] border-2 border-[color:var(--color-solar-yellow)] hover:bg-opacity-90 hover:border-opacity-90;
+  background: var(--gradient-primary);
+  @apply text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-accent-primary;
 }
 
 .btn-secondary {
-  /* @apply btn border border-emerald-400 text-emerald-300 hover:bg-emerald-900/10; */ /* Old emerald/teal */
-  @apply btn border-2 border-[color:var(--color-accent-glow)] text-[color:var(--color-accent-glow)] hover:bg-[color:var(--color-accent-glow)] hover:bg-opacity-10;
+  @apply bg-bg-secondary text-white border border-border hover:bg-bg-tertiary hover:border-accent-primary transform hover:-translate-y-0.5 focus:ring-accent-primary;
 }
 
-/* The #features .grid styles below were removed as layout is handled by Tailwind in index.astro */ 
+.btn-outline {
+  @apply bg-transparent text-accent-primary border border-accent-primary hover:bg-accent-primary hover:text-midnight-navy focus:ring-accent-primary;
+}
+
+/* The #features .grid styles below were removed as layout is handled by Tailwind in index.astro */
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgb(50 255 210 / 0.3); }
+  50% { box-shadow: 0 0 30px rgb(50 255 210 / 0.5); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-fade-in { animation: fadeIn 0.6s ease-out; }
+.animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-gradient { animation: gradient-shift 3s ease infinite; background-size: 200% 200%; }
+
+/* Utility Classes */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-padding {
+  padding: var(--section-padding);
+}
+
+.container-padding {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: var(--font-mono);
+}
+
+pre {
+  @apply bg-bg-tertiary rounded-lg p-4 overflow-x-auto border border-border/50;
+}
+
+code {
+  @apply bg-bg-tertiary px-2 py-1 rounded text-sm;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 2rem 0;
+  }
+  
+  .btn {
+    @apply px-4 py-2 text-xs;
+  }
+}
+
+/* Scroll Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading States */
+.skeleton {
+  @apply bg-bg-secondary animate-pulse rounded;
+}
+
+/* Focus States */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-accent-primary ring-offset-2 ring-offset-midnight-navy;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent-primary);
+  color: var(--color-midnight-navy);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+} 

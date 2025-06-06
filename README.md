@@ -1,100 +1,155 @@
-# Astro Starter Kit: Minimal
+# ICN Website
 
-```sh
-npm create astro@latest -- --template minimal
+The official website for the InterCooperative Network (ICN) - a federated compute, resource, and governance protocol designed for cooperatives, communities, and federations.
+
+## 🌟 Features
+
+- **Modern Design**: Clean, responsive design with dark theme and vibrant accents
+- **Comprehensive Documentation**: Integrated documentation with clear navigation and search
+- **Performance Optimized**: Built with Astro for fast loading and excellent SEO
+- **Accessibility**: WCAG compliant with proper semantic markup and keyboard navigation
+- **Mobile First**: Responsive design that works beautifully on all devices
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/InterCooperative-Network/icn-website.git
+cd icn-website
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+The website will be available at `http://localhost:4321`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 📁 Project Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
+```
+icn-website/
 ├── public/
+│   ├── images/           # Static images and SVG assets
+│   └── favicon.svg       # Site favicon
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/       # Reusable Astro components
+│   ├── layouts/          # Page layouts
+│   ├── pages/            # Site pages and routes
+│   │   ├── docs/         # Documentation pages
+│   │   └── blog/         # Blog posts
+│   └── styles/           # Global CSS and design system
+├── astro.config.mjs      # Astro configuration
+├── tailwind.config.mjs   # Tailwind CSS configuration
+└── package.json          # Dependencies and scripts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🎨 Design System
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The website uses a modern design system with:
 
-Any static assets, like images, can be placed in the `public/` directory.
+- **Typography**: Inter for body text, Lexend for headings
+- **Colors**: Dark theme with teal/blue accent palette
+- **Components**: Reusable button, card, and layout components
+- **Animations**: Subtle scroll animations and hover effects
+- **Responsive**: Mobile-first design with Tailwind CSS
 
-## 🧞 Commands
+### Color Palette
 
-All commands are run from the root of the project, from a terminal:
+- **Primary**: `#00D4AA` (Teal)
+- **Secondary**: `#3B82F6` (Blue) 
+- **Accent**: `#32FFD2` (Bright Teal)
+- **Purple**: `#8B5CF6` (Purple)
+- **Background**: `#0A0E1A` (Dark Navy)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📚 Documentation Integration
 
-## 👀 Want to learn more?
+The website includes comprehensive documentation with:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Getting Started**: Quick setup guides and tutorials
+- **Core Features**: Deep dives into ICN's capabilities
+- **API Reference**: Complete API documentation
+- **RFCs**: Technical specifications and proposals
+- **Developer Tools**: CLI guides and development resources
+
+## 🛠 Development
+
+### Available Scripts
+
+```bash
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run preview    # Preview production build
+npm run lint       # Run Astro checks
+npm run format     # Format code with Prettier
+npm run deploy     # Deploy to GitHub Pages
+```
+
+### Adding Content
+
+#### New Pages
+Create `.astro` files in `src/pages/` directory. The file structure maps to URL routes.
+
+#### Blog Posts
+Add new blog posts in `src/pages/blog/` directory with frontmatter for metadata.
+
+#### Documentation
+Add documentation pages in `src/pages/docs/` directory with proper navigation.
+
+### Styling Guidelines
+
+- Use Tailwind CSS utility classes for styling
+- Follow the established design system colors and typography
+- Ensure responsive design with mobile-first approach
+- Add hover states and transitions for interactive elements
+
+## 🚀 Deployment
+
+The website is automatically deployed to GitHub Pages when changes are pushed to the main branch.
+
+For manual deployment:
+
+```bash
+npm run deploy
+```
+
+## 🤝 Contributing
+
+We welcome contributions to improve the website! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+### Content Guidelines
+
+- Keep content clear and accessible
+- Use proper semantic HTML
+- Ensure all images have alt text
+- Test on multiple devices and browsers
+- Follow the established tone and style
+
+## 📄 License
+
+This project is licensed under the same terms as the ICN project. See the main repository for details.
+
+## 🔗 Links
+
+- **Main Repository**: [icn-core](https://github.com/InterCooperative-Network/icn-core)
+- **Documentation**: [ICN Docs](https://github.com/InterCooperative-Network/icn-docs)
+- **Community**: [Discussions](https://github.com/InterCooperative-Network/icn-core/discussions)
+- **Issues**: [Bug Reports](https://github.com/InterCooperative-Network/icn-website/issues)
 
 ---
 
-## 📄 ICN Documentation Mirror
-
-This website includes a `/docs` section that mirrors the canonical documentation from the `icn-docs` repository. The goal is to provide a user-friendly, browsable version of the ICN project's core documents.
-
-### Structure
-
--   **Source Content**: The actual Markdown files are maintained in the [icn-docs repository](https://github.com/intercoopnet/icn-docs) (replace with the actual link if different). Each major topic (e.g., `api`, `architecture`) resides in its own directory within `icn-docs`, typically as a `README.md` file.
--   **Website Pages**: Astro pages in `src/pages/docs/` (e.g., `src/pages/docs/api.astro`) are responsible for rendering this content.
--   **Synced Content**: Markdown files from `icn-docs` are copied into the `src/content/docs/` directory within this `icn-website` project. Each file is named after its topic slug (e.g., `api.md`, `architecture.md`). The Astro pages then load and render these local Markdown files.
-
-### Syncing Documentation from `icn-docs`
-
-To update the documentation content displayed on this website, you need to run the sync script. This script copies the relevant Markdown files from a local `icn-docs` repository into this project.
-
-1.  **Clone `icn-docs`**: Ensure you have a local clone of the `icn-docs` repository. It should be located as a sibling directory to this `icn-website` project.
-    ```bash
-    # If you are in icn-website, and icn-docs is not yet cloned:
-    git clone <URL_to_icn-docs_repository> ../icn-docs 
-    ```
-    (Replace `<URL_to_icn-docs_repository>` with the actual Git URL for `icn-docs`.)
-
-2.  **Run the Sync Script**: From the root of the `icn-website` project, execute:
-    ```bash
-    ./scripts/sync-docs.sh
-    ```
-    If you get a permission denied error, you may need to make the script executable first:
-    ```bash
-    chmod +x ./scripts/sync-docs.sh
-    ./scripts/sync-docs.sh
-    ```
-
-    The script will copy files from `../icn-docs/[topic]/README.md` (or `../icn-docs/[topic]/[topic].md`) to `src/content/docs/[topic].md`.
-
-3.  **Commit Changes**: After running the script, new or updated Markdown files in `src/content/docs/` should be committed to the `icn-website` repository.
-
-### How it Works
-
--   The `src/pages/docs/index.astro` page provides a landing page with links to all documentation topics.
--   Each individual topic page (e.g., `src/pages/docs/api.astro`) attempts to load its corresponding Markdown file from `src/content/docs/`.
--   If a Markdown file is not found (e.g., it hasn't been synced yet, or the topic doesn't exist in `icn-docs`), a "Coming Soon" message is displayed.
--   Each documentation page includes "View Source" and "Edit this page" links that point back to the canonical source file in the `icn-docs` GitHub repository. This encourages contributions directly to the source documentation.
-
-### Adding New Documentation Topics
-
-1.  **Create Content in `icn-docs`**: Add the new topic directory and `README.md` (or `[topic_slug].md`) in the `icn-docs` repository.
-2.  **Update Sync Script (if necessary)**: If the new topic slug isn't already covered by the `topics` array in `scripts/sync-docs.sh`, add it.
-3.  **Create Astro Page**: Add a new `.astro` file in `src/pages/docs/` for the new topic (e.g., `src/pages/docs/new-topic.astro`). You can copy an existing topic page and update the `topicName`, `sourceFilePathInUpstream`, and `Astro.glob` path.
-4.  **Update Docs Landing Page**: Add the new topic to the `topics` array in `src/pages/docs/index.astro`.
-5.  **Run Sync Script**: Execute `./scripts/sync-docs.sh` to copy the new content.
-6.  **Commit**: Commit the new Astro page, updates to `index.astro`, and the newly synced Markdown file in `src/content/docs/`.
+Built with ❤️ by the ICN community
