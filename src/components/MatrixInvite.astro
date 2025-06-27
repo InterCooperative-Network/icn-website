@@ -1,18 +1,18 @@
 ---
 // Placeholder for MatrixInvite component
-const matrixRoomLink = "https://matrix.to/#/#icn:matrix.org"; // Replace with actual Matrix room link
+// Matrix server not yet live, link disabled until launch
+const matrixRoomLink = "#";
 ---
 
 <div class="matrix-invite-card my-8 p-6 bg-gray-800 rounded-lg shadow-lg">
-  <h2 class="text-2xl font-bold mb-4 text-teal-400">Join our Matrix Community!</h2>
+  <h2 class="text-2xl font-bold mb-4 text-teal-400">Matrix Server Coming Soon</h2>
   <p class="text-gray-300 mb-4">
-    Connect with other members, ask questions, and participate in discussions on our Matrix server.
+    We're setting up our Matrix space. Check back soon to chat with the community.
   </p>
   <a href={matrixRoomLink}
-     target="_blank"
-     rel="noopener noreferrer"
-     class="btn btn-primary"
+     class="btn btn-primary cursor-not-allowed opacity-50"
+     aria-disabled="true"
   >
     Join Matrix Chat
   </a>
-</div> 
+</div>
