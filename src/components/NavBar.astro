@@ -73,48 +73,80 @@ const navLinks = [
 </header>
 
 <script>
-  // Enhanced Mobile Menu Toggle
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIcon = document.getElementById('menu-icon');
-  const closeIcon = document.getElementById('close-icon');
+  // Mobile Menu Toggle - Fixed state management
+  document.addEventListener('DOMContentLoaded', function() {
+    let isMenuOpen = false;
+    
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
 
-  if (menuToggle && mobileMenu && menuIcon && closeIcon) {
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    function openMenu() {
+      if (!mobileMenu || !menuToggle || !menuIcon || !closeIcon) return;
       
-      // Toggle menu state
-      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-      mobileMenu.classList.toggle('hidden');
-      document.body.classList.toggle('mobile-menu-open');
+      isMenuOpen = true;
+      mobileMenu.classList.remove('hidden');
+      document.body.classList.add('mobile-menu-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'Close main menu');
       
       // Animate icons
-      if (!isExpanded) {
-        // Menu is opening
-        menuIcon.style.transform = 'scale(0)';
-        closeIcon.style.transform = 'scale(1)';
-        menuToggle.setAttribute('aria-label', 'Close main menu');
-      } else {
-        // Menu is closing
-        menuIcon.style.transform = 'scale(1)';
-        closeIcon.style.transform = 'scale(0)';
-        menuToggle.setAttribute('aria-label', 'Open main menu');
-      }
-    });
+      menuIcon.style.transform = 'scale(0)';
+      closeIcon.style.transform = 'scale(1)';
+    }
 
-    // Close menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        document.body.classList.remove('mobile-menu-open');
-        menuIcon.style.transform = 'scale(1)';
-        closeIcon.style.transform = 'scale(0)';
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Open main menu');
+    function closeMenu() {
+      if (!mobileMenu || !menuToggle || !menuIcon || !closeIcon) return;
+      
+      isMenuOpen = false;
+      mobileMenu.classList.add('hidden');
+      document.body.classList.remove('mobile-menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open main menu');
+      
+      // Animate icons
+      menuIcon.style.transform = 'scale(1)';
+      closeIcon.style.transform = 'scale(0)';
+    }
+
+    function toggleMenu() {
+      if (isMenuOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    if (menuToggle && mobileMenu && menuIcon && closeIcon) {
+      // Initialize menu state
+      closeMenu();
+
+      // Add click event listener to toggle button
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
       });
-    });
-  }
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          closeMenu();
+        });
+      });
+
+      // Close menu when clicking outside (removed due to TypeScript issues)
+
+      // Close menu on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+          closeMenu();
+        }
+      });
+    }
+  });
 </script>
 
 <style>
