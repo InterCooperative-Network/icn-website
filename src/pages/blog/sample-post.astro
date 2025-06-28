@@ -13,17 +13,16 @@ const post = {
 <Layout 
   title={post.title + " | ICN Blog"} 
   description={`Read the blog post titled "${post.title}" by ${post.author} on the InterCooperative Network blog.`}
-  ogImage={post.image}
 >
   <div class="p-4 mb-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-800 rounded">
     🚧 This post is a work in progress. Check back soon for more!
   </div>
-  <article class="py-12">
+  <article class="pt-32 pb-16">
     <div class="container mx-auto px-6 max-w-3xl">
       
       <header class="mb-8">
-        <h1 class="text-4xl lg:text-5xl font-bold mb-4 leading-tight">{post.title}</h1>
-        <p class="text-gray-600 text-lg">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">{post.title}</h1>
+        <p class="text-gray-300 text-lg">
           Posted on {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} by {post.author}
         </p>
         {post.image && (
@@ -31,54 +30,72 @@ const post = {
         )}
       </header>
 
-      <div class="prose prose-lg lg:prose-xl max-w-none text-gray-800 leading-relaxed">
-        <p>
+      <div class="prose prose-lg lg:prose-xl max-w-none text-gray-100 leading-relaxed">
+        <p class="text-gray-100 text-lg mb-6">
           Welcome to the official blog of the InterCooperative Network (ICN)! We're thrilled to launch this space where we can share our journey, insights, developments, and connect with our growing community.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">What to Expect</h2>
-        <p>
+        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">What to Expect</h2>
+        <p class="text-gray-100 mb-4">
           Here, you'll find a variety of content, including:
         </p>
-        <ul class="list-disc pl-6 mb-4">
-          <li><strong>Project Updates:</strong> Stay informed about the progress of key ICN initiatives like our wallet, AgoraNet, decentralized storage solutions, and more.</li>
-          <li><strong>Technical Deep Dives:</strong> For the more technically inclined, we'll explore the architecture, protocols, and codebases that power ICN.</li>
-          <li><strong>Community Spotlights:</strong> Highlighting the amazing contributions and individuals within our network.</li>
-          <li><strong>Governance Discussions:</strong> Updates on governance proposals, meetings, and how you can participate.</li>
-          <li><strong>Vision & Strategy:</strong> Thoughts on the future of the decentralized web, cooperativism in the digital age, and ICN's role in it.</li>
-          <li><strong>Event Recaps & Announcements:</strong> Don't miss out on important events, AMAs, or community calls.</li>
+        <ul class="list-disc pl-6 mb-6 text-gray-100 space-y-2">
+          <li><strong class="text-white">Project Updates:</strong> Stay informed about the progress of key ICN initiatives like our wallet, AgoraNet, decentralized storage solutions, and more.</li>
+          <li><strong class="text-white">Technical Deep Dives:</strong> For the more technically inclined, we'll explore the architecture, protocols, and codebases that power ICN.</li>
+          <li><strong class="text-white">Community Spotlights:</strong> Highlighting the amazing contributions and individuals within our network.</li>
+          <li><strong class="text-white">Governance Discussions:</strong> Updates on governance proposals, meetings, and how you can participate.</li>
+          <li><strong class="text-white">Vision & Strategy:</strong> Thoughts on the future of the decentralized web, cooperativism in the digital age, and ICN's role in it.</li>
+          <li><strong class="text-white">Event Recaps & Announcements:</strong> Don't miss out on important events, AMAs, or community calls.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Join the Conversation</h2>
-        <p>
+        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">Join the Conversation</h2>
+        <p class="text-gray-100 mb-4">
           This blog is not just a one-way street. We encourage you to engage with the posts, share your thoughts in our community channels (our Matrix server is coming soon), and let us know what topics you'd like to see covered.
         </p>
-        <p>
+        <p class="text-gray-100 mb-4">
           The InterCooperative Network is built by and for its community. Your participation, feedback, and contributions are vital to our success. 
         </p>
-        <p>
+        <p class="text-gray-100 mb-8">
           Stay tuned for more posts soon. We're just getting started!
         </p>
 
-        <hr class="my-8"/>
+        <hr class="my-8 border-slate-600"/>
 
         <p class="text-center">
-          <a href="/blog" class="text-blue-600 hover:text-blue-700 font-semibold">&larr; Back to Blog Index</a>
+          <a href="/blog" class="text-sky-400 hover:text-sky-300 font-semibold">&larr; Back to Blog Index</a>
         </p>
       </div>
 
     </div>
   </article>
+
+  <!-- Call to Action Section -->
+  <section class="bg-slate-800/90 border-t border-slate-600 py-12">
+    <div class="container mx-auto px-6 text-center">
+      <h3 class="text-2xl font-bold mb-4 text-white">Ready to Get Involved?</h3>
+      <p class="text-gray-100 mb-6 max-w-2xl mx-auto">
+        Join our growing community and help shape the future of cooperative digital infrastructure.
+      </p>
+      <a href="/community" class="inline-flex items-center px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg transition-colors duration-200">
+        Join the Movement
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
 </Layout>
 
 <style is:global>
-  /* Styles for the prose class if needed, or rely on Tailwind Typography plugin if installed */
+  /* Custom styles for dark theme blog posts */
   .prose h2 {
-    /* Example of custom styling for prose elements if not using Tailwind Typography */
-    /* border-bottom: 1px solid #ccc; */
+    border-bottom: 1px solid #475569;
     padding-bottom: 0.25em;
   }
   .prose a {
-    @apply text-blue-600 hover:underline;
+    @apply text-sky-400 hover:text-sky-300 hover:underline;
+  }
+  .prose strong {
+    @apply text-white;
   }
 </style> 
