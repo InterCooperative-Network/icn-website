@@ -99,6 +99,62 @@ Network operations, resource access, and protocol evolution are controlled by ex
   - Direct peer messaging
   - Network topology management
 
+## Data Flow Architecture
+
+### Mesh Job Execution Pipeline
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Runtime as ICN Runtime
+    participant Mesh as Mesh Service
+    participant Economy as Economic Service
+    participant Network as Network Service
+    participant Executor as Remote Executor
+    participant DAG as DAG Service
+
+    Client->>Runtime: Submit Job via Host ABI
+    Runtime->>Economy: Check Mana Balance
+    Economy-->>Runtime: Mana Verified
+    Runtime->>Mesh: Add Job to Queue
+    Mesh->>Network: Announce Job
+    Network->>Executor: Job Announcement
+    Executor->>Mesh: Submit Bid
+    Mesh->>Economy: Verify Executor Mana
+    Economy-->>Mesh: Executor Verified
+    Mesh->>Runtime: Select Executor
+    Runtime->>Network: Assign Job to Executor
+    Network->>Executor: Job Assignment
+    Executor->>Executor: Execute Job
+    Executor->>Runtime: Submit Results + Receipt
+    Runtime->>DAG: Anchor Receipt
+    Runtime->>Economy: Update Mana Balances
+    Runtime-->>Client: Job Complete
+```
+
+### Governance Proposal Workflow
+
+```mermaid
+sequenceDiagram
+    participant Proposer
+    participant Gov as Governance Service
+    participant Network as Network Service
+    participant Voter as Network Participants
+    participant Economy as Economic Service
+
+    Proposer->>Gov: Submit Proposal
+    Gov->>Economy: Verify Proposer Stake
+    Economy-->>Gov: Stake Verified
+    Gov->>Network: Broadcast Proposal
+    Network->>Voter: Proposal Notification
+    Voter->>Gov: Submit Vote
+    Gov->>Economy: Verify Voter Eligibility
+    Economy-->>Gov: Voter Verified
+    Gov->>Gov: Tally Votes
+    Gov->>Gov: Apply Proposal (if passed)
+    Gov->>Network: Broadcast Result
+```
+
 ## Network Architecture
 
 ### Federation Topology

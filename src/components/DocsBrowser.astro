@@ -1,0 +1,355 @@
+---
+// DocsBrowser.astro - Repository browser component for icn-docs
+const repoStructure = {
+  name: "icn-docs",
+  type: "folder",
+  githubUrl: "https://github.com/InterCooperative-Network/icn-docs",
+  children: [
+    {
+      name: "api",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/api",
+      children: [
+        {
+          name: "core-crates.md",
+          type: "file",
+          localUrl: "/docs/api",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/api/core-crates.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/api/core-crates.md",
+          description: "Complete API reference for all ICN core crates"
+        },
+        {
+          name: "README.md",
+          type: "file",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/api/README.md",
+          description: "API documentation overview"
+        }
+      ]
+    },
+    {
+      name: "architecture",
+      type: "folder", 
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/architecture",
+      children: [
+        {
+          name: "system-overview.md",
+          type: "file",
+          localUrl: "/docs/architecture",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/architecture/system-overview.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/architecture/system-overview.md",
+          description: "ICN system architecture and component interactions"
+        },
+        {
+          name: "runtime",
+          type: "folder",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/architecture/runtime",
+          children: [
+            {
+              name: "MESH_LIFECYCLE.md",
+              type: "file",
+              githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/architecture/runtime/MESH_LIFECYCLE.md",
+              description: "Detailed mesh job execution lifecycle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: "economy",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/economy",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/economy",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/economy/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/economy/README.md",
+          description: "ICN's dual economic model: mana and tokenized assets"
+        }
+      ]
+    },
+    {
+      name: "philosophy",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/philosophy",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/philosophy",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/philosophy/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/philosophy/README.md",
+          description: "Core principles, vision, and ethical framework"
+        }
+      ]
+    },
+    {
+      name: "governance",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/governance",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/governance",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/governance/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/governance/README.md",
+          description: "Federated governance mechanisms and processes"
+        }
+      ]
+    },
+    {
+      name: "networking",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/networking",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/networking",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/networking/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/networking/README.md",
+          description: "P2P networking with libp2p implementation"
+        }
+      ]
+    },
+    {
+      name: "observability",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/observability",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/observability",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/observability/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/observability/README.md",
+          description: "Monitoring, metrics, and debugging infrastructure"
+        }
+      ]
+    },
+    {
+      name: "onboarding",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/onboarding",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/onboarding",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/onboarding/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/onboarding/README.md",
+          description: "Getting started guides for developers and users"
+        }
+      ]
+    },
+    {
+      name: "cli",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/cli",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/cli",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/cli/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/cli/README.md",
+          description: "Command-line interface documentation and guides"
+        }
+      ]
+    },
+    {
+      name: "rfcs",
+      type: "folder",
+      githubUrl: "https://github.com/InterCooperative-Network/icn-docs/tree/main/rfcs",
+      children: [
+        {
+          name: "README.md",
+          type: "file",
+          localUrl: "/docs/rfcs",
+          githubUrl: "https://github.com/InterCooperative-Network/icn-docs/blob/main/rfcs/README.md",
+          editUrl: "https://github.com/InterCooperative-Network/icn-docs/edit/main/rfcs/README.md",
+          description: "Request for Comments and technical specifications"
+        }
+      ]
+    }
+  ]
+};
+
+// Props
+interface Props {
+  compact?: boolean;
+  showRoot?: boolean;
+}
+
+const { compact = false, showRoot = true } = Astro.props;
+
+// File type icons
+const getFileIcon = (filename: string) => {
+  if (filename.endsWith('.md')) return '📄';
+  if (filename.endsWith('.yml') || filename.endsWith('.yaml')) return '⚙️';
+  if (filename.endsWith('.json')) return '🔗';
+  return '📄';
+};
+
+const getFolderIcon = () => '📁';
+
+// Render tree recursively
+const renderItem = (item: any, level: number = 0) => {
+  const indent = level * 1.5; // rem units for indentation
+  const isFolder = item.type === 'folder';
+  
+  return `
+    <div class="repo-item" style="margin-left: ${indent}rem;">
+      <div class="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-slate-800/50 transition-colors group">
+        <span class="text-lg flex-shrink-0">
+          ${isFolder ? getFolderIcon() : getFileIcon(item.name)}
+        </span>
+        
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-sm text-white truncate">${item.name}</span>
+            ${item.localUrl ? `
+              <a href="${item.localUrl}" 
+                 class="opacity-0 group-hover:opacity-100 transition-opacity bg-accent-primary/10 text-accent-primary text-xs px-2 py-1 rounded border border-accent-primary/30 hover:bg-accent-primary/20">
+                View
+              </a>
+            ` : ''}
+          </div>
+          ${item.description ? `
+            <p class="text-xs text-slate-gray mt-1 truncate">${item.description}</p>
+          ` : ''}
+        </div>
+        
+        <div class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="flex gap-1">
+            <a href="${item.githubUrl}" target="_blank" rel="noopener noreferrer"
+               class="p-1 hover:bg-slate-700 rounded text-slate-gray hover:text-white transition-colors"
+               title="View on GitHub">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            ${item.editUrl ? `
+              <a href="${item.editUrl}" target="_blank" rel="noopener noreferrer"
+                 class="p-1 hover:bg-slate-700 rounded text-slate-gray hover:text-white transition-colors"
+                 title="Edit on GitHub">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                </svg>
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+      
+      ${item.children ? item.children.map((child: any) => renderItem(child, level + 1)).join('') : ''}
+    </div>
+  `;
+};
+---
+
+<div class="docs-browser bg-slate-900/50 border border-slate-700/50 rounded-xl p-6">
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-gradient-to-r from-accent-primary to-accent-blue rounded-lg flex items-center justify-center">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v0M8 5a2 2 0 000 4h8a2 2 0 000-4M8 5v4h8V5"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-white">Browse Documentation Repository</h3>
+        <p class="text-sm text-slate-gray">Explore the complete icn-docs structure</p>
+      </div>
+    </div>
+    
+    <a href={repoStructure.githubUrl} 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="btn btn-outline btn-sm">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+      Open Repository
+    </a>
+  </div>
+  
+  <div class="repo-tree max-h-96 overflow-y-auto scrollbar-thin scrollbar-track-slate-800 scrollbar-thumb-slate-600">
+    {showRoot ? (
+      <div class="repo-item">
+        <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-slate-800/50 mb-2">
+          <span class="text-lg">📁</span>
+          <div class="flex-1">
+            <span class="font-mono text-sm text-white font-semibold">{repoStructure.name}</span>
+            <p class="text-xs text-slate-gray mt-1">ICN Documentation Repository</p>
+          </div>
+          <a href={repoStructure.githubUrl} target="_blank" rel="noopener noreferrer"
+             class="p-1 hover:bg-slate-700 rounded text-slate-gray hover:text-white transition-colors"
+             title="View Repository on GitHub">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="ml-4">
+          <Fragment set:html={repoStructure.children.map((child: any) => renderItem(child, 0)).join('')} />
+        </div>
+      </div>
+    ) : (
+      <Fragment set:html={repoStructure.children.map((child: any) => renderItem(child, 0)).join('')} />
+    )}
+  </div>
+  
+  <div class="mt-6 pt-4 border-t border-slate-700/50">
+    <div class="flex items-center justify-between text-sm">
+      <div class="flex items-center gap-4 text-slate-gray">
+        <div class="flex items-center gap-1">
+          <span>📄</span>
+          <span>Documentation</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <span>🔗</span>
+          <span>External Link</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <span>✏️</span>
+          <span>Edit on GitHub</span>
+        </div>
+      </div>
+      <div class="text-slate-gray">
+        <span>Hover items to reveal actions</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .repo-tree {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  }
+  
+  .repo-item .repo-item {
+    border-left: 1px solid #374151;
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-track-slate-800::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  
+  .scrollbar-thumb-slate-600::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 6px;
+  }
+  
+  .scrollbar-thumb-slate-600::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+</style> 

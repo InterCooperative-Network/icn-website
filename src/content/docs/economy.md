@@ -1,114 +1,151 @@
-# ICN Mana System
+# ICN Economic Model
+
+The InterCooperative Network (ICN) implements a dual economic system designed to facilitate fair resource allocation, prevent abuse, and enable a thriving cooperative digital economy.
 
 ## Overview
 
-The mana system is ICN's primary mechanism for resource allocation, Sybil resistance, and network participation management. Unlike traditional "gas" systems, mana regenerates over time and is scoped to individual identities, creating a sustainable and equitable resource management model.
+ICN's economic model consists of two primary components:
 
-## Core Concepts
+1. **Mana**: A regenerating capacity credit system for compute and network participation
+2. **Tokenized Assets**: Support for fungible and non-fungible tokens representing goods, services, and value
 
-### What is Mana?
+## Mana System
 
-Mana is a **regenerating capacity credit** that serves multiple purposes in the ICN:
+### Purpose
 
-- **Compute Metering**: Required for submitting and executing mesh jobs
-- **Network Participation**: Needed for governance voting and proposal submission  
-- **Rate Limiting**: Prevents spam and resource abuse
-- **Sybil Resistance**: Identity-scoped regeneration limits attackers
-- **Economic Incentives**: Encourages long-term network participation
+Mana serves as ICN's primary resource management mechanism, designed to:
 
-### Key Properties
+- **Prevent Spam**: Rate-limit network participation and resource consumption
+- **Enable Fair Access**: Provide regenerating capacity that doesn't require initial capital
+- **Influence Participation**: Allow reputation and contributions to affect regeneration rates
+- **Resist Sybil Attacks**: Tie capacity to established identities and behaviors
 
-#### Regenerative
-- Mana regenerates automatically over time for each identity
-- Regeneration rate influenced by reputation and governance policies
-- No permanent depletion - sustainable long-term usage
+### Key Characteristics
 
-#### Identity-Scoped
-- Each DID maintains its own mana balance
-- Cannot be directly transferred between identities
-- Prevents concentration of power in few actors
+- **Regenerating**: Mana regenerates over time, ensuring sustained network participation
+- **Identity-Scoped**: Each DID has its own mana balance and regeneration rate
+- **Policy-Influenced**: Regeneration rates can be modified by governance policies and reputation
+- **Non-Transferable**: Mana cannot be directly transferred between identities
+- **Consumption-Based**: Used for compute resources, storage, and network operations
 
-#### Policy-Driven
-- Regeneration rates governed by network policies
-- Spending requirements defined by governance
-- Adaptive to network conditions and needs
+### Mana Operations
 
-## Mana Mechanics
+```
+Initial Mana → Consumption (Jobs, Storage, Network) → Regeneration → Repeat
+```
 
-### Regeneration Model
+## Tokenized Asset System
 
-All identities receive a base regeneration rate ensuring minimum network participation. Active, positive participation increases regeneration through reputation multipliers, while capacity limits prevent excessive accumulation.
+### Purpose
 
-### Spending Model
+The tokenized asset layer enables:
 
-#### Mesh Job Costs
-Different job types have different mana costs based on:
-- CPU seconds required
-- Memory usage
-- Storage requirements
-- Network bandwidth
+- **Economic Exchange**: Trading of goods, services, and value between participants
+- **Cooperative Governance**: Token-based voting and decision-making
+- **Resource Ownership**: Representation of physical and digital assets
+- **Value Creation**: Incentivizing contributions and network effects
 
-#### Governance Costs
-Participation in governance requires mana:
-- **Proposal Submission**: High cost to prevent spam
-- **Voting**: Moderate cost to ensure engagement
-- **Delegation**: Low cost for accessibility
+### Token Types
 
-## Economic Policy Framework
+#### Fungible Tokens
+- **Utility Tokens**: Access to specific services or resources
+- **Governance Tokens**: Voting rights in cooperative decision-making
+- **Exchange Tokens**: Medium of exchange for goods and services
 
-### Network-Wide Policies
-Applied globally across all identities for base regeneration rates, capacity limits, and minimum job costs.
+#### Non-Fungible Tokens (NFTs)
+- **Credentials**: Verifiable qualifications and achievements
+- **Assets**: Unique physical or digital property
+- **Memberships**: Access rights to specific communities or cooperatives
 
-### Identity-Specific Modifiers
-Applied based on reputation and participation history:
-- Excellent reputation: 200% regeneration rate
-- Good reputation: 150% regeneration rate
-- Neutral reputation: 100% regeneration rate (default)
-- Poor reputation: 50% regeneration rate
+## Economic Interactions
 
-### Cooperative Policies
-Applied within cooperative contexts, including member bonuses, shared capacity options, and bulk operation discounts.
+### Mesh Job Execution
 
-## Integration with Other Systems
+1. **Job Submission**: Requires sufficient mana balance
+2. **Executor Selection**: Considers both mana capacity and reputation
+3. **Resource Allocation**: Mana is consumed based on computational requirements
+4. **Payment**: Optional token-based compensation for executors
+5. **Reputation Updates**: Successful completion affects future mana regeneration rates
 
-### Mesh Computing
-All mesh job submissions require mana verification before processing. Job costs are calculated based on resource requirements and charged upon submission.
+### Governance Participation
 
-### Governance System
-Proposal submission and voting require appropriate mana expenditure to ensure serious participation and prevent spam.
+1. **Proposal Submission**: May require mana or token stake
+2. **Voting**: Can use governance tokens or mana-weighted voting
+3. **Implementation**: Approved proposals may affect economic parameters
 
-### Identity and Reputation
-Reputation changes directly affect mana regeneration rates, creating incentives for positive network participation.
+### Resource Management
 
-## Anti-Gaming Mechanisms
+- **Storage**: Mana consumed for DAG storage operations
+- **Network Usage**: P2P communications and bandwidth usage
+- **Compute**: WASM execution and processing time
 
-### Sybil Resistance
-- **Identity Verification**: DIDs require proof of unique identity
-- **Reputation Gating**: New identities have reduced regeneration
-- **Network Effects**: Value increases with legitimate participation
+## Economic Policies
 
-### Resource Abuse Prevention
-- **Rate Limiting**: Mana caps prevent excessive resource consumption
-- **Cost Scaling**: Expensive operations require significant mana investment
-- **Monitoring**: Unusual spending patterns trigger investigation
+### Mana Policies
 
-### Fairness Enforcement
-- **Equal Base Access**: All identities get minimum regeneration
-- **Merit-Based Bonuses**: Reputation rewards legitimate contribution
-- **Governance Oversight**: Community can adjust parameters
+Economic behavior is governed by explicit policies defined in the Cooperative Contract Language (CCL):
 
-## Future Enhancements
+- **Base Regeneration Rate**: Default mana regeneration speed
+- **Reputation Multipliers**: How reputation affects regeneration
+- **Consumption Rates**: Mana costs for different operations
+- **Capacity Limits**: Maximum mana balances and usage rates
 
-### Planned Features
-- **Dynamic Pricing**: Adjust costs based on network demand
-- **Cooperative Sharing**: Enable mana sharing within cooperatives
-- **Delegation Mechanisms**: Allow temporary mana delegation
-- **Cross-Network Interop**: Mana recognition across federations
+### Token Policies
 
-### Research Areas
-- **Advanced Reputation Models**: More sophisticated trust metrics
-- **Machine Learning Integration**: Predictive mana allocation
-- **Privacy Preservation**: Zero-knowledge mana proofs
-- **Environmental Incentives**: Bonus for sustainable practices
+- **Issuance Rules**: How new tokens are created and distributed
+- **Transfer Restrictions**: Limitations on token movements
+- **Governance Rights**: Voting power and proposal requirements
+- **Burning Mechanisms**: Token destruction for deflationary pressure
 
-The mana system creates a sustainable, equitable foundation for resource management in the InterCooperative Network, enabling fair access while preventing abuse and encouraging positive participation. 
+## Implementation
+
+### Core Components
+
+The economic model is implemented across several `icn-core` crates:
+
+- **`icn-economics`**: Core economic logic, mana management, and policy enforcement
+- **`icn-governance`**: Token-based and mana-weighted governance mechanisms
+- **`icn-identity`**: Identity-scoped economic state and credentials
+- **`icn-runtime`**: Economic enforcement in job execution and resource usage
+
+### Policy Execution
+
+Economic policies are:
+
+1. **Defined**: Written in CCL (Cooperative Contract Language)
+2. **Compiled**: Transformed into executable WASM modules
+3. **Deployed**: Distributed and executed across the network
+4. **Enforced**: Applied consistently by all participating nodes
+
+## Economic Sustainability
+
+### Network Effects
+
+The dual economic model creates positive feedback loops:
+
+- **Mana Regeneration**: Encourages consistent, long-term participation
+- **Reputation Building**: Rewards reliable behavior with increased capacity
+- **Token Value**: Successful network usage increases token utility and value
+- **Cooperative Growth**: Larger, more active cooperatives gain economic advantages
+
+### Anti-Abuse Mechanisms
+
+- **Identity Requirements**: All economic activity tied to verifiable DIDs
+- **Rate Limiting**: Mana prevents resource exhaustion attacks
+- **Reputation Tracking**: Bad actors face reduced capacity over time
+- **Governance Oversight**: Community can adjust economic parameters
+
+## Future Development
+
+The economic model will continue to evolve through:
+
+- **Governance Proposals**: Community-driven parameter adjustments
+- **Market Feedback**: Real-world usage informing policy updates
+- **Research Integration**: Academic insights on cooperative economics
+- **Interoperability**: Integration with external economic systems
+
+---
+
+For technical implementation details, see the [`icn-economics` crate documentation](https://github.com/InterCooperative-Network/icn-core/tree/main/crates/icn-economics).
+
+For governance mechanisms, see the [Governance Documentation](../governance/README.md). 

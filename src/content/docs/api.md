@@ -186,6 +186,27 @@ The `icn-core` workspace contains the foundational Rust libraries that implement
 **Dependencies**: `icn-common`, `icn-identity`, `icn-economics`
 **Location**: `crates/icn-mesh/`
 
+## Reputation & Trust
+
+### icn-reputation
+
+**Purpose**: Reputation system managing trust scores, behavior tracking, and influence on network participation.
+
+**Key Features**:
+- Reputation score calculation and tracking
+- Behavior-based reputation updates
+- Integration with mesh job selection
+- Multiple persistence backends (Sled, SQLite, RocksDB)
+
+**Key Types**:
+- Reputation tracking and scoring
+- Behavior event recording
+- Trust metric calculations
+- Reputation-based access control
+
+**Dependencies**: `icn-common`, `icn-identity`
+**Location**: `crates/icn-reputation/`
+
 ## Contract Language
 
 ### icn-ccl
@@ -198,8 +219,15 @@ The `icn-core` workspace contains the foundational Rust libraries that implement
 - Policy validation and optimization
 - Runtime integration
 
+**Key Types**:
+- CCL grammar parsing and AST
+- WASM compilation targets
+- Policy validation and verification
+- Runtime integration interfaces
+
 **Status**: In development - will utilize CCL grammar from legacy CoVM
-**Location**: `icn-ccl/` (repository root)
+**Location**: `icn-ccl/` (repository root level, not under crates/)
+**Dependencies**: WASM compilation toolchain
 
 ## API & Interface Layer
 

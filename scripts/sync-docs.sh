@@ -18,42 +18,72 @@ mkdir -p "$DOCS_DEST_DIR"
 
 echo "Starting documentation sync from $DOCS_SOURCE_DIR to $DOCS_DEST_DIR"
 
-# List of topics (directory names in icn-docs)
-# These should match the slugs used in the Astro pages (e.g., api.astro loads api.md)
-topics=("api" "architecture" "economy" "governance" "networking" "observability" "philosophy" "rfcs" "onboarding" "cli")
+# Define specific file mappings from icn-docs structure to website content
+# Format: "source_path:dest_file"
+declare -A file_mappings=(
+    ["api/core-crates.md"]="api.md"
+    ["architecture/system-overview.md"]="architecture.md"
+    ["economy/README.md"]="economy.md"
+    ["governance/README.md"]="governance.md"
+    ["networking/README.md"]="networking.md"
+    ["observability/README.md"]="observability.md"
+    ["philosophy/README.md"]="philosophy.md"
+    ["rfcs/README.md"]="rfcs.md"
+    ["onboarding/README.md"]="onboarding.md"
+    ["cli/README.md"]="cli.md"
+)
 
 # Counter for found files
 found_count=0
+missing_count=0
 
-for topic_slug in "${topics[@]}"; do
-  echo "Processing topic: $topic_slug"
-  
-  # Define potential source file paths within the topic directory in icn-docs
-  # Common patterns: README.md or [topic_slug].md in the topic's directory
-  source_readme_path="$DOCS_SOURCE_DIR/$topic_slug/README.md"
-  source_topic_file_path="$DOCS_SOURCE_DIR/$topic_slug/$topic_slug.md"
-  
-  # Define the destination file path in icn-website
-  dest_file_path="$DOCS_DEST_DIR/$topic_slug.md"
-  
-  # Check if README.md exists and copy it
-  if [ -f "$source_readme_path" ]; then
-    echo "  Found $source_readme_path. Copying to $dest_file_path"
-    cp "$source_readme_path" "$dest_file_path"
-    found_count=$((found_count + 1))
-  # Else, check if [topic_slug].md exists and copy it
-  elif [ -f "$source_topic_file_path" ]; then
-    echo "  Found $source_topic_file_path. Copying to $dest_file_path"
-    cp "$source_topic_file_path" "$dest_file_path"
-    found_count=$((found_count + 1))
-  else
-    echo "  No README.md or $topic_slug.md found for topic '$topic_slug' in $DOCS_SOURCE_DIR/$topic_slug/"
-    # Optionally, create an empty file or a placeholder if a source is missing
-    # For now, we'll just note it. The Astro pages have a "Coming Soon" fallback.
-  fi
+# Process each mapping
+for source_path in "${!file_mappings[@]}"; do
+    dest_file="${file_mappings[$source_path]}"
+    full_source_path="$DOCS_SOURCE_DIR/$source_path"
+    full_dest_path="$DOCS_DEST_DIR/$dest_file"
+    
+    echo "Processing: $source_path -> $dest_file"
+    
+    if [ -f "$full_source_path" ]; then
+        echo "  ✅ Found $full_source_path. Copying to $full_dest_path"
+        cp "$full_source_path" "$full_dest_path"
+        found_count=$((found_count + 1))
+    else
+        echo "  ❌ Missing: $full_source_path"
+        missing_count=$((missing_count + 1))
+        
+        # Create a placeholder file indicating the content is coming soon
+        cat > "$full_dest_path" << EOF
+# ${dest_file%.*} Documentation
+
+This documentation section is currently being developed.
+
+Please check back soon or visit the [main documentation repository](https://github.com/InterCooperative-Network/icn-docs) for the latest updates.
+
+## Coming Soon
+
+We're actively working on comprehensive documentation for this section of the InterCooperative Network.
+EOF
+        echo "  📝 Created placeholder for $dest_file"
+    fi
 done
 
-echo "Documentation sync complete. Copied $found_count files."
+echo ""
+echo "=============================================="
+echo "Documentation sync complete!"
+echo "✅ Successfully copied: $found_count files"
+if [ $missing_count -gt 0 ]; then
+    echo "📝 Created placeholders: $missing_count files"
+fi
+echo "=============================================="
+
+# Additional helpful output
+echo ""
+echo "Next steps:"
+echo "1. Review the synced files in: $DOCS_DEST_DIR"
+echo "2. Test the website: npm run dev"
+echo "3. Build for production: npm run build"
 
 # Make the script executable from the command line
 # chmod +x scripts/sync-docs.sh
