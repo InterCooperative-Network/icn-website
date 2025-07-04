@@ -1,0 +1,389 @@
+---
+// Architecture Diagram Component for ICN
+---
+
+<div class="architecture-diagram">
+  <div class="diagram-container">
+    <h3 class="text-2xl font-bold text-center mb-8 text-white">ICN Architecture Stack</h3>
+    
+    <!-- Layer 6: Applications & UI -->
+    <div class="layer layer-apps" data-layer="applications">
+      <div class="layer-content">
+        <h4 class="layer-title">Applications & UI</h4>
+        <div class="layer-components">
+          <span class="component">AgoraNet</span>
+          <span class="component">ICN Wallet</span>
+          <span class="component">Web UI</span>
+          <span class="component">Explorer</span>
+        </div>
+      </div>
+      <div class="layer-tooltip">
+        User interfaces for governance, identity management, and network exploration
+      </div>
+    </div>
+
+    <!-- Layer 5: Governance -->
+    <div class="layer layer-governance" data-layer="governance">
+      <div class="layer-content">
+        <h4 class="layer-title">Governance</h4>
+        <div class="layer-components">
+          <span class="component">RFC Process</span>
+          <span class="component">Voting</span>
+          <span class="component">Policy Enforcement</span>
+          <span class="component">CCL Contracts</span>
+        </div>
+      </div>
+      <div class="layer-tooltip">
+        Democratic decision-making through proposals, voting, and programmable policies
+      </div>
+    </div>
+
+    <!-- Layer 4: DAG & Ledger -->
+    <div class="layer layer-dag" data-layer="dag">
+      <div class="layer-content">
+        <h4 class="layer-title">DAG & Ledger</h4>
+        <div class="layer-components">
+          <span class="component">Content-Addressed Storage</span>
+          <span class="component">Execution Receipts</span>
+          <span class="component">Mana Ledger</span>
+        </div>
+      </div>
+      <div class="layer-tooltip">
+        Immutable storage of governance decisions, job results, and economic transactions
+      </div>
+    </div>
+
+    <!-- Layer 3: Compute & Runtime -->
+    <div class="layer layer-runtime" data-layer="runtime">
+      <div class="layer-content">
+        <h4 class="layer-title">Compute & Runtime</h4>
+        <div class="layer-components">
+          <span class="component">CoVM (WASM)</span>
+          <span class="component">Job Scheduler</span>
+          <span class="component">Resource Management</span>
+        </div>
+      </div>
+      <div class="layer-tooltip">
+        Secure execution environment with job distribution and resource allocation
+      </div>
+    </div>
+
+    <!-- Layer 2: Networking -->
+    <div class="layer layer-networking" data-layer="networking">
+      <div class="layer-content">
+        <h4 class="layer-title">Mesh Networking</h4>
+        <div class="layer-components">
+          <span class="component">libp2p</span>
+          <span class="component">Federation Routing</span>
+          <span class="component">Peer Discovery</span>
+        </div>
+      </div>
+      <div class="layer-tooltip">
+        Peer-to-peer mesh network with federation support and automatic discovery
+      </div>
+    </div>
+
+    <!-- Layer 1: Identity & Credentials -->
+    <div class="layer layer-identity" data-layer="identity">
+      <div class="layer-content">
+        <h4 class="layer-title">Identity & Credentials</h4>
+        <div class="layer-components">
+          <span class="component">DIDs</span>
+          <span class="component">Verifiable Credentials</span>
+          <span class="component">Reputation System</span>
+        </div>
+      </div>
+      <div class="layer-tooltip">
+        Decentralized identity with cryptographic credentials and reputation tracking
+      </div>
+    </div>
+
+    <!-- Data Flow Arrows -->
+    <div class="data-flows">
+      <div class="flow-arrow flow-down" style="top: 12%; left: 20%;"></div>
+      <div class="flow-arrow flow-down" style="top: 24%; left: 80%;"></div>
+      <div class="flow-arrow flow-down" style="top: 36%; left: 40%;"></div>
+      <div class="flow-arrow flow-down" style="top: 48%; left: 60%;"></div>
+      <div class="flow-arrow flow-down" style="top: 60%; left: 30%;"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .architecture-diagram {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .diagram-container {
+    position: relative;
+    background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(50, 255, 210, 0.2);
+  }
+
+  .layer {
+    position: relative;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .layer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(50, 255, 210, 0.15);
+  }
+
+  .layer-apps {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  .layer-governance {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .layer-dag {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .layer-runtime {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .layer-networking {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .layer-identity {
+    background: linear-gradient(135deg, rgba(50, 255, 210, 0.2) 0%, rgba(50, 255, 210, 0.1) 100%);
+    border-color: rgba(50, 255, 210, 0.3);
+  }
+
+  .layer-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .layer-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+
+  .layer-components {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .component {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .component:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .layer-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 25, 47, 0.98);
+    backdrop-filter: blur(12px);
+    color: white;
+    padding: 0.875rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    width: 280px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    border: 1px solid rgba(50, 255, 210, 0.4);
+    margin-top: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .layer:hover .layer-tooltip,
+  .layer.active .layer-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .data-flows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
+  .flow-arrow {
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(50, 255, 210, 0.6), rgba(50, 255, 210, 0.2));
+    animation: flow 2s ease-in-out infinite;
+  }
+
+  .flow-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -2px;
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 6px solid rgba(50, 255, 210, 0.6);
+  }
+
+  @keyframes flow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .architecture-diagram {
+      padding: 1rem;
+    }
+
+    .diagram-container {
+      padding: 1rem;
+    }
+
+    .layer {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .layer-components {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .component {
+      width: 100%;
+      text-align: center;
+    }
+
+    .layer-tooltip {
+      width: calc(100vw - 3rem);
+      max-width: 320px;
+      font-size: 0.85rem;
+      padding: 1rem 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 25, 47, 0.99);
+      border: 2px solid rgba(50, 255, 210, 0.5);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .data-flows {
+      display: none;
+    }
+
+    /* Mobile touch instructions */
+    .layer::after {
+      content: "Tap for details";
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-style: italic;
+    }
+  }
+</style>
+
+<script>
+  // Add interactive behavior for both desktop and mobile
+  document.addEventListener('DOMContentLoaded', function() {
+    const layers = document.querySelectorAll('.layer');
+    let activeLayer: HTMLElement | null = null;
+    
+    function isMobile(): boolean {
+      return window.innerWidth <= 768 || 'ontouchstart' in window;
+    }
+    
+    layers.forEach(layer => {
+      // Handle both click and touch events
+      layer.addEventListener('click', function(event) {
+        const target = event.currentTarget as HTMLElement;
+        const layerName = target.dataset.layer;
+        
+        if (isMobile()) {
+          // Mobile behavior: toggle tooltip visibility
+          if (activeLayer && activeLayer !== target) {
+            activeLayer.classList.remove('active');
+          }
+          
+          if (target.classList.contains('active')) {
+            target.classList.remove('active');
+            activeLayer = null;
+          } else {
+            target.classList.add('active');
+            activeLayer = target;
+          }
+        } else {
+          // Desktop behavior: just add click animation
+          target.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            target.style.transform = '';
+          }, 150);
+        }
+        
+        console.log(`Interacted with ${layerName} layer`);
+      });
+      
+      // Handle touch events specifically
+      layer.addEventListener('touchstart', function(event) {
+        event.preventDefault(); // Prevent default touch behavior
+      });
+    });
+    
+    // Close active tooltip when clicking outside (mobile)
+    document.addEventListener('click', function(event) {
+      if (isMobile() && activeLayer && event.target) {
+        const clickedInsideLayer = (event.target as HTMLElement).closest('.layer');
+        if (!clickedInsideLayer) {
+          activeLayer.classList.remove('active');
+          activeLayer = null;
+        }
+      }
+    });
+    
+    // Handle window resize to reset mobile state
+    window.addEventListener('resize', function() {
+      if (activeLayer) {
+        activeLayer.classList.remove('active');
+        activeLayer = null;
+      }
+    });
+  });
+</script> 

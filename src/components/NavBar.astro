@@ -2,6 +2,8 @@
 // src/components/NavBar.astro
 const navLinks = [
   { href: "/about", text: "About" },
+  { href: "/use-cases", text: "Use Cases" },
+  { href: "/roadmap", text: "Roadmap" },
   { href: "/join", text: "Join" },
   { href: "/governance", text: "Governance" },
   { href: "/infrastructure", text: "Infrastructure" },
@@ -25,7 +27,7 @@ const navLinks = [
     </button>
 
     <!-- Logo (Center on mobile, Left on desktop) -->
-    <a href="/" class="flex items-center space-x-3 flex-1 md:flex-initial">
+    <a href="/" class="flex items-center space-x-3 flex-1 md:flex-initial md:mr-8">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-nav-active-link" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 12a4.5 4.5 0 014.5-4.5M7.5 12a4.5 4.5 0 004.5 4.5m4.5-4.5a4.5 4.5 0 01-4.5 4.5m4.5-4.5a4.5 4.5 0 00-4.5-4.5" />
