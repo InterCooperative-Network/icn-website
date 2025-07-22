@@ -1,7 +1,7 @@
 ---
 // src/components/HeroSection.astro
 export interface Props {
-  // Pretitle like "POST-CAPITALIST - COOPERATIVE - FEDERATED"
+  // Pretitle like "POST-CAPITALIST • COOPERATIVE • FEDERATED"
   pretitle?: string;
   
   // Main multi-line headline
@@ -27,11 +27,11 @@ const {
   pretitle = "POST-CAPITALIST • COOPERATIVE • FEDERATED",
   headline1 = "Civilizational Infrastructure",
   headline2 = "For Democratic Cooperation",
-  supportingSubhead = "A federated compute, resource, and governance protocol designed for cooperatives, communities, and federations. Build programmable, governable, and resilient digital commons infrastructure.",
-  primaryButtonText = "Get Started",
+  supportingSubhead = "A federated compute, resource, and governance protocol designed for cooperatives, communities, and federations. Building programmable, governable, and resilient digital commons infrastructure.",
+  primaryButtonText = "Explore the Vision",
   primaryButtonLink = "/get-started",
-  secondaryButtonText = "Explore Architecture",
-  secondaryButtonLink = "/docs/architecture",
+  secondaryButtonText = "View Architecture",
+  secondaryButtonLink = "/docs",
   showImage = true,
   imageUrl = "/images/hero-network.svg", 
   imageAlt = "ICN Cooperative Network Visualization"
@@ -95,19 +95,23 @@ const {
             </a>
           </div>
           
-          <!-- Key principles -->
+          <!-- Key technology highlights with development status -->
           <div class="flex flex-col sm:flex-row gap-8 justify-center lg:justify-start pt-8 animate-fade-in-up" style="animation-delay: 1s;">
             <div class="text-center lg:text-left">
-              <div class="text-2xl font-bold text-accent-glow">CoVM</div>
+              <div class="text-2xl font-bold text-accent-primary">CoVM</div>
               <div class="text-sm text-slate-gray">Cooperative Virtual Machine</div>
             </div>
             <div class="text-center lg:text-left">
-              <div class="text-2xl font-bold text-accent-glow">CCL</div>
+              <div class="text-2xl font-bold text-accent-blue">P2P Network</div>
+              <div class="text-sm text-slate-gray">Real libp2p Federation</div>
+            </div>
+            <div class="text-center lg:text-left">
+              <div class="text-2xl font-bold text-accent-purple">CCL</div>
               <div class="text-sm text-slate-gray">Contract Language</div>
             </div>
             <div class="text-center lg:text-left">
-              <div class="text-2xl font-bold text-accent-glow">DAG</div>
-              <div class="text-sm text-slate-gray">Verifiable Ledger</div>
+              <div class="text-2xl font-bold text-accent-glow">77% Complete</div>
+              <div class="text-sm text-slate-gray">In Active Development</div>
             </div>
           </div>
         </div>
@@ -130,9 +134,9 @@ const {
                 />
               </div>
               
-              <!-- Floating elements representing federation nodes -->
-              <div class="absolute top-4 left-4 w-4 h-4 bg-accent-primary rounded-full animate-pulse" style="animation-delay: 0.5s;" title="Cooperative Node"></div>
-              <div class="absolute bottom-8 right-8 w-3 h-3 bg-accent-purple rounded-full animate-pulse" style="animation-delay: 1.5s;" title="Community Node"></div>
+              <!-- Floating elements representing federation components -->
+              <div class="absolute top-4 left-4 w-4 h-4 bg-accent-primary rounded-full animate-pulse" style="animation-delay: 0.5s;" title="Cooperative Nodes"></div>
+              <div class="absolute bottom-8 right-8 w-3 h-3 bg-accent-purple rounded-full animate-pulse" style="animation-delay: 1.5s;" title="Community Governance"></div>
               <div class="absolute top-1/2 left-0 w-2 h-2 bg-accent-blue rounded-full animate-pulse" style="animation-delay: 2.5s;" title="Federation Layer"></div>
             </div>
           </div>
