@@ -10,8 +10,8 @@ interface Props {
 const { section, title, githubPath, editUrl } = Astro.props;
 
 // Default GitHub repository info
-const repoBase = "https://github.com/InterCooperative-Network/icn-docs";
-const defaultGithubPath = githubPath || `${section}/README.md`;
+const repoBase = "https://github.com/InterCooperative-Network/icn";
+const defaultGithubPath = githubPath || `docs/${section}.md`;
 const defaultEditUrl = editUrl || `${repoBase}/edit/main/${defaultGithubPath}`;
 const viewUrl = `${repoBase}/blob/main/${defaultGithubPath}`;
 
@@ -109,7 +109,7 @@ const displayTitle = title || displaySection;
           Documentation Source: <span class="font-mono text-accent-primary">{defaultGithubPath}</span>
         </p>
         <p class="text-xs text-slate-gray mt-1">
-          This page is automatically synced from the icn-docs repository
+          This page is automatically synced from the icn repository
         </p>
       </div>
     </div>

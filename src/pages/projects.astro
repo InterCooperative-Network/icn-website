@@ -9,12 +9,11 @@ import GitHubRepoCard from '../components/GitHubRepoCard.astro';
   </div>
   <h1>Projects</h1>
   <p>See what's active, in development, or up for discussion in the InterCooperative Network.</p>
-  <div class="grid md:grid-cols-2 gap-6 mt-8">
-    <GitHubRepoCard repo="InterCooperative-Network/icn-wallet" />
-    <GitHubRepoCard repo="InterCooperative-Network/icn-agoranet" />
-    <GitHubRepoCard repo="InterCooperative-Network/icn-web-ui" />
-    <GitHubRepoCard repo="InterCooperative-Network/icn-explorer" />
-    <GitHubRepoCard repo="InterCooperative-Network/icn-core" />
-    <!-- Add more as needed -->
+  <div class="grid md:grid-cols-1 gap-6 mt-8 max-w-2xl mx-auto">
+    <GitHubRepoCard repo="InterCooperative-Network/icn" />
   </div>
+  <p class="text-center mt-6 text-gray-600">
+    ICN is now a single consolidated repository containing all core functionality,
+    including identity, trust, networking, ledger, contracts, and governance modules.
+  </p>
 </Layout> 

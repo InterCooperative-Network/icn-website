@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="About ICN" description="The InterCooperative Network: Post-capitalist civilizational infrastructure for cooperatives, communities, and federations. Learn about our mission, vision, and principles.">
+<Layout title="About ICN" description="The InterCooperative Network: A substrate daemon for the cooperative internet. Infrastructure for timebanks, mutual credit systems, and cooperative coordination.">
   <section class="pt-32 pb-16">
     <div class="container mx-auto px-6">
       <h1 class="text-4xl font-bold text-center mb-16">About the InterCooperative Network (ICN)</h1>
@@ -22,38 +22,44 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Core Architecture: Beyond Web3</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN implements what we call "Web4"—a post-capitalist infrastructure stack that includes:
-          </p>
-          
+          <h2 class="text-3xl font-semibold mb-6">Core Architecture: 16 Specialized Crates</h2>
+
+          <div class="bg-accent-primary/10 p-4 rounded-lg border border-accent-primary/30 mb-6">
+            <div class="flex items-center gap-4 flex-wrap">
+              <span class="text-accent-primary font-bold">PILOT-READY</span>
+              <span class="text-light-slate">20 phases complete</span>
+              <span class="text-light-slate">1,134+ tests</span>
+              <span class="text-light-slate">16 crates + 3 binaries</span>
+            </div>
+          </div>
+
           <div class="grid md:grid-cols-2 gap-6 mb-8">
             <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-primary/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-primary">Cooperative Virtual Machine (CoVM)</h3>
-              <p class="text-slate-400">Executes governance and economic operations through deterministic, 
-              auditable programs using our Cooperative Contract Language (CCL). Every proposal, vote, 
-              and transaction is verifiable and replayable. WASM-first execution with modular operation layers.</p>
+              <h3 class="text-xl font-semibold mb-3 text-accent-primary">Identity & Security</h3>
+              <p class="text-slate-400">DIDs with Ed25519 cryptography and three-layer security model
+              (transport, message, application). DID-TLS binding with persistent certificates,
+              credential presentation, and multi-device identity support.</p>
             </div>
-            
+
             <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-blue/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-blue">AgoraNet Deliberation</h3>
-              <p class="text-slate-400">Real-time, scoped deliberation system that transforms discussions 
-              into structured proposals. Supports mobile, browser, and terminal interfaces with 
-              participatory audit trails and collaborative documentation.</p>
+              <h3 class="text-xl font-semibold mb-3 text-accent-blue">Trust & Economics</h3>
+              <p class="text-slate-400">Web-of-participation trust graph with vouching and decay.
+              Mutual credit ledger using double-entry accounting with Merkle-DAG anchoring.
+              Dynamic credit limits and dispute resolution mechanisms.</p>
             </div>
-            
+
             <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-purple/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-purple">DAG-Based Governance Ledger</h3>
-              <p class="text-slate-400">Content-addressable DAG stores proposals, amendments, votes, and execution receipts. 
-              Forkless, cryptographically verified memory with Merkle anchoring. No blockchain speculation—just 
-              transparent, immutable governance records.</p>
+              <h3 class="text-xl font-semibold mb-3 text-accent-purple">Networking & Gossip</h3>
+              <p class="text-slate-400">QUIC/TLS secure sessions with mDNS peer discovery.
+              Gossip protocol with trust-gated topics, per-peer rate limiting,
+              and Byzantine node detection.</p>
             </div>
-            
+
             <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-glow/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-glow">Mesh Compute & Reputation</h3>
-              <p class="text-slate-400">Distributed job execution with reputation-based assignment. WASM-sandboxed workloads, 
-              cryptographic execution receipts, and cooperative workload balancing. Democratic infrastructure 
-              for distributed computation.</p>
+              <h3 class="text-xl font-semibold mb-3 text-accent-glow">Contracts & Governance</h3>
+              <p class="text-slate-400">Cooperative Contract Language (CCL) smart contracts.
+              Domain-based proposals with voting coordination.
+              Distributed compute layer with trust-gated execution.</p>
             </div>
           </div>
         </section>
@@ -167,31 +173,59 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Technical Implementation Stack</h2>
+          <h2 class="text-3xl font-semibold mb-6">Technical Implementation</h2>
           <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN is built entirely in Rust with a modular, WASM-first architecture:
+            ICN is built entirely in Rust with an actor-based runtime on Tokio:
           </p>
-          
+
           <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-glow/20 mb-6">
-            <h3 class="text-xl font-semibold text-accent-glow mb-4">Core Components</h3>
+            <h3 class="text-xl font-semibold text-accent-glow mb-4">Binaries & Ports</h3>
             <ul class="text-gray-100 space-y-3">
-              <li><strong>Runtime:</strong> Stack-based WASM virtual machine with trait-driven operation layers</li>
-              <li><strong>Economics:</strong> Regenerating mana system with scoped capability tokens</li>
-              <li><strong>Identity:</strong> Ed25519-based DIDs with Verifiable Credentials and ZK disclosures</li>
-              <li><strong>Storage:</strong> Content-addressable DAG with RBAC and audit trails</li>
-              <li><strong>Governance:</strong> CCL-based proposal lifecycle with cryptographic verification</li>
-              <li><strong>Networking:</strong> libp2p mesh with reputation-based job assignment</li>
+              <li><strong>icnd:</strong> The main daemon binary</li>
+              <li><strong>icnctl:</strong> CLI for administration and operations</li>
+              <li><strong>icn-console:</strong> Interactive REPL for development</li>
+              <li><strong>Port 7777:</strong> QUIC P2P networking</li>
+              <li><strong>Port 5601:</strong> JSON-RPC API</li>
+              <li><strong>Port 9100:</strong> Prometheus metrics</li>
+              <li><strong>Port 8080:</strong> Health check endpoint</li>
             </ul>
           </div>
-          
-          <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-blue/20">
-            <h3 class="text-xl font-semibold text-accent-blue mb-4">Developer Experience</h3>
+
+          <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-blue/20 mb-6">
+            <h3 class="text-xl font-semibold text-accent-blue mb-4">Core Crates</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-gray-100 text-sm">
+              <div>
+                <p><strong>icn-core:</strong> Shared types and traits</p>
+                <p><strong>icn-identity:</strong> DIDs and credentials</p>
+                <p><strong>icn-trust:</strong> Web-of-participation graph</p>
+                <p><strong>icn-ledger:</strong> Mutual credit ledger</p>
+                <p><strong>icn-ccl:</strong> Contract language</p>
+                <p><strong>icn-governance:</strong> Voting and proposals</p>
+                <p><strong>icn-compute:</strong> Distributed compute</p>
+                <p><strong>icn-storage:</strong> Data persistence</p>
+              </div>
+              <div>
+                <p><strong>icn-network:</strong> P2P networking</p>
+                <p><strong>icn-gossip:</strong> Trust-gated gossip</p>
+                <p><strong>icn-api:</strong> REST gateway</p>
+                <p><strong>icn-crypto:</strong> Cryptographic primitives</p>
+                <p><strong>icn-utils:</strong> Shared utilities</p>
+                <p><strong>icn-economics:</strong> Credit/mana system</p>
+                <p><strong>icn-runtime:</strong> Actor supervisor</p>
+                <p><strong>icn-testkit:</strong> Testing harness</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-purple/20">
+            <h3 class="text-xl font-semibold text-accent-purple mb-4">Pilot Web UI</h3>
             <ul class="text-gray-100 space-y-3">
-              <li><strong>DevNet:</strong> Local multi-node development environment</li>
-              <li><strong>CLI Tools:</strong> Comprehensive command-line interface for operators</li>
-              <li><strong>ABI Documentation:</strong> Complete API specifications and developer guides</li>
-              <li><strong>Testing Suite:</strong> Unit, integration, and end-to-end test coverage</li>
-              <li><strong>Federation Templates:</strong> Pre-built governance patterns for common use cases</li>
+              <li><strong>Dashboard:</strong> Balance tracking and activity charts</li>
+              <li><strong>Members:</strong> Directory with search and profiles</li>
+              <li><strong>Governance:</strong> Proposal creation and voting</li>
+              <li><strong>Timebank:</strong> Time/credit logging interface</li>
+              <li><strong>Export:</strong> CSV export for treasurers</li>
+              <li><strong>Mobile:</strong> Full responsive support</li>
             </ul>
           </div>
         </section>

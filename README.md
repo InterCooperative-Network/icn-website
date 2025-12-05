@@ -145,9 +145,9 @@ This project is licensed under the same terms as the ICN project. See the main r
 
 ## 🔗 Links
 
-- **Main Repository**: [icn-core](https://github.com/InterCooperative-Network/icn-core)
-- **Documentation**: [ICN Docs](https://github.com/InterCooperative-Network/icn-docs)
-- **Community**: [Discussions](https://github.com/InterCooperative-Network/icn-core/discussions)
+- **Main Repository**: [icn](https://github.com/InterCooperative-Network/icn)
+- **Documentation**: [ICN Docs](https://github.com/InterCooperative-Network/icn/tree/main/docs)
+- **Community**: [Discussions](https://github.com/InterCooperative-Network/icn/discussions)
 - **Issues**: [Bug Reports](https://github.com/InterCooperative-Network/icn-website/issues)
 
 ---

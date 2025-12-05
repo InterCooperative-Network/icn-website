@@ -5,117 +5,172 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="ICN Roadmap" description="The development roadmap for the InterCooperative Network">
   <section class="pt-32 pb-16">
     <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold text-center mb-16">ICN Development Roadmap</h1>
-      
-      <div class="max-w-4xl mx-auto space-y-8">
-        <!-- Phase 1 -->
+      <div class="text-center mb-16">
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          PILOT-READY
+        </span>
+        <h1 class="text-4xl font-bold mb-4">ICN Development Roadmap</h1>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          20 development phases complete with 1,134+ passing tests.
+          ICN is ready for pilot community deployment.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Status Banner -->
+        <div class="bg-accent-primary/10 p-6 rounded-lg border border-accent-primary/30 mb-8">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <h3 class="text-xl font-bold text-accent-primary">Current Status: PILOT-READY</h3>
+              <p class="text-light-slate mt-1">All infrastructure complete. Ready for cooperative community pilots.</p>
+            </div>
+            <div class="flex gap-4 text-center">
+              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
+                <div class="text-2xl font-bold text-accent-primary">20</div>
+                <div class="text-xs text-slate-gray">Phases</div>
+              </div>
+              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
+                <div class="text-2xl font-bold text-accent-primary">1,134+</div>
+                <div class="text-xs text-slate-gray">Tests</div>
+              </div>
+              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
+                <div class="text-2xl font-bold text-accent-primary">16</div>
+                <div class="text-xs text-slate-gray">Crates</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Substrate (Phases 0-7) -->
         <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-primary/20">
-          <h3 class="text-2xl font-bold text-accent-primary mb-3">Phase 1: Foundation Infrastructure ✅</h3>
+          <h3 class="text-2xl font-bold text-accent-primary mb-3">Core Substrate (Phases 0-7) ✅</h3>
           <p class="text-light-slate mb-4">
-            Established core Rust infrastructure with libp2p networking and foundational architecture.
+            Foundation infrastructure with identity, trust, networking, ledger, contracts, gossip, and hardening.
           </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• Real libp2p mesh networking</li>
-            <li>• Core Rust crate structure</li>
-            <li>• Basic peer discovery</li>
-            <li>• DAG storage foundations</li>
-          </ul>
+          <div class="grid md:grid-cols-2 gap-4">
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• DIDs with Ed25519 cryptography</li>
+              <li>• Web-of-participation trust graph</li>
+              <li>• QUIC/TLS secure networking</li>
+              <li>• mDNS peer discovery</li>
+            </ul>
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• Mutual credit ledger (Merkle-DAG)</li>
+              <li>• Cooperative Contract Language (CCL)</li>
+              <li>• Gossip protocol with trust gating</li>
+              <li>• Rate limiting & security hardening</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Phase 2A -->
+        <!-- Advanced Features (Phases 8-14) -->
         <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-primary/20">
-          <h3 class="text-2xl font-bold text-accent-primary mb-3">Phase 2A: Multi-Node CLI ✅</h3>
+          <h3 class="text-2xl font-bold text-accent-primary mb-3">Advanced Features (Phases 8-14) ✅</h3>
           <p class="text-light-slate mb-4">
-            Multi-node deployments with bootstrap peer discovery and CLI tools.
+            Multi-device identity, economic safety, governance v1, REST gateway, distributed compute, and storage.
           </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• Multi-node network deployment</li>
-            <li>• Bootstrap peer discovery</li>
-            <li>• CLI tools (icn-cli)</li>
-            <li>• Network diagnostics</li>
-          </ul>
+          <div class="grid md:grid-cols-2 gap-4">
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• Multi-device identity (DID Document v2)</li>
+              <li>• Dynamic credit limits</li>
+              <li>• Dispute resolution mechanisms</li>
+              <li>• Domain-based governance proposals</li>
+            </ul>
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• REST API gateway (60+ endpoints)</li>
+              <li>• Distributed compute layer</li>
+              <li>• Storage replication</li>
+              <li>• Federation coordination</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Phase 2B -->
+        <!-- Production Ready (Phases 15-20) -->
         <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-primary/20">
-          <h3 class="text-2xl font-bold text-accent-primary mb-3">Phase 2B: Cross-Node Mesh Jobs ✅</h3>
+          <h3 class="text-2xl font-bold text-accent-primary mb-3">Production Ready (Phases 15-20) ✅</h3>
           <p class="text-light-slate mb-4">
-            Distributed job execution with cryptographically signed receipts.
+            Byzantine detection, privacy enhancements, observability, and operational hardening.
           </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• Distributed job execution</li>
-            <li>• Bidding and assignment system</li>
-            <li>• Cryptographic receipts</li>
-            <li>• Mana-based resource allocation</li>
+          <div class="grid md:grid-cols-2 gap-4">
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• Byzantine node detection</li>
+              <li>• Privacy enhancements</li>
+              <li>• Prometheus metrics integration</li>
+              <li>• Real-time monitoring dashboards</li>
+            </ul>
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• Encrypted backup/restore</li>
+              <li>• Graceful restart with state persistence</li>
+              <li>• Version negotiation</li>
+              <li>• Agent-based economic simulation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Track B: Operational -->
+        <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-blue/20">
+          <h3 class="text-2xl font-bold text-accent-blue mb-3">Track B: Operational Hardening ✅</h3>
+          <p class="text-light-slate mb-4">
+            Production-grade operations and economic validation.
+          </p>
+          <ul class="text-light-slate space-y-1 text-sm">
+            <li>• B1: Operational hardening (backup, monitoring, graceful restart)</li>
+            <li>• B3: Economic modeling (agent-based simulation, stability analysis)</li>
           </ul>
         </div>
 
-        <!-- Phase 3 -->
-        <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-primary/20">
-          <h3 class="text-2xl font-bold text-accent-primary mb-3">Phase 3: HTTP Gateway ✅</h3>
+        <!-- Pilot Web UI -->
+        <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-purple/20">
+          <h3 class="text-2xl font-bold text-accent-purple mb-3">Pilot Web UI ✅</h3>
           <p class="text-light-slate mb-4">
-            Complete REST API gateway making all ICN functionality accessible via HTTP.
+            Production-ready dashboard for cooperative communities.
           </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• RESTful HTTP endpoints</li>
-            <li>• JSON request/response</li>
-            <li>• WebSocket real-time updates</li>
-            <li>• Web dashboard compatibility</li>
-          </ul>
+          <div class="grid md:grid-cols-2 gap-4">
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• Dashboard with balance tracking</li>
+              <li>• Activity charts and history</li>
+              <li>• Time/credit logging interface</li>
+              <li>• Member directory with search</li>
+            </ul>
+            <ul class="text-light-slate space-y-1 text-sm">
+              <li>• Governance and voting UI</li>
+              <li>• Full mobile support</li>
+              <li>• CSV export for treasurers</li>
+              <li>• Docker deployment ready</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Phase 4 - Current -->
-        <div class="bg-accent-primary/10 p-6 rounded-lg border border-accent-primary/30">
-          <h3 class="text-2xl font-bold text-accent-primary mb-3">Phase 4: Federation Devnet ✅ CURRENT</h3>
+        <!-- Next: Track C1 -->
+        <div class="bg-accent-glow/10 p-6 rounded-lg border border-accent-glow/30">
+          <h3 class="text-2xl font-bold text-accent-glow mb-3">Next: Track C1 - Pilot Deployment 🚀</h3>
           <p class="text-light-slate mb-4">
-            Containerized three-node federation devnet with automated deployment and monitoring.
+            Select and deploy with actual cooperative communities. This is the next milestone.
           </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• Docker Compose deployment</li>
-            <li>• Health monitoring</li>
-            <li>• Under 90s cold start time</li>
-            <li>• Production-ready infrastructure</li>
-          </ul>
-        </div>
-
-        <!-- Phase 5 - Next -->
-        <div class="bg-midnight-navy/50 p-6 rounded-lg border border-accent-blue/30">
-          <h3 class="text-2xl font-bold text-accent-blue mb-3">Phase 5: Public Demonstration 🔄</h3>
-          <p class="text-light-slate mb-4">
-            Public-facing demonstration with web UI integration and cloud deployment.
-          </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• Web UI integration (icn-web-ui)</li>
-            <li>• Enhanced CLI commands</li>
-            <li>• Public demo federation</li>
-            <li>• Community onboarding</li>
-          </ul>
-        </div>
-
-        <!-- Phase 6 - Planned -->
-        <div class="bg-midnight-navy/30 p-6 rounded-lg border border-slate-gray/20">
-          <h3 class="text-2xl font-bold text-slate-gray mb-3">Phase 6: Production Readiness 📅</h3>
-          <p class="text-light-slate mb-4">
-            Enterprise-grade security, monitoring, and scaling for real-world deployments.
-          </p>
-          <ul class="text-light-slate space-y-1">
-            <li>• Security & authorization</li>
-            <li>• Comprehensive observability</li>
-            <li>• Auto-scaling capabilities</li>
-            <li>• Backup & disaster recovery</li>
+          <ul class="text-light-slate space-y-1 text-sm">
+            <li>• Community selection and onboarding</li>
+            <li>• Real-world timebank pilots</li>
+            <li>• Mutual credit system deployment</li>
+            <li>• Feedback integration and iteration</li>
           </ul>
         </div>
       </div>
 
       <div class="mt-16 text-center">
-        <h2 class="text-3xl font-bold mb-6">Join the Revolution</h2>
+        <h2 class="text-3xl font-bold mb-6">Ready to Deploy</h2>
         <p class="text-xl text-light-slate mb-8 max-w-3xl mx-auto">
-          ICN has crossed the threshold from "distributed computing protocol" to "deployable post-capitalist platform."
+          ICN is a substrate daemon for the cooperative internet. 20 phases complete,
+          1,134+ tests passing, ready for cooperative community pilots.
         </p>
-        <a href="/get-started" class="inline-flex items-center justify-center px-8 py-4 bg-accent-primary text-midnight-navy font-medium rounded-lg hover:bg-accent-primary/90 transition-all">
-          Deploy a Federation
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/get-started" class="inline-flex items-center justify-center px-8 py-4 bg-accent-primary text-midnight-navy font-medium rounded-lg hover:bg-accent-primary/90 transition-all">
+            Get Started
+          </a>
+          <a href="https://github.com/InterCooperative-Network/icn" target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-accent-primary text-accent-primary font-medium rounded-lg hover:bg-accent-primary hover:text-midnight-navy transition-all">
+            View Source Code
+          </a>
+        </div>
       </div>
     </div>
   </section>
-</Layout> 
+</Layout>
