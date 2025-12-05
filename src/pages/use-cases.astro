@@ -2,277 +2,190 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="ICN Use Cases" description="Real-world applications of the InterCooperative Network">
-  
+<Layout title="ICN Use Cases" description="Infrastructure for timebanks, mutual credit systems, and cooperative coordination">
   <section class="pt-32 pb-16">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h1 class="text-5xl font-bold mb-6 text-white">Real-World ICN Applications</h1>
-        <p class="text-xl text-light-slate max-w-4xl mx-auto leading-relaxed">
-          ICN enables new forms of democratic coordination, cooperative economics, and 
-          community-controlled technology. Explore concrete examples of how organizations 
-          are using ICN to build post-capitalist infrastructure.
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          USE CASES
+        </span>
+        <h1 class="text-4xl font-bold mb-4">What ICN Enables</h1>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          ICN provides infrastructure for timebanks, mutual credit systems, and cooperative
+          coordination. Here's what communities can build with it.
         </p>
       </div>
 
-      <!-- Use Case Examples -->
-      <div class="space-y-16">
-        
-        <!-- Worker Cooperative Example -->
-        <div class="use-case-card">
-          <div class="use-case-header">
-            <div class="use-case-tag bg-accent-primary/20 text-accent-primary">Worker Cooperative</div>
-            <h3 class="text-2xl font-bold text-white mb-2">TechCoop Collective</h3>
-            <p class="text-light-slate">Distributed Software Development Cooperative</p>
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Timebanks -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-primary/20">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-accent-primary/20 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">⏰</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-accent-primary">Timebanks</h2>
+              <p class="text-slate-gray">Hour-for-hour exchange systems</p>
+            </div>
           </div>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 class="text-xl font-bold text-white mb-4">The Challenge</h4>
-              <p class="text-light-slate mb-6">
-                45 software developers across 12 countries needed democratic governance 
-                for project allocation, profit sharing, and member admission while 
-                maintaining technical coordination.
-              </p>
-              
-              <h4 class="text-xl font-bold text-white mb-4">ICN Solution</h4>
-              <ul class="text-light-slate space-y-2">
-                <li>• CoVM instance running democratic voting on all major decisions</li>
-                <li>• Automated profit-sharing based on contribution tracking</li>
-                <li>• Mesh computing for distributed CI/CD environments</li>
-                <li>• Mana allocation for resource usage and priority setting</li>
-                <li>• Federation connections with other tech cooperatives</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="text-xl font-bold text-white mb-4">Implementation Focus</h4>
-              <ul class="text-light-slate space-y-2">
-                <li>• Transparent democratic decision-making processes</li>
-                <li>• Automated profit distribution based on cooperative principles</li>
-                <li>• Reduced administrative overhead through CoVM automation</li>
-                <li>• Enhanced member engagement through AgoraNet deliberation</li>
-              </ul>
-            </div>
+          <p class="text-light-slate mb-6">
+            ICN's mutual credit ledger is designed for timebanking. Members log hours given
+            and received, with double-entry accounting ensuring the books always balance.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <ul class="text-light-slate space-y-2">
+              <li>• Hour logging with categories</li>
+              <li>• Member balance tracking</li>
+              <li>• Activity history and charts</li>
+            </ul>
+            <ul class="text-light-slate space-y-2">
+              <li>• CSV export for treasurers</li>
+              <li>• Mobile-friendly interface</li>
+              <li>• Trust-based member verification</li>
+            </ul>
           </div>
         </div>
 
-        <!-- Community Governance Example -->
-        <div class="use-case-card">
-          <div class="use-case-header">
-            <div class="use-case-tag bg-accent-blue/20 text-accent-blue">Community Governance</div>
-            <h3 class="text-2xl font-bold text-white mb-2">Riverside Neighborhood Council</h3>
-            <p class="text-light-slate">Democratic Municipal Governance Platform</p>
+        <!-- Mutual Credit -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-blue/20">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">💱</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-accent-blue">Mutual Credit Systems</h2>
+              <p class="text-slate-gray">Community currencies without external money</p>
+            </div>
           </div>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 class="text-xl font-bold text-white mb-4">The Challenge</h4>
-              <p class="text-light-slate mb-6">
-                2,400 residents needed better democratic participation in local 
-                decisions about budget allocation, development projects, and 
-                community programs with authentic resident verification.
-              </p>
-              
-              <h4 class="text-xl font-bold text-white mb-4">ICN Solution</h4>
-              <ul class="text-light-slate space-y-2">
-                <li>• Constitutional CoVM with resident verification system</li>
-                <li>• Participatory budgeting with transparent voting</li>
-                <li>• Verified resident identities preventing manipulation</li>
-                <li>• Guardian Circles for restorative justice</li>
-                <li>• Integration with municipal systems</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="text-xl font-bold text-white mb-4">Key Benefits</h4>
-              <ul class="text-light-slate space-y-2">
-                <li>• Increased civic participation through accessible digital tools</li>
-                <li>• Transparent budget allocation and democratic oversight</li>
-                <li>• Community-driven policy development and implementation</li>
-                <li>• Enhanced trust through verifiable governance processes</li>
-              </ul>
-            </div>
+          <p class="text-light-slate mb-6">
+            Create community currencies backed by mutual trust rather than external assets.
+            Members can go into negative balance (credit) and positive balance (debit),
+            with the network always summing to zero.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <ul class="text-light-slate space-y-2">
+              <li>• Dynamic credit limits</li>
+              <li>• Trust-based line increases</li>
+              <li>• Dispute resolution mechanisms</li>
+            </ul>
+            <ul class="text-light-slate space-y-2">
+              <li>• Real-time balance tracking</li>
+              <li>• Transaction transparency</li>
+              <li>• Merkle-DAG anchoring</li>
+            </ul>
           </div>
         </div>
 
-        <!-- Mutual Aid Network Example -->
-        <div class="use-case-card">
-          <div class="use-case-header">
-            <div class="use-case-tag bg-accent-purple/20 text-accent-purple">Mutual Aid Network</div>
-            <h3 class="text-2xl font-bold text-white mb-2">HealthNet Mutual Aid Federation</h3>
-            <p class="text-light-slate">Cooperative Healthcare Resource Sharing</p>
+        <!-- Worker Cooperatives -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-purple/20">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-accent-purple/20 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🏭</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-accent-purple">Worker Cooperatives</h2>
+              <p class="text-slate-gray">Democratic workplace coordination</p>
+            </div>
           </div>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 class="text-xl font-bold text-white mb-4">The Challenge</h4>
-              <p class="text-light-slate mb-6">
-                23 health cooperatives across three states needed coordination 
-                for resource sharing, emergency response, and collective purchasing 
-                while maintaining local autonomy.
-              </p>
-              
-              <h4 class="text-xl font-bold text-white mb-4">ICN Solution</h4>
-              <ul class="text-light-slate space-y-2">
-                <li>• Federation governance for shared policies</li>
-                <li>• Resource sharing with mana-based fair allocation</li>
-                <li>• Emergency response coordination</li>
-                <li>• Collective purchasing through federated voting</li>
-                <li>• Privacy-preserving health data sharing</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="text-xl font-bold text-white mb-4">Core Capabilities</h4>
-              <ul class="text-light-slate space-y-2">
-                <li>• Federated resource sharing across cooperative networks</li>
-                <li>• Emergency response coordination with democratic oversight</li>
-                <li>• Collective purchasing power through federated decision-making</li>
-                <li>• Privacy-preserving data sharing between health cooperatives</li>
-              </ul>
-            </div>
+          <p class="text-light-slate mb-6">
+            Worker cooperatives can use ICN for member management, democratic decision-making,
+            and resource allocation. The governance system supports one-member-one-vote
+            and configurable quorum rules.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <ul class="text-light-slate space-y-2">
+              <li>• Member onboarding with DIDs</li>
+              <li>• Proposal and voting system</li>
+              <li>• Transparent decision records</li>
+            </ul>
+            <ul class="text-light-slate space-y-2">
+              <li>• Configurable governance rules</li>
+              <li>• Trust-based role assignment</li>
+              <li>• Federation with other coops</li>
+            </ul>
           </div>
         </div>
 
-      </div>
-
-      <!-- Implementation Steps -->
-      <div class="mt-20">
-        <h2 class="text-3xl font-bold text-center mb-12 text-white">Ready to Implement ICN?</h2>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <h3 class="text-xl font-bold text-white mb-4">Assessment & Planning</h3>
-            <p class="text-light-slate mb-6">
-              Evaluate your organization's needs, governance structure, and technical requirements.
-            </p>
-            <a href="/docs/assessment" class="step-button">Assessment Guide</a>
+        <!-- Community Governance -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-glow/20">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-accent-glow/20 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🏛️</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-accent-glow">Community Governance</h2>
+              <p class="text-slate-gray">Participatory decision-making</p>
+            </div>
           </div>
-
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <h3 class="text-xl font-bold text-white mb-4">Pilot Deployment</h3>
-            <p class="text-light-slate mb-6">
-              Start with a limited scope pilot to test governance processes and train users.
-            </p>
-            <a href="/docs/deployment/pilot" class="step-button">Pilot Guide</a>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <h3 class="text-xl font-bold text-white mb-4">Full Implementation</h3>
-            <p class="text-light-slate mb-6">
-              Scale to full organizational use with production infrastructure and governance.
-            </p>
-            <a href="/docs/deployment/production" class="step-button">Production Guide</a>
+          <p class="text-light-slate mb-6">
+            Neighborhood associations, housing cooperatives, and community groups can use
+            ICN for participatory governance. Residents verify identity, make proposals,
+            and vote on community decisions.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <ul class="text-light-slate space-y-2">
+              <li>• Resident verification</li>
+              <li>• Domain-scoped proposals</li>
+              <li>• Time-bounded voting</li>
+            </ul>
+            <ul class="text-light-slate space-y-2">
+              <li>• Automatic execution on approval</li>
+              <li>• Voting history records</li>
+              <li>• Mobile participation</li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      <!-- Call to Action -->
-      <div class="mt-20 text-center bg-gradient-to-br from-accent-primary/10 to-accent-blue/10 p-12 rounded-lg border border-accent-primary/30">
-        <h2 class="text-3xl font-bold mb-6 text-white">Start Your ICN Journey</h2>
-        <p class="text-xl text-light-slate mb-8 max-w-3xl mx-auto">
-          ICN is ready for real-world deployment. Join the growing network of cooperatives, 
-          communities, and federations building post-capitalist infrastructure.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/get-started" class="btn-primary">Get Started</a>
-          <a href="/community" class="btn-secondary">Join Community</a>
+        <!-- Federation -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-slate-600">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-slate-600/50 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🌐</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-white">Federation</h2>
+              <p class="text-slate-gray">Networks of cooperatives</p>
+            </div>
+          </div>
+          <p class="text-light-slate mb-6">
+            Multiple cooperatives can federate to share resources, coordinate on larger
+            projects, and maintain local autonomy while participating in a larger network.
+            Each cooperative runs their own node(s) and controls their own governance.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <ul class="text-light-slate space-y-2">
+              <li>• Cross-coop resource sharing</li>
+              <li>• Federation-level governance</li>
+              <li>• Maintained local autonomy</li>
+            </ul>
+            <ul class="text-light-slate space-y-2">
+              <li>• QUIC/TLS secure networking</li>
+              <li>• Trust-gated communication</li>
+              <li>• Gossip protocol propagation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-accent-glow/10 p-8 rounded-lg border border-accent-glow/30 text-center">
+          <h2 class="text-2xl font-bold text-accent-glow mb-4">Ready to Try ICN?</h2>
+          <p class="text-light-slate mb-6 max-w-2xl mx-auto">
+            ICN is PILOT-READY with 20 development phases complete. Clone the repo
+            and start exploring, or contact us about pilot deployments.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/get-started"
+               class="inline-flex items-center justify-center px-6 py-3 bg-accent-glow text-midnight-navy font-semibold rounded-lg hover:bg-accent-glow/90 transition-colors">
+              Get Started
+            </a>
+            <a href="https://github.com/InterCooperative-Network/icn"
+               target="_blank"
+               class="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-accent-glow text-accent-glow font-semibold rounded-lg hover:bg-accent-glow hover:text-midnight-navy transition-colors">
+              View Source
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </Layout>
-
-<style>
-  .use-case-card {
-    background: rgba(17, 34, 64, 0.3);
-    border: 1px solid rgba(50, 255, 210, 0.2);
-    border-radius: 16px;
-    padding: 2rem;
-  }
-
-  .use-case-header {
-    margin-bottom: 2rem;
-  }
-
-  .use-case-tag {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-
-
-  .step-card {
-    background: rgba(17, 34, 64, 0.5);
-    border: 1px solid rgba(50, 255, 210, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .step-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-accent-glow);
-    margin-bottom: 1rem;
-  }
-
-  .step-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: rgba(50, 255, 210, 0.1);
-    border: 1px solid rgba(50, 255, 210, 0.3);
-    color: var(--color-accent-glow);
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-  }
-
-  .step-button:hover {
-    background: rgba(50, 255, 210, 0.2);
-    border-color: rgba(50, 255, 210, 0.5);
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 2rem;
-    background: var(--color-accent-glow);
-    color: var(--color-midnight-navy);
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .btn-primary:hover {
-    background: rgba(50, 255, 210, 0.9);
-    transform: scale(1.05);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 2rem;
-    background: transparent;
-    color: var(--color-accent-glow);
-    border: 1px solid var(--color-accent-glow);
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .btn-secondary:hover {
-    background: var(--color-accent-glow);
-    color: var(--color-midnight-navy);
-  }
-</style> 

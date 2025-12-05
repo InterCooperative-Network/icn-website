@@ -1,127 +1,161 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MatrixInvite from '../components/MatrixInvite.astro';
-
-const contributingLinks = [
-  {
-    title: 'Main Discussion Forum (GitHub Discussions)',
-    href: 'https://github.com/orgs/InterCooperative-Network/discussions',
-    description: 'For general discussions, proposals, Q&A, and longer-form collaboration.'
-  },
-  {
-    title: 'Code Repositories (GitHub)',
-    href: 'https://github.com/InterCooperative-Network',
-    description: 'Explore our open-source projects, fork repositories, and submit pull requests.'
-  },
-  {
-    title: 'Good First Issues',
-    href: 'https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3AInterCooperative-Network+label%3A%22good+first+issue%22',
-    description: 'Looking for a place to start? These issues are tagged as suitable for newcomers.'
-  },
-  {
-    title: 'CONTRIBUTING.md (Example Link - Update per project)',
-    href: 'https://github.com/InterCooperative-Network/icn-website/blob/main/CONTRIBUTING.md', // Generic, update if a central one exists or per repo
-    description: 'General guidelines for contributing to ICN projects. Specific repos may have their own.'
-  },
-  {
-    title: 'Code of Conduct (Example Link - Update)',
-    href: '#', // Replace with actual link to Code of Conduct
-    description: 'Our community standards to ensure a welcoming and respectful environment for all.'
-  }
-];
-
-const howToGetInvolved = [
-  {
-    step: 1,
-    title: 'Join the Community on Matrix',
-    description: 'The first step is to connect with us on Matrix. Introduce yourself, ask questions, and see what discussions are active.',
-    cta: { text: 'Join ICN on Matrix', href: '#matrix-invite' } // Link to MatrixInvite component on this page
-  },
-  {
-    step: 2,
-    title: 'Explore Projects & Issues',
-    description: 'Browse our list of projects on the /projects page or look through GitHub issues, especially those tagged \'good first issue\'.',
-    cta: { text: 'See Projects', href: '/projects' }
-  },
-  {
-    step: 3,
-    title: 'Understand Our Workflow',
-    description: 'Familiarize yourself with our general contribution guidelines (CONTRIBUTING.md) and how we use GitHub for pull requests and code reviews.',
-    cta: { text: 'Read Contribution Guide (Example)', href: contributingLinks[3].href }
-  },
-  {
-    step: 4,
-    title: 'Fork, Code, & Open a Pull Request',
-    description: 'Once you\'ve found something to work on, fork the relevant repository, make your changes, and submit a Pull Request. Don\'t hesitate to ask for help!',
-    cta: { text: 'ICN GitHub Repositories', href: 'https://github.com/InterCooperative-Network' }
-  },
-  {
-    step: 5,
-    title: 'Contribute Beyond Code',
-    description: 'Not a coder? You can still help! We need writers for documentation, designers, testers, community moderators, and advocates. Join the discussion to find out how.',
-    cta: { text: 'Join the Discussion', href: contributingLinks[0].href }
-  }
-];
 ---
 
-<Layout title="Contribute to ICN" description="Get involved with the InterCooperative Network. Find resources, guides, and ways to contribute.">
-  <section class="py-12">
+<Layout title="Contribute to ICN" description="How to contribute to the InterCooperative Network project.">
+  <section class="pt-32 pb-16">
     <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold text-center mb-12">Contribute to the InterCooperative Network</h1>
-      <p class="text-xl text-center text-gray-700 mb-12 max-w-2xl mx-auto">
-        ICN is a community-driven effort. We welcome contributors of all backgrounds and skill levels. 
-        Whether you write code, design, document, or organize, there's a place for you here.
-      </p>
-
-      <h2 class="text-3xl font-semibold mb-6 text-center">How to Get Involved</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        {howToGetInvolved.slice(0,3).map(item => (
-          <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
-            <div class="text-4xl font-bold text-blue-600 mb-3">{item.step}.</div>
-            <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
-            <p class="text-gray-700 mb-4 flex-grow">{item.description}</p>
-            {item.step === 1 ? (
-              <div id="matrix-invite"><MatrixInvite /></div>
-            ) : (
-              <a href={item.cta.href} target={item.cta.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" 
-                 class="btn btn-primary mt-auto">
-                {item.cta.text}
-              </a>
-            )}
-          </div>
-        ))}
+      <div class="text-center mb-16">
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          CONTRIBUTE
+        </span>
+        <h1 class="text-4xl font-bold mb-4">Contribute to ICN</h1>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          ICN is open source and built by a community of contributors.
+          Here's how you can help.
+        </p>
       </div>
-       <div class="grid md:grid-cols-2 gap-8 mb-16">
-        {howToGetInvolved.slice(3).map(item => (
-          <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
-            <div class="text-4xl font-bold text-blue-600 mb-3">{item.step}.</div>
-            <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
-            <p class="text-gray-700 mb-4 flex-grow">{item.description}</p>
-            <a href={item.cta.href} target={item.cta.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" 
-               class="btn btn-primary mt-auto">
-              {item.cta.text}
+
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Code Contributions -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-primary/20">
+          <h2 class="text-2xl font-bold text-accent-primary mb-6">Code Contributions</h2>
+          <p class="text-light-slate mb-6">
+            ICN is written in Rust. The codebase is well-tested with 1,134+ tests
+            and organized into 16 specialized crates.
+          </p>
+          <div class="bg-midnight-navy rounded-lg p-4 font-mono text-sm text-light-slate mb-6">
+            <pre># Clone the repository
+git clone https://github.com/InterCooperative-Network/icn
+cd icn
+
+# Run tests
+cargo test
+
+# Build
+cargo build --release</pre>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="https://github.com/InterCooperative-Network/icn"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-primary transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Source Code</h3>
+              <p class="text-slate-gray text-sm">Browse the repository on GitHub</p>
+            </a>
+            <a href="https://github.com/InterCooperative-Network/icn/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-primary transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Good First Issues</h3>
+              <p class="text-slate-gray text-sm">Issues suitable for newcomers</p>
             </a>
           </div>
-        ))}
-      </div>
+        </div>
 
-      <h2 class="text-3xl font-semibold mb-8 text-center">Key Contributor Resources</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        {contributingLinks.map(link => (
-          <a href={link.href} target="_blank" rel="noopener noreferrer" class="block bg-gray-50 hover:bg-gray-100 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl">
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">{link.title}</h3>
-            <p class="text-gray-600">{link.description}</p>
+        <!-- Documentation -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-blue/20">
+          <h2 class="text-2xl font-bold text-accent-blue mb-6">Documentation</h2>
+          <p class="text-light-slate mb-6">
+            Good documentation is essential. Help improve the docs by fixing typos,
+            clarifying explanations, or adding examples.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="https://github.com/InterCooperative-Network/icn/tree/main/docs"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-blue transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">ICN Docs</h3>
+              <p class="text-slate-gray text-sm">Technical documentation in the main repo</p>
+            </a>
+            <a href="https://github.com/InterCooperative-Network/icn-website"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-blue transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Website</h3>
+              <p class="text-slate-gray text-sm">This website's source code</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Testing -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-purple/20">
+          <h2 class="text-2xl font-bold text-accent-purple mb-6">Testing & Bug Reports</h2>
+          <p class="text-light-slate mb-6">
+            Help us find and fix bugs. Run ICN locally, test features, and report
+            issues you encounter.
+          </p>
+          <ul class="text-light-slate space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+              <span class="text-accent-purple">•</span>
+              <span>Clone and build the project locally</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-purple">•</span>
+              <span>Test the Pilot Web UI and daemon functionality</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-purple">•</span>
+              <span>Report bugs with clear reproduction steps</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-purple">•</span>
+              <span>Suggest improvements and new features</span>
+            </li>
+          </ul>
+          <a href="https://github.com/InterCooperative-Network/icn/issues"
+             target="_blank"
+             class="inline-flex items-center px-6 py-3 bg-accent-purple text-white font-semibold rounded-lg hover:bg-accent-purple/90 transition-colors">
+            Report an Issue
           </a>
-        ))}
+        </div>
+
+        <!-- Community -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-glow/20">
+          <h2 class="text-2xl font-bold text-accent-glow mb-6">Community Participation</h2>
+          <p class="text-light-slate mb-6">
+            Not a developer? You can still contribute by participating in discussions,
+            helping answer questions, and spreading the word about ICN.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="https://discord.gg/GCWKPWdvgH"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-glow transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Discord</h3>
+              <p class="text-slate-gray text-sm">Chat with the community</p>
+            </a>
+            <a href="https://github.com/InterCooperative-Network/icn/discussions"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-glow transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Discussions</h3>
+              <p class="text-slate-gray text-sm">Participate in longer-form conversations</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contribution Guidelines -->
+        <div class="bg-accent-glow/10 p-8 rounded-lg border border-accent-glow/30">
+          <h2 class="text-2xl font-bold text-accent-glow mb-4">Contribution Guidelines</h2>
+          <ul class="text-light-slate space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="text-accent-glow font-bold">1.</span>
+              <span>Fork the repository and create a feature branch</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-glow font-bold">2.</span>
+              <span>Write tests for new functionality</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-glow font-bold">3.</span>
+              <span>Ensure all tests pass with <code class="bg-midnight-navy px-2 py-1 rounded">cargo test</code></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-glow font-bold">4.</span>
+              <span>Format code with <code class="bg-midnight-navy px-2 py-1 rounded">cargo fmt</code></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-glow font-bold">5.</span>
+              <span>Submit a pull request with a clear description</span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <p class="text-center mt-8 text-sm text-gray-600">
-        Please note: Some links (like Code of Conduct and specific CONTRIBUTING.md files) are placeholders. 
-        These should be updated with actual URLs once available.
-      </p>
     </div>
   </section>
 </Layout>
-
-<style>
-  /* Optional: Page-specific styles */
-</style> 

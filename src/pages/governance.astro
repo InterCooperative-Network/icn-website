@@ -1,29 +1,129 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MatrixInvite from '../components/MatrixInvite.astro';
 import GitHubRepoCard from '../components/GitHubRepoCard.astro';
 ---
 
-<Layout title="Governance" description="Participate in cooperative, community-based governance.">
-  <div class="p-4 mb-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-800 rounded mx-4 mt-4">
-    🚧 This page is a work in progress. Check back soon for more!
-  </div>
-  
-  <section class="pt-8 pb-16">
+<Layout title="Governance" description="Democratic governance infrastructure built into ICN's architecture.">
+  <section class="pt-32 pb-16">
     <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold text-center mb-8">Governance on the InterCooperative Network</h1>
-      <p class="text-center text-lg mb-8 text-gray-100">We use AgoraNet for structured deliberation and Matrix for discussion. All proposals are public and community-governed.</p>
+      <div class="text-center mb-16">
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          BUILT-IN GOVERNANCE
+        </span>
+        <h1 class="text-4xl font-bold mb-4">Democratic Governance Infrastructure</h1>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          ICN includes governance primitives at the protocol level. Domain-based proposals,
+          voting coordination, and policy enforcement are core features of the daemon.
+        </p>
+      </div>
 
-      <ul class="list-disc ml-6 text-white mt-6 space-y-2 max-w-3xl mx-auto">
-        <li><a href="https://gov.intercooperative.network" target="_blank">AgoraNet: Deliberation & Proposals</a></li>
-        <li>Matrix: Real-Time Governance Channels (coming soon)</li>
-        <li><a href="https://github.com/InterCooperative-Network/icn" target="_blank">GitHub: ICN Source Code</a></li>
-      </ul>
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Governance Features -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-primary/20">
+          <h2 class="text-2xl font-bold text-accent-primary mb-6">Protocol-Level Governance</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-3">Proposal System</h3>
+              <ul class="text-light-slate space-y-2 text-sm">
+                <li>• Domain-scoped proposals (cooperative, federation, network)</li>
+                <li>• Configurable quorum and threshold rules</li>
+                <li>• Time-bounded voting periods</li>
+                <li>• Automatic execution on approval</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-3">Voting Mechanisms</h3>
+              <ul class="text-light-slate space-y-2 text-sm">
+                <li>• One-member-one-vote by default</li>
+                <li>• Weighted voting options</li>
+                <li>• Delegate voting support</li>
+                <li>• Transparent vote tallying</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-      <div class="mt-12 max-w-3xl mx-auto">
-        <MatrixInvite />
-        <GitHubRepoCard repo="InterCooperative-Network/icn" />
+        <!-- CCL Contracts -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-blue/20">
+          <h2 class="text-2xl font-bold text-accent-blue mb-6">Cooperative Contract Language (CCL)</h2>
+          <p class="text-light-slate mb-4">
+            CCL is ICN's smart contract language for encoding governance rules, economic policies,
+            and coordination logic. Contracts execute in a deterministic environment with
+            trust-gated access control.
+          </p>
+          <div class="bg-midnight-navy rounded-lg p-4 font-mono text-sm text-light-slate overflow-x-auto">
+            <pre set:html={`# Example: Simple proposal contract
+proposal "Increase member limit" {
+  quorum: 0.5
+  threshold: 0.66
+  duration: 7 days
+
+  on_approve {
+    config.set("max_members", 100)
+  }
+}`} />
+          </div>
+        </div>
+
+        <!-- Trust-Gated Governance -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-purple/20">
+          <h2 class="text-2xl font-bold text-accent-purple mb-6">Trust-Gated Participation</h2>
+          <p class="text-light-slate mb-4">
+            Governance participation is gated by ICN's web-of-participation trust graph.
+            Members must earn trust through vouching and participation before gaining
+            full governance rights.
+          </p>
+          <ul class="text-light-slate space-y-2 text-sm">
+            <li>• New members have observer status</li>
+            <li>• Trust score increases through participation and vouching</li>
+            <li>• Full voting rights at configurable trust threshold</li>
+            <li>• Trust decay for inactive participants</li>
+          </ul>
+        </div>
+
+        <!-- Pilot Web UI -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-glow/20">
+          <h2 class="text-2xl font-bold text-accent-glow mb-6">Pilot Web UI</h2>
+          <p class="text-light-slate mb-4">
+            The Pilot Web UI includes a full governance interface for cooperative communities:
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-light-slate text-sm">
+            <ul class="space-y-2">
+              <li>• Create and view proposals</li>
+              <li>• Cast votes with comments</li>
+              <li>• Track proposal status</li>
+            </ul>
+            <ul class="space-y-2">
+              <li>• View voting history</li>
+              <li>• Member trust scores</li>
+              <li>• Governance analytics</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Community Links -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-slate-600">
+          <h2 class="text-2xl font-bold text-white mb-6">Get Involved</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <a href="https://github.com/InterCooperative-Network/icn/discussions"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-primary transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">GitHub Discussions</h3>
+              <p class="text-slate-gray text-sm">Join governance discussions and propose improvements</p>
+            </a>
+            <a href="https://discord.gg/GCWKPWdvgH"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-primary transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Discord</h3>
+              <p class="text-slate-gray text-sm">Real-time community chat and coordination</p>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <GitHubRepoCard repo="InterCooperative-Network/icn" />
+        </div>
       </div>
     </div>
   </section>
-</Layout> 
+</Layout>

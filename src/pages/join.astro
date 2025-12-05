@@ -2,20 +2,112 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Join the ICN" description="Get started with the InterCooperative Network.">
-  <div class="p-4 mb-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-800 rounded mx-4 mt-4">
-    🚧 This page is a work in progress. Check back soon for more!
-  </div>
-  <h1>Join the InterCooperative Network</h1>
-  <p>Whether you're an individual, a cooperative, or a community, there's a place for you here.</p>
+<Layout title="Join ICN" description="Get started with the InterCooperative Network.">
+  <section class="pt-32 pb-16">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          GET STARTED
+        </span>
+        <h1 class="text-4xl font-bold mb-4">Join the InterCooperative Network</h1>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          ICN is ready for pilot deployment. Whether you're a developer, a cooperative,
+          or a community, here's how to get involved.
+        </p>
+      </div>
 
-  <div class="text-white mt-6 space-y-4">
-    <p><strong>Individuals:</strong> Create a DID, set up your wallet, and start participating.</p>
-    <p><strong>Cooperatives:</strong> Onboard your members, define shared policies, and connect with others.</p>
-    <p><strong>Communities:</strong> Build local governance systems with AgoraNet and scoped participation.</p>
-  </div>
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- For Developers -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-primary/20">
+          <h2 class="text-2xl font-bold text-accent-primary mb-6">For Developers</h2>
+          <p class="text-light-slate mb-6">
+            ICN is open source and built in Rust. Clone the repo, run the tests, and start exploring.
+          </p>
+          <div class="bg-midnight-navy rounded-lg p-4 font-mono text-sm text-light-slate mb-6">
+            <pre>git clone https://github.com/InterCooperative-Network/icn
+cd icn
+cargo build --release
+cargo test</pre>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://github.com/InterCooperative-Network/icn"
+               target="_blank"
+               class="inline-flex items-center px-6 py-3 bg-accent-primary text-midnight-navy font-semibold rounded-lg hover:bg-accent-primary/90 transition-colors">
+              View Source Code
+            </a>
+            <a href="/docs"
+               class="inline-flex items-center px-6 py-3 bg-transparent border-2 border-accent-primary text-accent-primary font-semibold rounded-lg hover:bg-accent-primary hover:text-midnight-navy transition-colors">
+              Read the Docs
+            </a>
+          </div>
+        </div>
 
-  <p class="mt-8">
-    <a href="https://wallet.intercooperative.network" class="btn btn-primary">Set Up Your Wallet</a>
-  </p>
-</Layout> 
+        <!-- For Cooperatives -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-blue/20">
+          <h2 class="text-2xl font-bold text-accent-blue mb-6">For Cooperatives</h2>
+          <p class="text-light-slate mb-6">
+            ICN provides infrastructure for timebanks, mutual credit systems, and cooperative
+            coordination. The Pilot Web UI is ready for community deployment.
+          </p>
+          <ul class="text-light-slate space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+              <span class="text-accent-blue">✓</span>
+              <span>Member identity management with DIDs</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-blue">✓</span>
+              <span>Mutual credit ledger for time banking and exchange</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-blue">✓</span>
+              <span>Democratic governance with proposals and voting</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-accent-blue">✓</span>
+              <span>Full mobile support with CSV export for treasurers</span>
+            </li>
+          </ul>
+          <a href="/get-started"
+             class="inline-flex items-center px-6 py-3 bg-accent-blue text-white font-semibold rounded-lg hover:bg-accent-blue/90 transition-colors">
+            Deployment Guide
+          </a>
+        </div>
+
+        <!-- For Communities -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-purple/20">
+          <h2 class="text-2xl font-bold text-accent-purple mb-6">For Communities</h2>
+          <p class="text-light-slate mb-6">
+            Join our community to learn, discuss, and contribute to the cooperative internet.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="https://discord.gg/GCWKPWdvgH"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-purple transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">Discord</h3>
+              <p class="text-slate-gray text-sm">Real-time chat and community discussions</p>
+            </a>
+            <a href="https://github.com/InterCooperative-Network/icn/discussions"
+               target="_blank"
+               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-purple transition-colors">
+              <h3 class="text-lg font-semibold text-white mb-2">GitHub Discussions</h3>
+              <p class="text-slate-gray text-sm">Proposals, Q&A, and longer-form collaboration</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="bg-accent-glow/10 p-8 rounded-lg border border-accent-glow/30 text-center">
+          <h2 class="text-2xl font-bold text-accent-glow mb-4">Next: Track C1 - Pilot Deployment</h2>
+          <p class="text-light-slate mb-6 max-w-2xl mx-auto">
+            ICN is PILOT-READY with 20 development phases complete and 1,134+ tests passing.
+            We're seeking cooperative communities for real-world pilot deployments.
+          </p>
+          <a href="mailto:hello@intercooperative.network"
+             class="inline-flex items-center px-6 py-3 bg-accent-glow text-midnight-navy font-semibold rounded-lg hover:bg-accent-glow/90 transition-colors">
+            Contact Us About Pilots
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

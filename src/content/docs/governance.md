@@ -1,13 +1,13 @@
 # ICN Governance
 
-This section details the governance protocols, AgoraNet, policy scopes, quorum models, and decentralized identity systems.
+This section details ICN's built-in governance system, including proposals, voting, CCL contracts, and trust-gated participation.
 
 ## Outline
 - Introduction to ICN governance
-- AgoraNet overview
-- Policy scopes and enforcement
-- Quorum and voting models
-- Decentralized identity (DID)
+- Domain-scoped proposals
+- Voting mechanisms
+- Cooperative Contract Language (CCL)
+- Trust-gated participation
 - Proposal lifecycle
 - Dispute resolution
-- Governance APIs 
+- Governance APIs

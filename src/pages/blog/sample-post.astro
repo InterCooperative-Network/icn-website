@@ -2,67 +2,75 @@
 import Layout from '../../layouts/Layout.astro';
 
 const post = {
-  title: 'Our First Blog Post!',
+  title: 'Welcome to the ICN Blog',
   date: '2024-07-26',
   author: 'The ICN Team',
-  image: '/images/blog/sample-post-banner.jpg', // Placeholder image, ensure this path is correct or remove if no image
-  // You can add tags or categories here as an array of strings: tags: ['announcement', 'community']
 };
 ---
 
-<Layout 
-  title={post.title + " | ICN Blog"} 
+<Layout
+  title={post.title + " | ICN Blog"}
   description={`Read the blog post titled "${post.title}" by ${post.author} on the InterCooperative Network blog.`}
 >
-  <div class="p-4 mb-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-800 rounded mx-4 mt-4">
-    🚧 This post is a work in progress. Check back soon for more!
-  </div>
-  <article class="pt-8 pb-16">
+  <article class="pt-32 pb-16">
     <div class="container mx-auto px-6 max-w-3xl">
-      
+
       <header class="mb-8">
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          ANNOUNCEMENT
+        </span>
         <h1 class="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">{post.title}</h1>
-        <p class="text-gray-300 text-lg">
+        <p class="text-slate-gray text-lg">
           Posted on {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} by {post.author}
         </p>
-        {post.image && (
-          <img src={post.image} alt={`Banner image for ${post.title}`} class="w-full h-auto max-h-96 object-cover rounded-lg mt-6 shadow-md" />
-        )}
       </header>
 
-      <div class="prose prose-lg lg:prose-xl max-w-none text-gray-100 leading-relaxed">
-        <p class="text-gray-100 text-lg mb-6">
-          Welcome to the official blog of the InterCooperative Network (ICN)! We're thrilled to launch this space where we can share our journey, insights, developments, and connect with our growing community.
+      <div class="prose prose-lg max-w-none text-light-slate leading-relaxed">
+        <p class="text-lg mb-6">
+          Welcome to the official blog of the InterCooperative Network (ICN). We're launching this space
+          to share development updates, technical insights, and community news.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">What to Expect</h2>
-        <p class="text-gray-100 mb-4">
-          Here, you'll find a variety of content, including:
+        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">What is ICN?</h2>
+        <p class="mb-4">
+          ICN is a substrate daemon for the cooperative internet. It provides infrastructure for:
         </p>
-        <ul class="list-disc pl-6 mb-6 text-gray-100 space-y-2">
-          <li><strong class="text-white">Project Updates:</strong> Stay informed about the progress of key ICN initiatives like our wallet, AgoraNet, decentralized storage solutions, and more.</li>
-          <li><strong class="text-white">Technical Deep Dives:</strong> For the more technically inclined, we'll explore the architecture, protocols, and codebases that power ICN.</li>
-          <li><strong class="text-white">Community Spotlights:</strong> Highlighting the amazing contributions and individuals within our network.</li>
-          <li><strong class="text-white">Governance Discussions:</strong> Updates on governance proposals, meetings, and how you can participate.</li>
-          <li><strong class="text-white">Vision & Strategy:</strong> Thoughts on the future of the decentralized web, cooperativism in the digital age, and ICN's role in it.</li>
-          <li><strong class="text-white">Event Recaps & Announcements:</strong> Don't miss out on important events, AMAs, or community calls.</li>
+        <ul class="list-disc pl-6 mb-6 space-y-2">
+          <li><strong class="text-white">Timebanks:</strong> Hour-for-hour exchange systems with mutual credit ledgers</li>
+          <li><strong class="text-white">Mutual Credit:</strong> Community currencies backed by mutual trust</li>
+          <li><strong class="text-white">Democratic Governance:</strong> Built-in proposals, voting, and CCL contracts</li>
+          <li><strong class="text-white">Federation:</strong> Networks of cooperatives with maintained local autonomy</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">Join the Conversation</h2>
-        <p class="text-gray-100 mb-4">
-          This blog is not just a one-way street. We encourage you to engage with the posts, share your thoughts in our community channels (our Matrix server is coming soon), and let us know what topics you'd like to see covered.
+        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">Current Status: PILOT-READY</h2>
+        <p class="mb-4">
+          ICN has completed 20 development phases with 1,134+ tests passing. The system includes:
         </p>
-        <p class="text-gray-100 mb-4">
-          The InterCooperative Network is built by and for its community. Your participation, feedback, and contributions are vital to our success. 
+        <ul class="list-disc pl-6 mb-6 space-y-2">
+          <li>16 specialized Rust crates</li>
+          <li>DIDs with Ed25519 cryptography</li>
+          <li>Web-of-participation trust graph</li>
+          <li>QUIC/TLS secure networking</li>
+          <li>Mutual credit ledger with Merkle-DAG anchoring</li>
+          <li>Pilot Web UI for cooperative communities</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4 text-white">What's Next: Track C1</h2>
+        <p class="mb-4">
+          The next milestone is Track C1: Pilot Deployment. We're seeking cooperative communities
+          interested in running real-world pilots of ICN for timebanking, mutual credit, or
+          cooperative governance.
         </p>
-        <p class="text-gray-100 mb-8">
-          Stay tuned for more posts soon. We're just getting started!
+        <p class="mb-8">
+          If you're part of a cooperative, timebank, or community organization interested in
+          piloting ICN, please reach out via our <a href="https://discord.gg/GCWKPWdvgH" class="text-accent-primary hover:underline">Discord</a>
+          or <a href="https://github.com/InterCooperative-Network/icn/discussions" class="text-accent-primary hover:underline">GitHub Discussions</a>.
         </p>
 
         <hr class="my-8 border-slate-600"/>
 
         <p class="text-center">
-          <a href="/blog" class="text-sky-400 hover:text-sky-300 font-semibold">&larr; Back to Blog Index</a>
+          <a href="/blog" class="text-accent-primary hover:underline font-semibold">&larr; Back to Blog</a>
         </p>
       </div>
 
@@ -70,32 +78,20 @@ const post = {
   </article>
 
   <!-- Call to Action Section -->
-  <section class="bg-slate-800/90 border-t border-slate-600 py-12">
+  <section class="bg-midnight-navy/50 border-t border-slate-600 py-12">
     <div class="container mx-auto px-6 text-center">
-      <h3 class="text-2xl font-bold mb-4 text-white">Ready to Get Involved?</h3>
-      <p class="text-gray-100 mb-6 max-w-2xl mx-auto">
-        Join our growing community and help shape the future of cooperative digital infrastructure.
+      <h3 class="text-2xl font-bold mb-4 text-white">Ready to Get Started?</h3>
+      <p class="text-light-slate mb-6 max-w-2xl mx-auto">
+        Clone the repository, run the tests, and explore ICN's capabilities.
       </p>
-      <a href="/community" class="inline-flex items-center px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg transition-colors duration-200">
-        Join the Movement
-        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-        </svg>
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/get-started" class="inline-flex items-center justify-center px-6 py-3 bg-accent-primary text-midnight-navy font-semibold rounded-lg hover:bg-accent-primary/90 transition-colors">
+          Get Started
+        </a>
+        <a href="https://github.com/InterCooperative-Network/icn" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-accent-primary text-accent-primary font-semibold rounded-lg hover:bg-accent-primary hover:text-midnight-navy transition-colors">
+          View Source
+        </a>
+      </div>
     </div>
   </section>
 </Layout>
-
-<style is:global>
-  /* Custom styles for dark theme blog posts */
-  .prose h2 {
-    border-bottom: 1px solid #475569;
-    padding-bottom: 0.25em;
-  }
-  .prose a {
-    @apply text-sky-400 hover:text-sky-300 hover:underline;
-  }
-  .prose strong {
-    @apply text-white;
-  }
-</style> 

@@ -5,20 +5,19 @@
 <div class="architecture-diagram">
   <div class="diagram-container">
     <h3 class="text-2xl font-bold text-center mb-8 text-white">ICN Architecture Stack</h3>
-    
+
     <!-- Layer 6: Applications & UI -->
     <div class="layer layer-apps" data-layer="applications">
       <div class="layer-content">
         <h4 class="layer-title">Applications & UI</h4>
         <div class="layer-components">
-          <span class="component">AgoraNet</span>
-          <span class="component">ICN Wallet</span>
-          <span class="component">Web UI</span>
-          <span class="component">Explorer</span>
+          <span class="component">Pilot Web UI</span>
+          <span class="component">icnctl CLI</span>
+          <span class="component">icn-console</span>
         </div>
       </div>
       <div class="layer-tooltip">
-        User interfaces for governance, identity management, and network exploration
+        User interfaces for timebanking, governance, and administration
       </div>
     </div>
 
@@ -27,74 +26,73 @@
       <div class="layer-content">
         <h4 class="layer-title">Governance</h4>
         <div class="layer-components">
-          <span class="component">RFC Process</span>
+          <span class="component">Proposals</span>
           <span class="component">Voting</span>
-          <span class="component">Policy Enforcement</span>
           <span class="component">CCL Contracts</span>
         </div>
       </div>
       <div class="layer-tooltip">
-        Democratic decision-making through proposals, voting, and programmable policies
+        Democratic decision-making with domain-scoped proposals and voting
       </div>
     </div>
 
     <!-- Layer 4: DAG & Ledger -->
     <div class="layer layer-dag" data-layer="dag">
       <div class="layer-content">
-        <h4 class="layer-title">DAG & Ledger</h4>
+        <h4 class="layer-title">Economics & Ledger</h4>
         <div class="layer-components">
-          <span class="component">Content-Addressed Storage</span>
-          <span class="component">Execution Receipts</span>
-          <span class="component">Mana Ledger</span>
+          <span class="component">Mutual Credit</span>
+          <span class="component">Double-Entry</span>
+          <span class="component">Merkle-DAG</span>
         </div>
       </div>
       <div class="layer-tooltip">
-        Immutable storage of governance decisions, job results, and economic transactions
+        Mutual credit ledger with double-entry accounting and DAG anchoring
       </div>
     </div>
 
     <!-- Layer 3: Compute & Runtime -->
     <div class="layer layer-runtime" data-layer="runtime">
       <div class="layer-content">
-        <h4 class="layer-title">Compute & Runtime</h4>
+        <h4 class="layer-title">Runtime & Compute</h4>
         <div class="layer-components">
-          <span class="component">CoVM (WASM)</span>
-          <span class="component">Job Scheduler</span>
-          <span class="component">Resource Management</span>
+          <span class="component">Actor System</span>
+          <span class="component">Distributed Compute</span>
+          <span class="component">Storage</span>
         </div>
       </div>
       <div class="layer-tooltip">
-        Secure execution environment with job distribution and resource allocation
+        Tokio-based actor runtime with distributed compute and persistent storage
       </div>
     </div>
 
     <!-- Layer 2: Networking -->
     <div class="layer layer-networking" data-layer="networking">
       <div class="layer-content">
-        <h4 class="layer-title">Mesh Networking</h4>
+        <h4 class="layer-title">Networking</h4>
         <div class="layer-components">
-          <span class="component">libp2p</span>
-          <span class="component">Federation Routing</span>
-          <span class="component">Peer Discovery</span>
+          <span class="component">QUIC/TLS</span>
+          <span class="component">Gossip Protocol</span>
+          <span class="component">mDNS Discovery</span>
         </div>
       </div>
       <div class="layer-tooltip">
-        Peer-to-peer mesh network with federation support and automatic discovery
+        Secure P2P mesh networking with trust-gated gossip and peer discovery
       </div>
     </div>
 
-    <!-- Layer 1: Identity & Credentials -->
+    <!-- Layer 1: Identity & Trust -->
     <div class="layer layer-identity" data-layer="identity">
       <div class="layer-content">
-        <h4 class="layer-title">Identity & Credentials</h4>
+        <h4 class="layer-title">Identity & Trust</h4>
         <div class="layer-components">
           <span class="component">DIDs</span>
-          <span class="component">Verifiable Credentials</span>
-          <span class="component">Reputation System</span>
+          <span class="component">Ed25519</span>
+          <span class="component">Trust Graph</span>
         </div>
       </div>
       <div class="layer-tooltip">
-        Decentralized identity with cryptographic credentials and reputation tracking
+        Decentralized identity with web-of-participation trust and Ed25519 cryptography
       </div>
     </div>
 
@@ -326,23 +324,23 @@
   document.addEventListener('DOMContentLoaded', function() {
     const layers = document.querySelectorAll('.layer');
     let activeLayer: HTMLElement | null = null;
-    
+
     function isMobile(): boolean {
       return window.innerWidth <= 768 || 'ontouchstart' in window;
     }
-    
+
     layers.forEach(layer => {
       // Handle both click and touch events
       layer.addEventListener('click', function(event) {
         const target = event.currentTarget as HTMLElement;
         const layerName = target.dataset.layer;
-        
+
         if (isMobile()) {
           // Mobile behavior: toggle tooltip visibility
           if (activeLayer && activeLayer !== target) {
             activeLayer.classList.remove('active');
           }
-          
+
           if (target.classList.contains('active')) {
             target.classList.remove('active');
             activeLayer = null;
@@ -357,16 +355,16 @@
             target.style.transform = '';
           }, 150);
         }
-        
+
         console.log(`Interacted with ${layerName} layer`);
       });
-      
+
       // Handle touch events specifically
       layer.addEventListener('touchstart', function(event) {
         event.preventDefault(); // Prevent default touch behavior
       });
     });
-    
+
     // Close active tooltip when clicking outside (mobile)
     document.addEventListener('click', function(event) {
       if (isMobile() && activeLayer && event.target) {
@@ -377,7 +375,7 @@
         }
       }
     });
-    
+
     // Handle window resize to reset mobile state
     window.addEventListener('resize', function() {
       if (activeLayer) {
@@ -386,4 +384,4 @@
       }
     });
   });
-</script> 
+</script>

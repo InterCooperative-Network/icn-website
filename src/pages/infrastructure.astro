@@ -1,31 +1,187 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MatrixInvite from '../components/MatrixInvite.astro';
 import GitHubRepoCard from '../components/GitHubRepoCard.astro';
 ---
 
-<Layout title="ICN Infrastructure">
-  <div class="p-4 mb-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-800 rounded mx-4 mt-4">
-    🚧 This page is a work in progress. Check back soon for more!
-  </div>
-  
-  <section class="pt-8 pb-16">
+<Layout title="ICN Infrastructure" description="Technical infrastructure powering the InterCooperative Network daemon.">
+  <section class="pt-32 pb-16">
     <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold text-center mb-8">Infrastructure Overview</h1>
-      <p class="text-center text-lg mb-8 text-gray-100">Explore the domains, services, and public infrastructure that power the InterCooperative Network.</p>
+      <div class="text-center mb-16">
+        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
+          INFRASTRUCTURE
+        </span>
+        <h1 class="text-4xl font-bold mb-4">ICN Technical Infrastructure</h1>
+        <p class="text-xl text-light-slate max-w-3xl mx-auto">
+          ICN is a substrate daemon built entirely in Rust. 16 specialized crates provide
+          identity, trust, economics, governance, networking, and compute capabilities.
+        </p>
+      </div>
 
-      <ul class="list-disc ml-6 text-white mt-6 space-y-2 max-w-3xl mx-auto">
-        <li><strong>Public Website:</strong> <a href="https://www.intercooperative.network">www.intercooperative.network</a></li>
-        <li><strong>Docs:</strong> <a href="https://docs.intercooperative.network">docs.intercooperative.network</a></li>
-        <li><strong>Wallet:</strong> <a href="https://wallet.intercooperative.network">wallet.intercooperative.network</a></li>
-        <li><strong>AgoraNet:</strong> <a href="https://gov.intercooperative.network">gov.intercooperative.network</a></li>
-        <li><strong>Matrix:</strong> chat.intercooperative.network (coming soon)</li>
-      </ul>
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Daemon Overview -->
+        <div class="bg-accent-primary/10 p-6 rounded-lg border border-accent-primary/30">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <h3 class="text-xl font-bold text-accent-primary">icnd - The ICN Daemon</h3>
+              <p class="text-light-slate mt-1">Actor-based runtime on Tokio with 1,134+ tests</p>
+            </div>
+            <div class="flex gap-4 text-center">
+              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
+                <div class="text-2xl font-bold text-accent-primary">16</div>
+                <div class="text-xs text-slate-gray">Crates</div>
+              </div>
+              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
+                <div class="text-2xl font-bold text-accent-primary">3</div>
+                <div class="text-xs text-slate-gray">Binaries</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="mt-12 max-w-3xl mx-auto">
-        <MatrixInvite />
-        <GitHubRepoCard repo="InterCooperative-Network/icn" />
+        <!-- Network Ports -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-primary/20">
+          <h2 class="text-2xl font-bold text-accent-primary mb-6">Network Services</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-10 bg-accent-primary/20 rounded flex items-center justify-center font-mono text-accent-primary font-bold">7777</div>
+                <div>
+                  <div class="text-white font-semibold">QUIC P2P</div>
+                  <div class="text-slate-gray text-sm">Peer-to-peer mesh networking</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-10 bg-accent-blue/20 rounded flex items-center justify-center font-mono text-accent-blue font-bold">5601</div>
+                <div>
+                  <div class="text-white font-semibold">JSON-RPC</div>
+                  <div class="text-slate-gray text-sm">API for clients and tooling</div>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-10 bg-accent-purple/20 rounded flex items-center justify-center font-mono text-accent-purple font-bold">9100</div>
+                <div>
+                  <div class="text-white font-semibold">Prometheus</div>
+                  <div class="text-slate-gray text-sm">Metrics and monitoring</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-10 bg-accent-glow/20 rounded flex items-center justify-center font-mono text-accent-glow font-bold">8080</div>
+                <div>
+                  <div class="text-white font-semibold">Health Check</div>
+                  <div class="text-slate-gray text-sm">Liveness and readiness probes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Binaries -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-blue/20">
+          <h2 class="text-2xl font-bold text-accent-blue mb-6">Binaries</h2>
+          <div class="space-y-4">
+            <div class="bg-midnight-navy rounded-lg p-4 border border-slate-700">
+              <div class="flex items-center gap-3">
+                <code class="text-accent-primary font-bold">icnd</code>
+                <span class="text-light-slate">— Main daemon binary. Runs the full ICN node.</span>
+              </div>
+            </div>
+            <div class="bg-midnight-navy rounded-lg p-4 border border-slate-700">
+              <div class="flex items-center gap-3">
+                <code class="text-accent-blue font-bold">icnctl</code>
+                <span class="text-light-slate">— CLI for administration, identity management, and operations.</span>
+              </div>
+            </div>
+            <div class="bg-midnight-navy rounded-lg p-4 border border-slate-700">
+              <div class="flex items-center gap-3">
+                <code class="text-accent-purple font-bold">icn-console</code>
+                <span class="text-light-slate">— Interactive REPL for development and debugging.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Crates -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-purple/20">
+          <h2 class="text-2xl font-bold text-accent-purple mb-6">Core Crates</h2>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div class="space-y-2">
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-core</code> <span class="text-slate-gray">— Shared types and traits</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-identity</code> <span class="text-slate-gray">— DIDs and credentials</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-trust</code> <span class="text-slate-gray">— Web-of-participation</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-ledger</code> <span class="text-slate-gray">— Mutual credit ledger</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-ccl</code> <span class="text-slate-gray">— Contract language</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-governance</code> <span class="text-slate-gray">— Voting and proposals</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-compute</code> <span class="text-slate-gray">— Distributed compute</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-primary">icn-storage</code> <span class="text-slate-gray">— Data persistence</span>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-network</code> <span class="text-slate-gray">— P2P networking</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-gossip</code> <span class="text-slate-gray">— Trust-gated gossip</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-api</code> <span class="text-slate-gray">— REST gateway</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-crypto</code> <span class="text-slate-gray">— Cryptographic primitives</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-utils</code> <span class="text-slate-gray">— Shared utilities</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-economics</code> <span class="text-slate-gray">— Credit/mana system</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-runtime</code> <span class="text-slate-gray">— Actor supervisor</span>
+              </div>
+              <div class="bg-midnight-navy rounded p-3 border border-slate-700">
+                <code class="text-accent-blue">icn-testkit</code> <span class="text-slate-gray">— Testing harness</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deployment -->
+        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-glow/20">
+          <h2 class="text-2xl font-bold text-accent-glow mb-6">Deployment</h2>
+          <p class="text-light-slate mb-4">
+            ICN is designed for self-hosted deployment. Each cooperative runs their own node(s),
+            connecting to form a federated network.
+          </p>
+          <div class="bg-midnight-navy rounded-lg p-4 font-mono text-sm text-light-slate">
+            <pre># Clone and build
+git clone https://github.com/InterCooperative-Network/icn
+cd icn && cargo build --release
+
+# Run the daemon
+./target/release/icnd --config config.toml</pre>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <GitHubRepoCard repo="InterCooperative-Network/icn" />
+        </div>
       </div>
     </div>
   </section>
-</Layout> 
+</Layout>
