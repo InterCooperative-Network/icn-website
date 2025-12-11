@@ -2,72 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-/* src/styles/global.css - Updated with new Brand Sheet */
+/* src/styles/global.css - ICN Refreshed Design System */
 :root {
-  /* Brand Palette from Sheet */
-  --color-nav-active-link: #25DED0;
-  --color-midnight-navy: #0A0E1A;     /* Deeper main background */
-  --color-soft-black: #0A232B;
-  --color-solar-yellow: #FFD463;
-  --color-sky-blue: #74E7F2;
-  --color-mint-green: #33FFB4;
-  --color-accent-glow: #32FFD2;       /* Bright glow accent */
-  --color-light-gray: #E2F0ED;
-  --color-slate-gray: #94A3B8;        /* Body text */
-  --color-white: #F8FAFC;             /* Headings, highlights */
-  
-  /* Applied to general theme */
-  --color-bg: var(--color-midnight-navy);
-  --color-bg-secondary: #111827;      /* Card backgrounds, sections */
-  --color-bg-tertiary: #1F2937;       /* Elevated surfaces */
-  --color-text-primary: var(--color-white);
-  --color-text-secondary: var(--color-slate-gray);
-  --color-accent-primary: #00D4AA;    /* Primary teal - more vibrant */
-  --color-accent-secondary: var(--color-solar-yellow);
-  --color-link: var(--color-sky-blue);
-  --color-link-hover: var(--color-mint-green);
-  --color-border-subtle: var(--color-light-gray);
+  /* ═══════════════════════════════════════════════════════════════
+     ICN CORE PALETTE - Refined for clarity and cohesion
+     ═══════════════════════════════════════════════════════════════ */
 
+  /* Primary Brand Colors */
+  --color-midnight: #080C14;          /* Deep background - richer black */
+  --color-midnight-navy: #0C1220;     /* Primary background */
+  --color-soft-black: #101828;        /* Secondary surfaces */
+
+  /* Accent Colors - Streamlined */
+  --color-accent-primary: #00E5BF;    /* Primary teal - vibrant & clean */
+  --color-accent-glow: #00FFD4;       /* Glow/highlight version */
+  --color-accent-secondary: #6366F1;  /* Indigo - secondary accent */
+  --color-accent-tertiary: #8B5CF6;   /* Violet - tertiary accent */
+
+  /* Supporting Colors */
+  --color-sky-blue: #38BDF8;          /* Links and interactive */
+  --color-mint-green: #34D399;        /* Success states */
+  --color-solar-amber: #FBBF24;       /* Warnings, highlights */
+
+  /* Neutral Palette */
+  --color-white: #F9FAFB;             /* Primary text */
+  --color-light-slate: #CBD5E1;       /* Secondary text */
+  --color-slate-gray: #64748B;        /* Muted text */
+  --color-border: #1E293B;            /* Borders - subtle */
+  --color-border-hover: #334155;      /* Borders - interactive */
+
+  /* Legacy compatibility */
+  --color-nav-active-link: var(--color-accent-primary);
+  --color-solar-yellow: var(--color-solar-amber);
+  --color-light-gray: #E2E8F0;
+
+  /* Applied Theme Variables */
+  --color-bg: var(--color-midnight-navy);
+  --color-bg-secondary: var(--color-soft-black);
+  --color-bg-tertiary: #1A2332;
+  --color-bg-elevated: #1E2A3B;
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-light-slate);
+  --color-text-muted: var(--color-slate-gray);
+  --color-link: var(--color-sky-blue);
+  --color-link-hover: var(--color-accent-primary);
+  --color-border-subtle: var(--color-border);
+
+  /* Accent mappings for consistency */
+  --color-accent-purple: var(--color-accent-tertiary);
+  --color-accent-blue: var(--color-accent-secondary);
+
+  /* Semantic Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+
+  /* ═══════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════════ */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 
-  --header-height: 4.5rem;
+  /* ═══════════════════════════════════════════════════════════════
+     LAYOUT
+     ═══════════════════════════════════════════════════════════════ */
+  --header-height: 4rem;
+  --section-padding: 5rem 0;
+  --container-padding: 1.5rem;
+  --content-max-width: 1200px;
 
-  /* Updated Color Palette - Modern Dark Theme */
-  --color-accent-purple: #8B5CF6;     /* Secondary purple accent */
-  --color-accent-blue: #3B82F6;       /* Blue accent */
-  --color-border: #334155;            /* Borders, dividers */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-blue) 100%);
-  --gradient-hero: linear-gradient(135deg, var(--color-midnight-navy) 0%, #1e293b 50%, var(--color-bg-secondary) 100%);
-  --gradient-card: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-glow: 0 0 20px rgb(50 255 210 / 0.3);
-  
-  /* Spacing */
-  --section-padding: 4rem 0;
-  --container-padding: 1rem;
-  
-  /* Border Radius */
-  --radius-sm: 0.25rem;
+  /* ═══════════════════════════════════════════════════════════════
+     GRADIENTS - Refined for elegance
+     ═══════════════════════════════════════════════════════════════ */
+  --gradient-primary: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
+  --gradient-hero: linear-gradient(180deg, var(--color-midnight) 0%, var(--color-midnight-navy) 50%, var(--color-soft-black) 100%);
+  --gradient-card: linear-gradient(145deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(0, 229, 191, 0.15) 0%, transparent 70%);
+  --gradient-mesh: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(0, 229, 191, 0.1) 100%);
+
+  /* ═══════════════════════════════════════════════════════════════
+     SHADOWS - Layered depth system
+     ═══════════════════════════════════════════════════════════════ */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.25), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  --shadow-glow: 0 0 30px rgb(0 229 191 / 0.2);
+  --shadow-glow-strong: 0 0 50px rgb(0 229 191 / 0.3), 0 0 100px rgb(0 229 191 / 0.1);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.1);
+
+  /* ═══════════════════════════════════════════════════════════════
+     BORDER RADIUS - Consistent roundness
+     ═══════════════════════════════════════════════════════════════ */
+  --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
-  
-  /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 300ms ease-in-out;
-  --transition-slow: 500ms ease-in-out;
+  --radius-2xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* ═══════════════════════════════════════════════════════════════
+     TRANSITIONS - Smooth interactions
+     ═══════════════════════════════════════════════════════════════ */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Reset and Base Styles */
@@ -105,22 +148,57 @@ input, button, textarea, select {
   font: inherit;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY - Refined heading hierarchy
+   ═══════════════════════════════════════════════════════════════ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 700; /* Bold for headings */
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.15;
   color: var(--color-white);
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-h2 { font-size: clamp(2rem, 4vw, 3rem); }
-h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h1 {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+}
 
 p {
   margin-bottom: 1.25rem;
   color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Lead text for introductions */
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--color-light-slate);
+}
+
+/* Small/muted text */
+.text-muted {
+  color: var(--color-slate-gray);
+  font-size: 0.875rem;
 }
 
 a {
@@ -143,63 +221,140 @@ a:hover {
   padding-right: 1rem;
 }
 
-/* Buttons - per Implementation Tips */
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS - Refined with better hierarchy
+   ═══════════════════════════════════════════════════════════════ */
 .button {
-  display: inline-block;
-  padding: 0.8em 1.8em;
-  border-radius: 6px;
-  font-weight: 700; /* Bold button text */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.9375rem;
   text-align: center;
-  transition: transform 0.2s ease-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  text-decoration: none;
+  transition: all var(--transition-normal);
   cursor: pointer;
-  border: 2px solid transparent;
-  letter-spacing: 0.05em;
+  border: 1.5px solid transparent;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.button:hover::before {
+  opacity: 1;
 }
 
 .button:hover {
   transform: translateY(-2px);
 }
+
+.button:active {
+  transform: translateY(0);
+}
+
 .button:focus-visible {
-  outline: 2px solid var(--color-mint-green);
+  outline: 2px solid var(--color-accent-primary);
   outline-offset: 2px;
 }
 
-/* Primary CTA: Solar Yellow background, Midnight Navy text */
+/* Primary CTA: Teal gradient with glow */
 .button-primary {
-  background-color: var(--color-solar-yellow);
-  color: var(--color-midnight-navy);
-  border-color: var(--color-solar-yellow);
-}
-.button-primary:hover {
-  background-color: #FFC84A; /* Slightly lighter yellow */
-  border-color: #FFC84A;
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, #00C9A7 100%);
+  color: var(--color-midnight);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(0, 229, 191, 0.25);
 }
 
-/* Secondary CTA: Coop Teal outline, Coop Teal text */
+.button-primary:hover {
+  box-shadow: 0 6px 20px rgba(0, 229, 191, 0.35);
+  color: var(--color-midnight);
+}
+
+/* Secondary CTA: Outline style */
 .button-secondary {
   background-color: transparent;
-  color: var(--color-accent-glow);
-  border-color: var(--color-accent-glow);
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
 }
+
 .button-secondary:hover {
-  background-color: rgba(51, 255, 180, 0.1);
+  background-color: rgba(0, 229, 191, 0.1);
+  border-color: var(--color-accent-glow);
   color: var(--color-accent-glow);
 }
 
-/* Card styling - updated to new Brand Style Guide */
+/* Ghost button - minimal */
+.button-ghost {
+  background-color: transparent;
+  color: var(--color-light-slate);
+  border-color: var(--color-border);
+}
+
+.button-ghost:hover {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-hover);
+  color: var(--color-white);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARDS - Glass morphism with subtle depth
+   ═══════════════════════════════════════════════════════════════ */
 .card {
-  background-color: var(--color-bg-secondary);
-  border-radius: 8px;
-  padding: 2rem;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: var(--gradient-card);
+  background: linear-gradient(145deg,
+    rgba(26, 35, 50, 0.8) 0%,
+    rgba(16, 24, 40, 0.9) 100%
+  );
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 229, 191, 0.3) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(37, 222, 208, 0.1); /* Subtle Coop Teal glow on hover */
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 191, 0.15);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 229, 191, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 /* Text Gradients - can be removed if not used, or updated */
@@ -211,31 +366,73 @@ a:hover {
   text-fill-color: transparent;
 }
 
-/* New Unified Button Styles */
+/* ═══════════════════════════════════════════════════════════════
+   BTN SYSTEM - Modern unified button styles
+   ═══════════════════════════════════════════════════════════════ */
 .btn {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-navy;
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-navy;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.btn:hover::after {
+  opacity: 1;
 }
 
 .btn-primary {
-  background: var(--gradient-primary);
-  @apply text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-accent-primary;
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, #00C9A7 100%);
+  @apply text-midnight-navy shadow-lg;
+  box-shadow: 0 4px 20px rgba(0, 229, 191, 0.3);
+}
+
+.btn-primary:hover {
+  @apply transform -translate-y-0.5;
+  box-shadow: 0 8px 30px rgba(0, 229, 191, 0.4);
 }
 
 .btn-secondary {
-  @apply bg-bg-secondary text-white border border-border hover:bg-bg-tertiary hover:border-accent-primary transform hover:-translate-y-0.5 focus:ring-accent-primary;
+  @apply bg-transparent border-2 border-accent-primary text-accent-primary;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 229, 191, 0.1);
+  @apply transform -translate-y-0.5;
 }
 
 .btn-outline {
-  @apply bg-transparent text-accent-primary border border-accent-primary hover:bg-accent-primary hover:text-midnight-navy focus:ring-accent-primary;
+  @apply bg-transparent text-light-slate border border-border;
 }
 
-/* The #features .grid styles below were removed as layout is handled by Tailwind in index.astro */
+.btn-outline:hover {
+  @apply bg-bg-tertiary border-accent-primary text-white;
+}
 
-/* Animations */
+.btn-ghost {
+  @apply bg-transparent text-light-slate;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  @apply text-white;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS - Refined and subtle
+   ═══════════════════════════════════════════════════════════════ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -248,14 +445,41 @@ a:hover {
   to { opacity: 1; }
 }
 
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgb(50 255 210 / 0.3); }
-  50% { box-shadow: 0 0 30px rgb(50 255 210 / 0.5); }
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 229, 191, 0.15);
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 229, 191, 0.25);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 @keyframes gradient-shift {
@@ -263,11 +487,68 @@ a:hover {
   50% { background-position: 100% 50%; }
 }
 
-.animate-fade-in { animation: fadeIn 0.6s ease-out; }
-.animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-.animate-gradient { animation: gradient-shift 3s ease infinite; background-size: 200% 200%; }
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  animation: gradient-shift 4s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
 
 /* Utility Classes */
 .text-gradient {
