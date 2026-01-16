@@ -6,7 +6,7 @@ import FeatureCard from '../components/FeatureCard.astro';
 
 // Homepage copy
 const pageTitle = "ICN: A Substrate Daemon for the Cooperative Internet";
-const pageDescription = "Infrastructure for timebanks, mutual credit systems, and cooperative coordination. 20 phases complete, 1,134+ tests passing.";
+const pageDescription = "Infrastructure for timebanks, mutual credit systems, and cooperative coordination. 18 phases complete, 2,400+ tests passing, live on K3s.";
 
 // Core features highlighting ICN's transformative vision with technical backing
 const features = [
@@ -106,17 +106,17 @@ const capabilities = [
   {
     title: "Identity & Security",
     status: "✅ Complete",
-    description: "DIDs with Ed25519 cryptography, three-layer security (transport, message, application), DID-TLS binding with persistent certificates."
+    description: "DIDs with Ed25519 cryptography, three-layer security (transport, message, application), DID-TLS binding, witness signatures for BFT."
   },
   {
     title: "Trust & Economics",
     status: "✅ Complete",
-    description: "Web-of-participation trust graph, dynamic credit limits, mutual credit ledger with double-entry accounting and Merkle-DAG."
+    description: "Web-of-participation trust graph, dynamic credit limits, mutual credit ledger with Merkle-DAG, fork resolution with witness counts."
   },
   {
     title: "Networking & Gossip",
     status: "✅ Complete",
-    description: "QUIC/TLS secure sessions, mDNS discovery, gossip protocol with trust-gated topics, per-peer rate limiting."
+    description: "QUIC/TLS secure sessions, mDNS discovery, gossip protocol with trust-gated topics, per-peer rate limiting, witnessed entry sync."
   },
   {
     title: "Governance & Compute",
@@ -124,14 +124,14 @@ const capabilities = [
     description: "Domain-based proposals with voting coordination, CCL smart contracts, distributed compute with trust-gated execution."
   },
   {
-    title: "Pilot Web UI",
+    title: "Byzantine Fault Tolerance",
     status: "✅ Complete",
-    description: "Dashboard with balance tracking, member directory, governance voting, CSV export for treasurers, full mobile support."
+    description: "Witness signatures for material transactions, timestamp validation, fork resolution by signer count, proof-of-storage challenges."
   },
   {
-    title: "Observability & Operations",
+    title: "Live Deployment",
     status: "✅ Complete",
-    description: "Prometheus metrics, encrypted backup/restore, graceful restart with vector clock persistence, version negotiation."
+    description: "Running on K3s cluster since Dec 2025. Prometheus metrics, encrypted backup/restore, graceful restart, Docker deployment."
   }
 ];
 
@@ -323,7 +323,7 @@ const ctaDescription = "Join cooperatives, communities, and federations building
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-6">Development Status</h2>
         <p class="text-xl text-light-slate max-w-3xl mx-auto">
-          20 development phases complete with 1,134+ passing tests.
+          18 development phases complete with 2,400+ passing tests. Live on K3s since December 2025.
         </p>
       </div>
       
@@ -495,20 +495,20 @@ const ctaDescription = "Join cooperatives, communities, and federations building
       <!-- Key Statistics -->
       <div class="grid md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-white/10">
         <div class="text-center">
-          <div class="text-3xl font-bold text-accent-primary mb-2">20</div>
+          <div class="text-3xl font-bold text-accent-primary mb-2">18</div>
           <div class="text-light-slate">Phases Complete</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-accent-blue mb-2">1,134+</div>
+          <div class="text-3xl font-bold text-accent-blue mb-2">2,400+</div>
           <div class="text-light-slate">Tests Passing</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-accent-purple mb-2">16</div>
+          <div class="text-3xl font-bold text-accent-purple mb-2">26</div>
           <div class="text-light-slate">Specialized Crates</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-accent-glow mb-2">PILOT</div>
-          <div class="text-light-slate">Ready Status</div>
+          <div class="text-3xl font-bold text-accent-glow mb-2">LIVE</div>
+          <div class="text-light-slate">On K3s Cluster</div>
         </div>
       </div>
     </div>
