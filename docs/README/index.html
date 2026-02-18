@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A substrate daemon for the cooperative internet. DIDs, trust graphs, mutual credit, CCL contracts, and democratic governance — all in one P2P coordination layer."><meta name="theme-color" content="#06090f"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet"><title>ICN - InterCooperative Network | InterCooperative Network</title><link rel="stylesheet" href="/_astro/about.CVp5mvbJ.css">
+<style>.breadcrumb[data-astro-cid-uadgga6g]{display:flex;align-items:center;gap:var(--space-xs);font-size:.8125rem;margin-bottom:var(--space-lg);flex-wrap:wrap}.breadcrumb[data-astro-cid-uadgga6g] a[data-astro-cid-uadgga6g]{color:var(--accent-teal)}.breadcrumb-sep[data-astro-cid-uadgga6g]{color:var(--text-muted)}.breadcrumb-dir[data-astro-cid-uadgga6g]{color:var(--text-secondary);text-transform:capitalize}.breadcrumb-current[data-astro-cid-uadgga6g]{color:var(--text-primary);text-transform:capitalize}.doc-meta[data-astro-cid-uadgga6g]{margin-bottom:var(--space-xl);padding-bottom:var(--space-md);border-bottom:1px solid var(--border-subtle)}.source-link[data-astro-cid-uadgga6g]{font-size:.8125rem;color:var(--text-muted)}.source-link[data-astro-cid-uadgga6g]:hover{color:var(--accent-teal)}.doc-footer[data-astro-cid-uadgga6g]{margin-top:var(--space-3xl);padding-top:var(--space-xl);border-top:1px solid var(--border-subtle)}
+</style></head> <body> <!-- Navigation --> <nav class="nav" id="main-nav"> <div class="nav-inner"> <a href="/" class="nav-logo"> <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 128 128" fill="none"> <rect width="128" height="128" rx="28" fill="url(#nav-bg)"></rect> <line x1="64" y1="30" x2="34" y2="82" stroke="url(#nav-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"></line> <line x1="64" y1="30" x2="94" y2="82" stroke="url(#nav-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"></line> <line x1="34" y1="82" x2="94" y2="82" stroke="url(#nav-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"></line> <circle cx="64" cy="30" r="11" fill="url(#nav-teal)"></circle> <circle cx="34" cy="82" r="11" fill="url(#nav-teal)"></circle> <circle cx="94" cy="82" r="11" fill="url(#nav-teal)"></circle> <circle cx="64" cy="64" r="4" fill="url(#nav-teal)" opacity="0.8"></circle> <defs> <linearGradient id="nav-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f2027"></stop><stop offset="1" stop-color="#0a1628"></stop></linearGradient> <linearGradient id="nav-teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#38bdf8"></stop></linearGradient> </defs> </svg> <span>ICN</span> </a> <ul class="nav-links" id="nav-links"> <li><a href="/about">About</a></li> <li><a href="/docs" class="active">Docs</a></li> <li><a href="/architecture">Architecture</a></li> <li><a href="/roadmap">Roadmap</a></li> <li><a href="/community">Community</a></li> </ul> <div class="nav-cta"> <a href="https://github.com/InterCooperative-Network/icn" target="_blank" rel="noopener" class="nav-github" aria-label="GitHub"> <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg> </a> <a href="/docs/GETTING_STARTED" class="btn btn-primary btn-sm">Get Started</a> </div> <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"></path></svg> </button> </div> </nav> <!-- Main Content --> <main>  <section class="section" style="padding-top: calc(64px + var(--space-2xl));" data-astro-cid-uadgga6g> <div class="container-narrow" data-astro-cid-uadgga6g> <!-- Breadcrumb --> <nav class="breadcrumb" data-astro-cid-uadgga6g> <a href="/docs" data-astro-cid-uadgga6g>Docs</a>  <span class="breadcrumb-sep" data-astro-cid-uadgga6g>/</span> <span class="breadcrumb-current" data-astro-cid-uadgga6g>README</span> </nav> <!-- Source link --> <div class="doc-meta" data-astro-cid-uadgga6g> <a href="https://github.com/InterCooperative-Network/icn/blob/main/README.md" target="_blank" class="source-link" data-astro-cid-uadgga6g>
+View source on GitHub →
+</a> </div> <!-- Rendered markdown --> <article class="prose" data-astro-cid-uadgga6g><h1>ICN - InterCooperative Network</h1>
+<p><a href="https://github.com/InterCooperative-Network/icn/actions/workflows/ci.yml" target="_blank" rel="noopener">![CI](https://github.com/InterCooperative-Network/icn/actions/workflows/ci.yml/badge.svg)</a>
+<a href="https://github.com/InterCooperative-Network/icn/blob/main/LICENSE">![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)</a></p>
+<p>A substrate daemon for the cooperative internet.</p>
+<p><strong><a href="https://intercooperative.network" target="_blank" rel="noopener">intercooperative.network</a></strong></p>
+<p>ICN is a P2P coordination layer for cooperatives, communities, and federations. It is not a blockchain or federation server — it&#39;s a constraint engine where apps translate cooperative governance into generic constraints, and the kernel enforces them without understanding their meaning.</p>
+<hr>
+<h2>What ICN Provides</h2>
+<ul>
+<li><strong>Decentralized Identity</strong> — DIDs with Ed25519 cryptography and Age-encrypted keystores</li>
+<li><strong>Trust Graph</strong> — Web-of-participation trust computation with signed attestations</li>
+<li><strong>Mutual Credit Ledger</strong> — Double-entry accounting with Merkle-DAG integrity</li>
+<li><strong>Cooperative Contracts</strong> — CCL (Cooperative Contract Language) for expressing bylaws, agreements, and governance</li>
+<li><strong>P2P Networking</strong> — QUIC/TLS sessions with mDNS discovery and gossip replication</li>
+<li><strong>Democratic Governance</strong> — Proposals, voting, and parameter management</li>
+<li><strong>Distributed Compute</strong> — Trust-gated task execution with receipt settlement</li>
+</ul>
+<h2>Architecture</h2>
+<p>ICN implements a <strong>constraint enforcement architecture</strong>:</p>
+<pre><code>CCL Document (constitution / bylaws / treaty)
+         |
+App / Policy Oracle (governance, trust, ledger)
+         |
+ConstraintSet (rate limits, credit ceilings, voting weights)
+         |
+Kernel enforces constraints mechanically
+</code></pre>
+<p>The kernel never sees &quot;trust scores&quot; or &quot;governance rules&quot; — only generic constraints. This is the <strong>Meaning Firewall</strong>: domain semantics stay in apps, the kernel stays predictable.</p>
+<p>See <a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/ARCHITECTURE">docs/ARCHITECTURE.md</a> for the full architecture documentation.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Build
+cd icn &amp;&amp; cargo build --release
+
+# Start node alpha (terminal 1)
+./target/release/icnd --config ../config/icn-alpha.toml
+
+# Start node beta (terminal 2)
+./target/release/icnd --config ../config/icn-beta.toml
+
+# Check status (terminal 3)
+./target/release/icnctl network status
+./target/release/icnctl network peers
+# Nodes discover each other via mDNS within seconds
+</code></pre>
+<h3>Identity Management</h3>
+<pre><code class="language-bash">icnctl id init          # Create identity (DID + keystore)
+icnctl id show          # Show current DID
+icnctl id rotate        # Rotate keys
+icnctl id export b.age  # Export encrypted backup
+</code></pre>
+<h3>Trust &amp; Networking</h3>
+<pre><code class="language-bash">icnctl trust add did:icn:z6Mk... --score 0.8 --label partner
+icnctl trust list
+icnctl network peers
+icnctl network stats
+</code></pre>
+<h3>Ports</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Port</th>
+<th>Protocol</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Peer Transport</td>
+<td>7777</td>
+<td>QUIC/UDP</td>
+<td>P2P communication</td>
+</tr>
+<tr>
+<td>RPC API</td>
+<td>5601</td>
+<td>HTTP</td>
+<td>CLI control (icnctl)</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>9100</td>
+<td>HTTP</td>
+<td>Prometheus exporter</td>
+</tr>
+<tr>
+<td>Health</td>
+<td>8080</td>
+<td>HTTP</td>
+<td>Health checks</td>
+</tr>
+</tbody></table>
+<h2>Project Structure</h2>
+<p><strong>28 crates</strong> in <code>icn/crates/</code>, <strong>4 app crates</strong> in <code>apps/</code>, <strong>3 binaries</strong> in <code>icn/bins/</code>.</p>
+<h3>Kernel (domain-agnostic)</h3>
+<table>
+<thead>
+<tr>
+<th>Crate</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>icn-kernel-api</code></td>
+<td>Trait definitions (PolicyOracle, State, Compute, Comms)</td>
+</tr>
+<tr>
+<td><code>icn-core</code></td>
+<td>Tokio runtime, supervisor, actor lifecycle</td>
+</tr>
+<tr>
+<td><code>icn-net</code></td>
+<td>QUIC/TLS sessions, mDNS discovery</td>
+</tr>
+<tr>
+<td><code>icn-gossip</code></td>
+<td>Topic-based replication with causal ordering</td>
+</tr>
+<tr>
+<td><code>icn-gateway</code></td>
+<td>REST + WebSocket API</td>
+</tr>
+<tr>
+<td><code>icn-rpc</code></td>
+<td>gRPC API server</td>
+</tr>
+<tr>
+<td><code>icn-store</code></td>
+<td>Persistent KV storage (sled)</td>
+</tr>
+<tr>
+<td><code>icn-obs</code></td>
+<td>Prometheus metrics, tracing</td>
+</tr>
+<tr>
+<td><code>icn-identity</code></td>
+<td>DIDs, Ed25519 keypairs, encrypted keystore</td>
+</tr>
+<tr>
+<td><code>icn-encoding</code></td>
+<td>Serialization utilities</td>
+</tr>
+<tr>
+<td><code>icn-time</code></td>
+<td>Clock synchronization</td>
+</tr>
+<tr>
+<td><code>icn-snapshot</code></td>
+<td>State snapshots for graceful restarts</td>
+</tr>
+<tr>
+<td><code>icn-api</code></td>
+<td>Shared validation and error handling</td>
+</tr>
+<tr>
+<td><code>icn-testkit</code></td>
+<td>Test utilities</td>
+</tr>
+</tbody></table>
+<h3>Apps (domain-specific, Policy Oracles)</h3>
+<table>
+<thead>
+<tr>
+<th>Crate</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>apps/trust</code></td>
+<td>Trust graph → PolicyOracle (rate limits, credit multipliers)</td>
+</tr>
+<tr>
+<td><code>apps/governance</code></td>
+<td>GovernanceActor, proposal execution</td>
+</tr>
+<tr>
+<td><code>apps/ledger</code></td>
+<td>Ledger reduction and settlement</td>
+</tr>
+<tr>
+<td><code>apps/echo</code></td>
+<td>Example app for testing</td>
+</tr>
+</tbody></table>
+<h3>Domain Crates</h3>
+<table>
+<thead>
+<tr>
+<th>Crate</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>icn-trust</code></td>
+<td>Trust graph storage and computation</td>
+</tr>
+<tr>
+<td><code>icn-governance</code></td>
+<td>Governance primitives (proposals, voting, parameters)</td>
+</tr>
+<tr>
+<td><code>icn-ledger</code></td>
+<td>Double-entry mutual credit with Merkle-DAG</td>
+</tr>
+<tr>
+<td><code>icn-ccl</code></td>
+<td>Contract language AST, interpreter, fuel metering</td>
+</tr>
+<tr>
+<td><code>icn-compute</code></td>
+<td>Distributed compute with trust-gated execution</td>
+</tr>
+<tr>
+<td><code>icn-federation</code></td>
+<td>Inter-cooperative coordination</td>
+</tr>
+<tr>
+<td><code>icn-entity</code></td>
+<td>Unified entity model</td>
+</tr>
+<tr>
+<td><code>icn-coop</code></td>
+<td>Cooperative management</td>
+</tr>
+<tr>
+<td><code>icn-community</code></td>
+<td>Community structures</td>
+</tr>
+<tr>
+<td><code>icn-security</code></td>
+<td>Byzantine fault detection</td>
+</tr>
+<tr>
+<td><code>icn-privacy</code></td>
+<td>Privacy primitives</td>
+</tr>
+<tr>
+<td><code>icn-crypto-pq</code></td>
+<td>Post-quantum hybrid cryptography</td>
+</tr>
+<tr>
+<td><code>icn-steward</code></td>
+<td>SDIS steward network</td>
+</tr>
+<tr>
+<td><code>icn-zkp</code></td>
+<td>Zero-knowledge proofs</td>
+</tr>
+</tbody></table>
+<h3>Binaries</h3>
+<table>
+<thead>
+<tr>
+<th>Binary</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>icnd</code></td>
+<td>The ICN daemon</td>
+</tr>
+<tr>
+<td><code>icnctl</code></td>
+<td>CLI management tool</td>
+</tr>
+<tr>
+<td><code>icn-console</code></td>
+<td>Interactive TUI</td>
+</tr>
+</tbody></table>
+<h2>Development</h2>
+<pre><code class="language-bash">cd icn
+
+# Build
+cargo build
+
+# Test
+cargo test --all-features
+
+# Lint
+cargo fmt --check
+cargo clippy --all-targets --all-features -- -D warnings
+</code></pre>
+<p>See <a href="/docs/CONTRIBUTING">CONTRIBUTING.md</a> for architectural guardrails and the git workflow.</p>
+<h2>Security</h2>
+<p>ICN implements three-layer security:</p>
+<ol>
+<li><strong>Transport</strong> — QUIC/TLS with DID-TLS certificate binding</li>
+<li><strong>Message</strong> — Ed25519 signed envelopes with replay protection</li>
+<li><strong>Application</strong> — E2E encryption with X25519-ChaCha20-Poly1305</li>
+</ol>
+<p>Trust-gated rate limiting enforces per-actor throughput bounds based on trust class. See <a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/production-hardening">docs/production-hardening.md</a>.</p>
+<h2>Documentation</h2>
+<ul>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/ARCHITECTURE">Architecture</a></strong> — Constraint engine model, kernel/app separation, Policy Oracle pattern</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/GETTING_STARTED">Getting Started</a></strong> — Installation and first steps</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/FAQ">FAQ</a></strong> — Common questions</li>
+<li><strong><a href="/docs/CONTRIBUTING">Contributing</a></strong> — Development workflow and architectural guardrails</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/architecture/">Architecture Index</a></strong> — Visual diagrams, kernel/app separation details</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/onboarding/">Onboarding Modules</a></strong> — Deep-dive learning modules</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/production-hardening">Production Hardening</a></strong> — Security and deployment</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/dev-journal/ROADMAP">Roadmap</a></strong> — Current and planned phases</li>
+<li><strong><a href="https://github.com/InterCooperative-Network/icn/blob/main/docs/docs/PHASE_HISTORY">Phase History</a></strong> — Completed development phases</li>
+</ul>
+<h2>Status</h2>
+<p>~362K lines of Rust across 28 crates and 4 app crates. Deployed on a K3s cluster since December 2025.</p>
+<p>Active work is tracked in <a href="https://github.com/InterCooperative-Network/icn/issues/856" target="_blank" rel="noopener">6 epics</a>:</p>
+<ul>
+<li><strong>Kernel/App Separation</strong> — Extracting domain logic from kernel (governance ratchet: 83 → 43)</li>
+<li><strong>Architecture Invariants</strong> — Formalizing the constraint engine boundary</li>
+<li><strong>Trust Hardening</strong> — Attestation signing, revocations, replay protection</li>
+<li><strong>Service Discovery</strong> — Gossip-based endpoint propagation</li>
+<li><strong>Commons/Compute</strong> — Resource pool and credit accounting</li>
+<li><strong>Kernel Performance</strong> — StateSnapshot COW, rate limiting</li>
+</ul>
+<h2>License</h2>
+<p><a href="https://github.com/InterCooperative-Network/icn/blob/main/LICENSE">AGPL-3.0</a></p>
+</article> <!-- Footer nav --> <div class="doc-footer" data-astro-cid-uadgga6g> <a href="/docs" class="btn btn-ghost" data-astro-cid-uadgga6g>← Back to Docs</a> </div> </div> </section>  </main> <!-- Footer --> <footer class="footer"> <div class="container"> <div class="footer-inner"> <div class="footer-brand"> <a href="/" class="nav-logo"> <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 128 128" fill="none"> <rect width="128" height="128" rx="28" fill="url(#ft-bg)"></rect> <line x1="64" y1="30" x2="34" y2="82" stroke="url(#ft-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"></line> <line x1="64" y1="30" x2="94" y2="82" stroke="url(#ft-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"></line> <line x1="34" y1="82" x2="94" y2="82" stroke="url(#ft-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"></line> <circle cx="64" cy="30" r="11" fill="url(#ft-teal)"></circle> <circle cx="34" cy="82" r="11" fill="url(#ft-teal)"></circle> <circle cx="94" cy="82" r="11" fill="url(#ft-teal)"></circle> <circle cx="64" cy="64" r="4" fill="url(#ft-teal)" opacity="0.8"></circle> <defs> <linearGradient id="ft-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f2027"></stop><stop offset="1" stop-color="#0a1628"></stop></linearGradient> <linearGradient id="ft-teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#38bdf8"></stop></linearGradient> </defs> </svg> <span>InterCooperative Network</span> </a> <p>A substrate daemon for the cooperative internet. Infrastructure for cooperatives, communities, and federations.</p> </div> <div class="footer-col"> <h4>Project</h4> <ul> <li><a href="/about">About</a></li> <li><a href="/docs">Documentation</a></li> <li><a href="/architecture">Architecture</a></li> <li><a href="/roadmap">Roadmap</a></li> </ul> </div> <div class="footer-col"> <h4>Resources</h4> <ul> <li><a href="/docs/GETTING_STARTED">Getting Started</a></li> <li><a href="/docs/glossary">Glossary</a></li> <li><a href="/docs/CONTRIBUTING">Contributing</a></li> <li><a href="https://github.com/InterCooperative-Network/icn/discussions" target="_blank">Discussions</a></li> </ul> </div> <div class="footer-col"> <h4>Community</h4> <ul> <li><a href="https://github.com/InterCooperative-Network/icn" target="_blank">GitHub</a></li> <li><a href="https://github.com/InterCooperative-Network/icn/issues" target="_blank">Issues</a></li> <li><a href="/community">Community</a></li> </ul> </div> </div> <div class="footer-bottom"> <span>AGPL-3.0 License · InterCooperative Network</span> <span>Built with cooperation, not extraction</span> </div> </div> </footer> <script>
+    // Mobile nav toggle
+    document.getElementById('nav-toggle')?.addEventListener('click', () => {
+      document.getElementById('nav-links')?.classList.toggle('open');
+    });
+
+    // Scroll-reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.card, .section-header, .arch-box, .stage-item, .docs-section-card, .primitive').forEach(el => {
+      el.classList.add('reveal');
+      revealObserver.observe(el);
+    });
+  </script> </body> </html> 
