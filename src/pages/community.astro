@@ -1,135 +1,116 @@
 ---
+// src/pages/community.astro — Community page
 import Layout from '../layouts/Layout.astro';
+import stats from '../data/stats.json';
 ---
 
-<Layout title="ICN Community" description="Join the ICN community: Discord, GitHub Discussions, and ways to contribute.">
-  <section class="pt-32 pb-16">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
-          COMMUNITY
-        </span>
-        <h1 class="text-4xl font-bold mb-4">Join the ICN Community</h1>
-        <p class="text-xl text-light-slate max-w-3xl mx-auto">
-          ICN is built by and for cooperative communities. Join us to discuss, contribute,
-          and help shape the cooperative internet.
-        </p>
+<Layout title="Community" activeNav="community">
+  <section class="section" style="padding-top: calc(64px + var(--space-3xl));">
+    <div class="container">
+      <div class="section-header" style="text-align: left; max-width: none;">
+        <span class="badge badge-purple">Community</span>
+        <h1>Join the Cooperative Movement</h1>
+        <p>ICN is built by and for cooperatives. Contribute code, documentation, use cases, or ideas. Every contribution strengthens the cooperative internet.</p>
       </div>
 
-      <div class="max-w-4xl mx-auto space-y-8">
-        <!-- Discord -->
-        <div class="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 p-8 rounded-lg border border-indigo-500/30">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-white">Discord</h2>
-              <p class="text-slate-gray">Real-time chat and community discussions</p>
-            </div>
-          </div>
-          <p class="text-light-slate mb-6">
-            Our Discord server is the primary place for real-time discussions, questions,
-            and community coordination. Join us to chat with developers and community members.
-          </p>
-          <a href="https://discord.gg/GCWKPWdvgH"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-            </svg>
-            Join Discord Server
-          </a>
-        </div>
+      <div class="grid grid-3">
+        <a href="https://github.com/InterCooperative-Network/icn" target="_blank" class="community-card">
+          <div class="card-icon">⭐</div>
+          <h3>Star on GitHub</h3>
+          <p>Show your support and stay updated. {stats.activeBranches} branches, {stats.mergedPRs} merged PRs.</p>
+        </a>
 
-        <!-- GitHub Discussions -->
-        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-primary/20">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-accent-primary/20 rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-accent-primary" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-accent-primary">GitHub Discussions</h2>
-              <p class="text-slate-gray">Proposals, Q&A, and longer-form collaboration</p>
-            </div>
-          </div>
-          <p class="text-light-slate mb-6">
-            For in-depth discussions, feature proposals, and questions that benefit from
-            threaded conversations, use GitHub Discussions.
-          </p>
-          <a href="https://github.com/InterCooperative-Network/icn/discussions"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="inline-flex items-center px-6 py-3 bg-accent-primary text-midnight-navy font-semibold rounded-lg hover:bg-accent-primary/90 transition-colors">
-            Open Discussions
-          </a>
-        </div>
+        <a href="https://github.com/InterCooperative-Network/icn/issues" target="_blank" class="community-card">
+          <div class="card-icon">🐛</div>
+          <h3>Report Issues</h3>
+          <p>Found a bug or have a feature idea? Open an issue and help us improve.</p>
+        </a>
 
-        <!-- Contributing -->
-        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-blue/20">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center">
-              <span class="text-2xl">🛠️</span>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-accent-blue">Contribute</h2>
-              <p class="text-slate-gray">Code, documentation, testing, and more</p>
-            </div>
-          </div>
-          <p class="text-light-slate mb-6">
-            ICN is open source and welcomes contributions. Whether you write Rust, documentation,
-            or want to help test and report issues, there's a place for you.
-          </p>
-          <div class="grid md:grid-cols-2 gap-4 mb-6">
-            <a href="https://github.com/InterCooperative-Network/icn"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-blue transition-colors">
-              <h3 class="text-lg font-semibold text-white mb-2">Source Code</h3>
-              <p class="text-slate-gray text-sm">Browse, fork, and submit PRs</p>
-            </a>
-            <a href="https://github.com/InterCooperative-Network/icn/issues"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="block p-4 bg-midnight-navy rounded-lg border border-slate-600 hover:border-accent-blue transition-colors">
-              <h3 class="text-lg font-semibold text-white mb-2">Issues</h3>
-              <p class="text-slate-gray text-sm">Report bugs and suggest features</p>
-            </a>
-          </div>
-          <a href="/contribute"
-             class="inline-flex items-center px-6 py-3 bg-accent-blue text-white font-semibold rounded-lg hover:bg-accent-blue/90 transition-colors">
-            Contribution Guide
-          </a>
-        </div>
+        <a href="https://github.com/InterCooperative-Network/icn/discussions" target="_blank" class="community-card">
+          <div class="card-icon">💬</div>
+          <h3>Discussions</h3>
+          <p>Join conversations about cooperative technology, governance patterns, and ICN development.</p>
+        </a>
 
-        <!-- Stay Updated -->
-        <div class="bg-midnight-navy/50 p-8 rounded-lg border border-accent-purple/20">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-accent-purple/20 rounded-lg flex items-center justify-center">
-              <span class="text-2xl">📬</span>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-accent-purple">Stay Updated</h2>
-              <p class="text-slate-gray">Follow development progress</p>
-            </div>
-          </div>
-          <p class="text-light-slate mb-6">
-            Watch the repository on GitHub to get notified of releases, or join Discord
-            for announcements about pilot deployments and community events.
-          </p>
-          <a href="https://github.com/InterCooperative-Network/icn"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="inline-flex items-center px-6 py-3 bg-accent-purple text-white font-semibold rounded-lg hover:bg-accent-purple/90 transition-colors">
-            Watch on GitHub
-          </a>
+        <a href="/docs/CONTRIBUTING" class="community-card">
+          <div class="card-icon">🤝</div>
+          <h3>Contributing Guide</h3>
+          <p>Read the guidelines for contributing code, documentation, and architectural proposals.</p>
+        </a>
+
+        <a href="/docs/GETTING_STARTED" class="community-card">
+          <div class="card-icon">🚀</div>
+          <h3>Getting Started</h3>
+          <p>Set up your development environment and run ICN locally in minutes.</p>
+        </a>
+
+        <a href="/docs" class="community-card">
+          <div class="card-icon">📚</div>
+          <h3>Documentation</h3>
+          <p>{stats.docFiles}+ documents covering architecture, APIs, guides, economics, and governance.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributing principles -->
+  <section class="section-alt">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--space-xl);">Contributing Principles</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>🏗️ Interfaces First</h3>
+          <p>Design the interface before the implementation. Every public API should be driven by use cases from cooperative governance, economics, or federation scenarios.</p>
+        </div>
+        <div class="card">
+          <h3>🧱 No Drive-By Refactors</h3>
+          <p>Each PR touches one concern. If you notice something that needs refactoring while working on a feature, open a separate issue.</p>
+        </div>
+        <div class="card">
+          <h3>🔥 The Meaning Firewall</h3>
+          <p>The kernel must never understand the semantic meaning of what it processes. If domain logic leaks into kernel crates, the architecture is broken.</p>
+        </div>
+        <div class="card">
+          <h3>📐 Architectural Guardrails</h3>
+          <p>All changes must respect crate boundaries, the app/kernel separation, and the constraint engine model. See CONTRIBUTING.md for details.</p>
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .community-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    transition: all var(--duration-normal) var(--ease-out);
+    text-decoration: none;
+  }
+
+  .community-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-teal);
+  }
+
+  .community-card .card-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .community-card h3 {
+    color: var(--text-heading);
+    margin-bottom: var(--space-sm);
+    font-size: 1.125rem;
+  }
+
+  .community-card p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+</style>

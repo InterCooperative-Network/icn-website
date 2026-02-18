@@ -1,331 +1,207 @@
 ---
+// src/pages/about.astro — About ICN
 import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+import { renderMarkdown } from '../lib/markdown';
+
+// Read VISION.md from synced content
+const visionPath = path.join(process.cwd(), 'src/content/docs/VISION.md');
+let visionHtml = '';
+if (fs.existsSync(visionPath)) {
+  visionHtml = renderMarkdown(fs.readFileSync(visionPath, 'utf-8'));
+}
 ---
 
-<Layout title="About ICN" description="The InterCooperative Network: A substrate daemon for the cooperative internet. Infrastructure for timebanks, mutual credit systems, and cooperative coordination.">
-  <section class="pt-32 pb-16">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold text-center mb-16">About the InterCooperative Network (ICN)</h1>
-
-      <div class="max-w-4xl mx-auto">
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Revolution as Infrastructure Design</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-4">
-            The InterCooperative Network (ICN) treats systemic transformation as an infrastructure challenge. Rather than hoping for change through existing power structures, we build the alternative systems that embody cooperative principles. We're not just creating software—we're architecting the foundational systems that enable new forms of economic and social coordination.
-          </p>
-          <p class="text-lg text-gray-100 leading-relaxed mb-4">
-            ICN operates on the principle that <strong>infrastructure is ideology made manifest</strong>. Every protocol decision, every architectural choice, and every governance mechanism embodies values about how power should be distributed, how decisions should be made, and how value should flow through a system.
-          </p>
-          <p class="text-lg text-gray-100 leading-relaxed">
-            This philosophy emerges from the "Debugging Civilization" framework—understanding capitalism as an extractive system and building cooperative infrastructure as the regenerative alternative. ICN represents the technical implementation of these insights at civilizational scale.
-          </p>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Core Architecture: 26 Specialized Crates</h2>
-
-          <div class="bg-accent-primary/10 p-4 rounded-lg border border-accent-primary/30 mb-6">
-            <div class="flex items-center gap-4 flex-wrap">
-              <span class="text-accent-glow font-bold">LIVE ON K3s</span>
-              <span class="text-light-slate">18 phases complete</span>
-              <span class="text-light-slate">2,400+ tests</span>
-              <span class="text-light-slate">26 crates + 2 binaries</span>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-primary/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-primary">Identity & Security</h3>
-              <p class="text-slate-400">DIDs with Ed25519 cryptography and three-layer security model
-              (transport, message, application). DID-TLS binding with persistent certificates,
-              credential presentation, and multi-device identity support.</p>
-            </div>
-
-            <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-blue/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-blue">Trust & Economics</h3>
-              <p class="text-slate-400">Web-of-participation trust graph with vouching and decay.
-              Mutual credit ledger using double-entry accounting with Merkle-DAG anchoring.
-              Dynamic credit limits and dispute resolution mechanisms.</p>
-            </div>
-
-            <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-purple/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-purple">Networking & Gossip</h3>
-              <p class="text-slate-400">QUIC/TLS secure sessions with mDNS peer discovery.
-              Gossip protocol with trust-gated topics, per-peer rate limiting,
-              and Byzantine node detection.</p>
-            </div>
-
-            <div class="bg-soft-black/70 p-6 rounded-lg border border-accent-glow/20">
-              <h3 class="text-xl font-semibold mb-3 text-accent-glow">Contracts & Governance</h3>
-              <p class="text-slate-400">Cooperative Contract Language (CCL) smart contracts.
-              Domain-based proposals with voting coordination.
-              Distributed compute layer with trust-gated execution.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-8">Cooperatives, Communities & Federations</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN recognizes three distinct but interoperable organizational forms:
-          </p>
-          
-          <div class="space-y-6">
-            <div class="border-l-4 border-accent-primary pl-6">
-              <h3 class="text-xl font-semibold mb-2 text-white">Cooperatives: Economic Engines</h3>
-              <p class="text-slate-400">Independent economic entities that run their own CoVM instances, 
-              define governance logic via CCL templates, and handle production, labor, and services. 
-              They operate democratically by their members and can participate in federations.</p>
-            </div>
-            
-            <div class="border-l-4 border-accent-blue pl-6">
-              <h3 class="text-xl font-semibold mb-2 text-white">Communities: Governance Bodies</h3>
-              <p class="text-slate-400">Civic-focused entities like towns or regions that run constitutional 
-              CoVM instances, govern public goods, enforce local law and restorative justice, and 
-              manage civic participation through verified identity.</p>
-            </div>
-            
-            <div class="border-l-4 border-accent-purple pl-6">
-              <h3 class="text-xl font-semibold mb-2 text-white">Federations: Protocol Coordination</h3>
-              <p class="text-slate-400">Interoperability layers that link coops and communities using 
-              shared CCL federation contracts, enable peer discovery via libp2p, support global DAG 
-              sync, and enforce scoped protocols like mutual aid or dispute resolution.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-8 text-center md:text-left">Guiding Principles</h2>
-          <div class="grid md:grid-cols-2 gap-6">
-            {[
-              { 
-                title: "Scoped Trust & Verifiable Action", 
-                text: "All actions are contextualized by DIDs representing individuals, communities, cooperatives, or federations. Every significant action emits signed receipts anchored in a content-addressable DAG.",
-                icon: "🔐"
-              },
-              { 
-                title: "Explicit & Programmable Governance", 
-                text: "Rules governing network behavior are defined explicitly via CCL, versioned, transparent, and compiled to verifiable WASM. No implicit authority or hidden algorithms.",
-                icon: "⚖️"
-              },
-              { 
-                title: "Non-Speculative Economics", 
-                text: "Mana-based resource allocation prevents hoarding and speculation while supporting genuine mutual aid and resource sharing across cooperative networks.",
-                icon: "🌱"
-              },
-              { 
-                title: "Restorative Justice", 
-                text: "Guardian Circles replace punitive moderation with healing-centered approaches. Federated dispute resolution and constitutional enforcement prioritize community healing over punishment.",
-                icon: "🕊️"
-              },
-              { 
-                title: "Federation Templates", 
-                text: "Pre-built governance templates for HealthNet, Mutual Aid Logistics, Guardian Circles, and Disability Advocacy replace state functions with federated, democratic infrastructure.",
-                icon: "🏗️"
-              },
-              { 
-                icon: "🛡️",
-                title: "Technical Sovereignty",
-                text: "Systems designed for community control and technological independence. Infrastructure that serves democratic participation rather than corporate extraction."
-              }
-            ].map(principle => (
-              <div class="flex items-start space-x-4 p-4 rounded-lg bg-soft-black/70 transition-colors duration-200">
-                <div class="flex-shrink-0 text-2xl">
-                  {principle.icon}
-                </div>
-                <div>
-                  <h3 class="text-xl font-semibold mb-2 text-white">{principle.title}</h3>
-                  <p class="text-slate-400 leading-relaxed">{principle.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Beyond Traditional Web3</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN diverges significantly from typical Web3 and blockchain projects:
-          </p>
-          
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-red-900/20 p-6 rounded-lg border border-red-400/30">
-              <h4 class="font-semibold text-red-300 mb-4 text-lg">What ICN Is NOT</h4>
-              <ul class="text-gray-100 space-y-2">
-                <li>❌ No energy-wasting proof-of-work</li>
-                <li>❌ No venture capital extraction</li>
-                <li>❌ No DeFi market recreation</li>
-                <li>❌ No corporate capture mechanisms</li>
-              </ul>
-            </div>
-            
-            <div class="bg-accent-primary/20 p-6 rounded-lg border border-accent-primary/30">
-              <h4 class="font-semibold text-accent-primary mb-4 text-lg">What ICN IS</h4>
-              <ul class="text-gray-100 space-y-2">
-                <li>✅ Regenerative mana economics</li>
-                <li>✅ Efficient content-addressable DAG</li>
-                <li>✅ Democratic cooperative ownership</li>
-                <li>✅ Post-capitalist coordination</li>
-                <li>✅ Consciousness architecture design</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Technical Implementation</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN is built entirely in Rust with an actor-based runtime on Tokio:
-          </p>
-
-          <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-glow/20 mb-6">
-            <h3 class="text-xl font-semibold text-accent-glow mb-4">Binaries & Ports</h3>
-            <ul class="text-gray-100 space-y-3">
-              <li><strong>icnd:</strong> The main daemon binary</li>
-              <li><strong>icnctl:</strong> CLI for administration and operations</li>
-              <li><strong>icn-console:</strong> Interactive REPL for development</li>
-              <li><strong>Port 7777:</strong> QUIC P2P networking</li>
-              <li><strong>Port 5601:</strong> JSON-RPC API</li>
-              <li><strong>Port 9100:</strong> Prometheus metrics</li>
-              <li><strong>Port 8080:</strong> Health check endpoint</li>
-            </ul>
-          </div>
-
-          <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-blue/20 mb-6">
-            <h3 class="text-xl font-semibold text-accent-blue mb-4">Core Crates</h3>
-            <div class="grid md:grid-cols-2 gap-4 text-gray-100 text-sm">
-              <div>
-                <p><strong>icn-core:</strong> Shared types and traits</p>
-                <p><strong>icn-identity:</strong> DIDs and credentials</p>
-                <p><strong>icn-trust:</strong> Web-of-participation graph</p>
-                <p><strong>icn-ledger:</strong> Mutual credit ledger</p>
-                <p><strong>icn-ccl:</strong> Contract language</p>
-                <p><strong>icn-governance:</strong> Voting and proposals</p>
-                <p><strong>icn-compute:</strong> Distributed compute</p>
-                <p><strong>icn-storage:</strong> Data persistence</p>
-              </div>
-              <div>
-                <p><strong>icn-network:</strong> P2P networking</p>
-                <p><strong>icn-gossip:</strong> Trust-gated gossip</p>
-                <p><strong>icn-api:</strong> REST gateway</p>
-                <p><strong>icn-crypto:</strong> Cryptographic primitives</p>
-                <p><strong>icn-utils:</strong> Shared utilities</p>
-                <p><strong>icn-economics:</strong> Credit/mana system</p>
-                <p><strong>icn-runtime:</strong> Actor supervisor</p>
-                <p><strong>icn-testkit:</strong> Testing harness</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-purple/20">
-            <h3 class="text-xl font-semibold text-accent-purple mb-4">Pilot Web UI</h3>
-            <ul class="text-gray-100 space-y-3">
-              <li><strong>Dashboard:</strong> Balance tracking and activity charts</li>
-              <li><strong>Members:</strong> Directory with search and profiles</li>
-              <li><strong>Governance:</strong> Proposal creation and voting</li>
-              <li><strong>Timebank:</strong> Time/credit logging interface</li>
-              <li><strong>Export:</strong> CSV export for treasurers</li>
-              <li><strong>Mobile:</strong> Full responsive support</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Consciousness & Infrastructure</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            At its deepest level, ICN recognizes that <strong>consciousness shapes infrastructure, and infrastructure shapes consciousness</strong>. The systems we build today become the constraints and possibilities for tomorrow's social relations.
-          </p>
-          
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN is designed to embody and cultivate <strong>cooperative consciousness</strong>:
-          </p>
-          
-          <ul class="text-gray-100 space-y-3 list-disc list-inside mb-6">
-            <li><strong>Systems Thinking:</strong> Understanding interconnection and mutual aid as fundamental</li>
-            <li><strong>Democratic Participation:</strong> Everyone affected by decisions has a voice in making them</li>
-            <li><strong>Regenerative Practice:</strong> Acting in ways that enhance collective capacity over time</li>
-            <li><strong>Solidarity Economics:</strong> Economic relationships based on cooperation rather than competition</li>
-          </ul>
-          
-          <div class="bg-gradient-to-r from-accent-primary/10 to-accent-blue/10 p-6 rounded-lg border border-accent-glow/30">
-            <blockquote class="text-xl font-semibold text-accent-glow text-center">
-              "Infrastructure is ideology made manifest. Every protocol decision embodies values about how power should be distributed, how decisions should be made, and how value should flow through a system."
-            </blockquote>
-          </div>
-        </section>
-
-        <section class="mb-16">
-          <h2 class="text-3xl font-semibold mb-6">Civilizational Scale Impact</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-4">
-            ICN operates at civilizational scale—not just as a better platform, but as infrastructure for an entirely different form of social organization. We're building the nervous system for a cooperative commonwealth, the circulatory system for solidarity economies, and the governance substrate for federated democracy.
-          </p>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            This isn't about optimizing capitalism or making existing systems more efficient. It's about providing the infrastructure necessary for post-capitalist social formations to emerge, scale, and thrive.
-          </p>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-primary/20">
-              <h3 class="text-lg font-bold text-accent-primary mb-3">Economic Coordination</h3>
-              <p class="text-gray-100 text-sm">
-                Replace extractive markets with regenerative resource allocation, mutual aid networks, and cooperative production chains.
-              </p>
-            </div>
-            
-            <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-blue/20">
-              <h3 class="text-lg font-bold text-accent-blue mb-3">Democratic Governance</h3>
-              <p class="text-gray-100 text-sm">
-                Enable participatory decision-making from local cooperatives to global federations through programmable, transparent governance.
-              </p>
-            </div>
-            
-            <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-purple/20">
-              <h3 class="text-lg font-bold text-accent-purple mb-3">Regenerative Systems</h3>
-              <p class="text-gray-100 text-sm">
-                Design systems based on principles of dignity, sustainability, and cooperation rather than extraction and exploitation.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="text-3xl font-semibold mb-6">Invitation to Participation</h2>
-          <p class="text-lg text-gray-100 leading-relaxed mb-6">
-            ICN is not a product to be consumed, but infrastructure to be co-created. We invite cooperatives, communities, developers, and visionaries to join in building the technical foundation for the world we all know is possible.
-          </p>
-          
-          <div class="bg-gradient-to-r from-accent-primary/20 to-accent-blue/20 p-8 rounded-lg border border-accent-glow/30">
-            <p class="text-xl font-semibold text-accent-glow text-center mb-4">
-              The revolution will not be capitalized—it will be cooperativized, federalized, and built on infrastructure that embodies our highest collective values.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-              <a href="/get-started" class="btn btn-primary">
-                Get Started
-              </a>
-              <a href="/docs" class="btn btn-secondary">
-                Read Documentation
-              </a>
-            </div>
-          </div>
-        </section>
+<Layout title="About" activeNav="about">
+  <section class="section" style="padding-top: calc(64px + var(--space-3xl));">
+    <div class="container">
+      <div class="about-hero">
+        <span class="badge badge-purple">About the Project</span>
+        <h1>InterCooperative Network</h1>
+        <p class="about-lead">
+          ICN treats systemic transformation as an infrastructure challenge. We're building the 
+          substrate that lets cooperatives, communities, and federations govern themselves 
+          democratically and coordinate economically — without extractive platforms or central authorities.
+        </p>
       </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="grid grid-2" style="gap: var(--space-2xl);">
+        <div>
+          <h2>What is ICN?</h2>
+          <p style="margin-top: var(--space-md);">
+            ICN is a P2P coordination daemon — a background service that runs on your machine (or server) 
+            and connects with other ICN nodes to form cooperative networks. It provides four 
+            foundational "institution primitives":
+          </p>
+          <div class="primitive-list">
+            <div class="primitive">
+              <div class="primitive-icon">🔐</div>
+              <div>
+                <strong>Identity & Membership</strong>
+                <p>Self-sovereign DIDs, capability-based access, web-of-participation trust</p>
+              </div>
+            </div>
+            <div class="primitive">
+              <div class="primitive-icon">📜</div>
+              <div>
+                <strong>Rules & Governance</strong>
+                <p>CCL contracts encode bylaws as executable code — democratic decisions at any scale</p>
+              </div>
+            </div>
+            <div class="primitive">
+              <div class="primitive-icon">💰</div>
+              <div>
+                <strong>Economics</strong>
+                <p>Mutual credit ledger, mana-based resource allocation, cooperative treasury</p>
+              </div>
+            </div>
+            <div class="primitive">
+              <div class="primitive-icon">🌐</div>
+              <div>
+                <strong>Interoperation</strong>
+                <p>Federation agreements, cross-group trust, clearing, and resource sharing</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2>How is it different?</h2>
+          <div class="comparison-table">
+            <div class="comp-row comp-header">
+              <span></span>
+              <span>Traditional</span>
+              <span>ICN</span>
+            </div>
+            <div class="comp-row">
+              <span>Governance</span>
+              <span class="comp-old">Bureaucratic / Centralized</span>
+              <span class="comp-new">Programmable democracy (CCL)</span>
+            </div>
+            <div class="comp-row">
+              <span>Economics</span>
+              <span class="comp-old">Extractive finance</span>
+              <span class="comp-new">Mutual credit + mana</span>
+            </div>
+            <div class="comp-row">
+              <span>Identity</span>
+              <span class="comp-old">Platform accounts</span>
+              <span class="comp-new">Self-sovereign DIDs</span>
+            </div>
+            <div class="comp-row">
+              <span>Trust</span>
+              <span class="comp-old">Reputation scores</span>
+              <span class="comp-new">Attestation-based trust graph</span>
+            </div>
+            <div class="comp-row">
+              <span>Infrastructure</span>
+              <span class="comp-old">Central servers / Blockchain</span>
+              <span class="comp-new">P2P daemon, no mining</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision from repo -->
+  <section class="section">
+    <div class="container-narrow">
+      <span class="badge badge-teal mb-lg">From VISION.md</span>
+      <article class="prose" set:html={visionHtml} />
     </div>
   </section>
 </Layout>
 
 <style>
-  .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 no-underline;
+  .about-hero {
+    max-width: 720px;
   }
-  
-  .btn-primary {
-    @apply bg-accent-primary text-midnight-navy hover:scale-105;
+
+  .about-hero h1 {
+    margin: var(--space-md) 0;
   }
-  
-  .btn-primary:hover {
-    background-color: #00c299; /* Slightly darker shade of accent-primary */
+
+  .about-lead {
+    font-size: 1.25rem;
+    line-height: 1.8;
   }
-  
-  .btn-secondary {
-    @apply bg-transparent text-accent-primary border-2 border-accent-primary hover:bg-accent-primary hover:text-midnight-navy;
+
+  .primitive-list {
+    margin-top: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
   }
-</style> 
+
+  .primitive {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .primitive-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .primitive strong {
+    color: var(--text-heading);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .primitive p {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .comparison-table {
+    margin-top: var(--space-xl);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .comp-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.8125rem;
+  }
+
+  .comp-row:last-child { border-bottom: none; }
+
+  .comp-row span {
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-secondary);
+  }
+
+  .comp-header span {
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    background: var(--bg-card);
+  }
+
+  .comp-old {
+    color: var(--text-muted) !important;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .comp-new {
+    color: var(--accent-teal) !important;
+  }
+</style>

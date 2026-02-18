@@ -1,440 +1,164 @@
 ---
-// Enhanced docs/index.astro with better organization and design
+// src/pages/docs/index.astro — Documentation index page
 import Layout from '../../layouts/Layout.astro';
-import DocsBrowser from '../../components/DocsBrowser.astro';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const pageTitle = "ICN Documentation";
-const pageDescription = "Comprehensive documentation for the InterCooperative Network - a federated compute, resource, and governance protocol designed for cooperatives, communities, and federations.";
+// Build sidebar structure from synced docs
+const docsRoot = path.join(process.cwd(), 'src/content/docs');
 
-// Documentation sections organized by user journey
-const quickStart = [
-  {
-    title: "Developer Onboarding",
-    description: "Get started with ICN development in minutes",
-    link: "/docs/onboarding",
-    icon: "rocket-launch",
-    status: "available"
-  },
-  {
-    title: "System Architecture",
-    description: "Understand ICN's technical architecture",
-    link: "/docs/architecture", 
-    icon: "cpu-chip",
-    status: "available"
-  },
-  {
-    title: "ICN Philosophy",
-    description: "Learn about the principles behind ICN",
-    link: "/docs/philosophy",
-    icon: "heart",
-    status: "available"
+interface DocFile {
+  slug: string;
+  title: string;
+  path: string;
+}
+
+interface DocSection {
+  name: string;
+  docs: DocFile[];
+}
+
+function titleFromFilename(filename: string): string {
+  return filename
+    .replace(/\.md$/, '')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase())
+    .replace(/\bApi\b/g, 'API')
+    .replace(/\bCcl\b/g, 'CCL')
+    .replace(/\bIcn\b/g, 'ICN')
+    .replace(/\bDid\b/g, 'DID');
+}
+
+function scanDocs(): DocSection[] {
+  const sections: DocSection[] = [];
+
+  // Core docs (top-level .md files)
+  const topLevelFiles = fs.readdirSync(docsRoot)
+    .filter(f => f.endsWith('.md') && !fs.statSync(path.join(docsRoot, f)).isDirectory())
+    .sort();
+  
+  if (topLevelFiles.length > 0) {
+    sections.push({
+      name: 'Core',
+      docs: topLevelFiles.map(f => ({
+        slug: f.replace('.md', ''),
+        title: titleFromFilename(f),
+        path: `/docs/${f.replace('.md', '')}`
+      }))
+    });
   }
-];
 
-const coreFeatures = [
-  {
-    title: "Mesh Computing",
-    description: "Distributed job execution with automatic bidding and verification",
-    link: "/docs/mesh-computing",
-    icon: "globe-americas",
-    status: "coming-soon"
-  },
-  {
-    title: "Mana Economics",
-    description: "Regenerative resource system for sustainable computing",
-    link: "/docs/economy",
-    icon: "arrow-path",
-    status: "available"
-  },
-  {
-    title: "Governance System", 
-    description: "Federated decision-making and policy enforcement",
-    link: "/docs/governance",
-    icon: "users",
-    status: "available"
-  },
-  {
-    title: "Decentralized Identity",
-    description: "Self-sovereign identity with DIDs and verifiable credentials",
-    link: "/docs/identity",
-    icon: "identification",
-    status: "coming-soon"
-  }
-];
+  // Subdirectories
+  const dirs = fs.readdirSync(docsRoot)
+    .filter(f => fs.statSync(path.join(docsRoot, f)).isDirectory())
+    .sort();
 
-const developerTools = [
-  {
-    title: "Core API Reference",
-    description: "Complete API documentation for ICN core crates",
-    link: "/docs/api",
-    icon: "code-bracket",
-    status: "available"
-  },
-  {
-    title: "CLI Tools",
-    description: "Command-line interface documentation",
-    link: "/docs/cli", 
-    icon: "terminal",
-    status: "available"
-  },
-  {
-    title: "Networking Guide",
-    description: "P2P networking and libp2p integration",
-    link: "/docs/networking",
-    icon: "signal",
-    status: "available"
-  },
-  {
-    title: "Observability",
-    description: "Monitoring, metrics, and debugging",
-    link: "/docs/observability",
-    icon: "chart-bar",
-    status: "available"
+  for (const dir of dirs) {
+    const dirPath = path.join(docsRoot, dir);
+    const scanDir = (basePath: string, prefix: string): DocFile[] => {
+      const files: DocFile[] = [];
+      const entries = fs.readdirSync(basePath).sort();
+      for (const entry of entries) {
+        const entryPath = path.join(basePath, entry);
+        if (fs.statSync(entryPath).isDirectory()) {
+          files.push(...scanDir(entryPath, `${prefix}/${entry}`));
+        } else if (entry.endsWith('.md')) {
+          files.push({
+            slug: `${prefix}/${entry.replace('.md', '')}`,
+            title: titleFromFilename(entry),
+            path: `/docs${prefix}/${entry.replace('.md', '')}`
+          });
+        }
+      }
+      return files;
+    };
+    
+    const docs = scanDir(dirPath, `/${dir}`);
+    if (docs.length > 0) {
+      sections.push({
+        name: titleFromFilename(dir),
+        docs
+      });
+    }
   }
-];
 
-const specifications = [
-  {
-    title: "All RFCs",
-    description: "Request for Comments and technical specifications",
-    link: "/docs/rfcs",
-    icon: "document-text",
-    status: "available"
-  },
-  {
-    title: "Governance Core (RFC 0010)",
-    description: "Comprehensive governance mechanisms specification",
-    link: "/docs/rfc-0010-governance-core",
-    icon: "shield-check",
-    status: "available"
-  },
-  {
-    title: "Protocol Specifications",
-    description: "Low-level protocol and message format definitions",
-    link: "/docs/protocol",
-    icon: "cog",
-    status: "coming-soon"
-  }
-];
+  return sections;
+}
+
+const sections = scanDocs();
+const totalDocs = sections.reduce((sum, s) => sum + s.docs.length, 0);
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <!-- Hero Section -->
-  <section class="py-20 bg-gradient-to-br from-midnight-navy via-bg-secondary to-midnight-navy relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-1/4 right-1/4 w-48 h-48 bg-accent-primary rounded-full blur-3xl animate-pulse-glow"></div>
-      <div class="absolute bottom-1/4 left-1/4 w-32 h-32 bg-accent-blue rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 1s;"></div>
-    </div>
-    
-    <div class="container mx-auto px-4 relative">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="mb-8">
-          <span class="bg-accent-primary/10 text-accent-primary border border-accent-primary/30 text-sm font-semibold px-4 py-2 rounded-full">
-            DOCUMENTATION
-          </span>
-        </div>
-        
-        <h1 class="text-5xl lg:text-6xl font-bold text-white mb-6">
-          ICN Documentation
-        </h1>
-        
-        <p class="text-xl text-light-slate mb-8 max-w-3xl mx-auto">
-          Everything you need to understand, implement, and contribute to the InterCooperative Network. 
-          From quick starts to deep technical specifications.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#quick-start" class="btn btn-primary">
-            Get Started
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </a>
-          <a href="https://github.com/InterCooperative-Network/icn" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-            View on GitHub
-            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick Start Section -->
-  <section id="quick-start" class="py-20 bg-bg-secondary">
-    <div class="container mx-auto px-4">
-      <div class="mb-16">
-        <h2 class="text-4xl font-bold text-white mb-6 text-center">Quick Start</h2>
-        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
-          New to ICN? Start here to understand the fundamentals and get your development environment set up.
-        </p>
+<Layout title="Documentation" activeNav="docs">
+  <section class="section" style="padding-top: calc(64px + var(--space-3xl));">
+    <div class="container">
+      <div class="section-header" style="text-align: left; max-width: none;">
+        <span class="badge badge-teal">{totalDocs} Documents Synced</span>
+        <h1>Documentation</h1>
+        <p>Everything you need to understand, deploy, and contribute to the InterCooperative Network. These docs are synced directly from the main repository.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        {quickStart.map((item, index) => (
-          <div class="card card-hover text-center scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
-            <div class="w-16 h-16 bg-gradient-to-r from-accent-primary to-accent-blue rounded-xl flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-white mb-4">{item.title}</h3>
-            <p class="text-slate-gray mb-6">{item.description}</p>
-            <a href={item.link} class="btn btn-outline w-full">
-              Read Guide
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
+      <div class="docs-index-grid">
+        {sections.map(section => (
+          <div class="docs-section-card">
+            <h3>{section.name}</h3>
+            <ul>
+              {section.docs.map(doc => (
+                <li><a href={doc.path}>{doc.title}</a></li>
+              ))}
+            </ul>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Features Section -->
-  <section class="py-20 bg-midnight-navy">
-    <div class="container mx-auto px-4">
-      <div class="mb-16">
-        <h2 class="text-4xl font-bold text-white mb-6 text-center">Core Features</h2>
-        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
-          Deep dive into ICN's core capabilities and understand how they work together.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {coreFeatures.map((feature, index) => (
-          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
-            <div class="mb-4">
-              {feature.status === 'available' ? (
-                <span class="bg-accent-primary/20 text-accent-primary text-xs font-semibold px-3 py-1 rounded-full border border-accent-primary/30">
-                  AVAILABLE
-                </span>
-              ) : (
-                <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-3 py-1 rounded-full">
-                  COMING SOON
-                </span>
-              )}
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-3">{feature.title}</h3>
-            <p class="text-slate-gray mb-4">{feature.description}</p>
-            <a href={feature.link} class="text-accent-glow hover:underline text-sm">
-              Learn more →
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Developer Tools Section -->
-  <section class="py-20 bg-bg-secondary">
-    <div class="container mx-auto px-4">
-      <div class="mb-16">
-        <h2 class="text-4xl font-bold text-white mb-6 text-center">Developer Tools & APIs</h2>
-        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
-          Comprehensive reference materials and tools for building on ICN.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {developerTools.map((tool, index) => (
-          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-gradient-to-r from-accent-blue to-accent-purple rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                </svg>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-lg font-semibold text-white mb-2">{tool.title}</h3>
-                <p class="text-slate-gray text-sm mb-3">{tool.description}</p>
-                <a href={tool.link} class="text-accent-glow hover:underline text-sm">
-                  View docs →
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Specifications Section -->
-  <section class="py-20 bg-midnight-navy">
-    <div class="container mx-auto px-4">
-      <div class="mb-16">
-        <h2 class="text-4xl font-bold text-white mb-6 text-center">RFCs & Specifications</h2>
-        <p class="text-xl text-light-slate text-center max-w-3xl mx-auto">
-          Technical specifications, protocol definitions, and formal governance proposals.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {specifications.map((spec, index) => (
-          <div class="card card-hover scroll-reveal" style={`animation-delay: ${index * 0.1}s`}>
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gradient-to-r from-accent-purple to-accent-primary rounded-xl flex items-center justify-center mx-auto mb-6">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold text-white mb-4">{spec.title}</h3>
-              <p class="text-slate-gray mb-6">{spec.description}</p>
-              <a href={spec.link} class="btn btn-outline w-full">
-                View Specification
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick Setup Section -->
-  <section class="py-20 bg-bg-secondary">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-white mb-6">Quick Setup</h2>
-          <p class="text-xl text-light-slate">
-            Get ICN running locally in just a few commands.
-          </p>
-        </div>
-
-        <div class="bg-bg-tertiary rounded-xl p-8 border border-border/50">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-lg font-semibold text-white">Installation</h3>
-                                      <button class="text-accent-glow hover:text-white text-sm" id="copy-btn">
-               Copy commands
-             </button>
-          </div>
-          
-          <pre class="bg-midnight-navy rounded-lg p-6 overflow-x-auto text-sm">
-<code class="text-light-slate"># Clone the repository
-git clone https://github.com/InterCooperative-Network/icn.git
-cd icn
-
-# Install Rust toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup toolchain install nightly
-rustup default nightly
-
-# Build and test
-cargo build --release
-cargo test
-
-# Run the daemon
-cargo run --bin icnd</code>
-          </pre>
-          
-          <div class="mt-6 p-4 bg-accent-primary/10 border border-accent-primary/30 rounded-lg">
-            <div class="flex items-start space-x-3">
-              <svg class="w-5 h-5 text-accent-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <div>
-                <p class="text-accent-primary font-semibold text-sm">Need help?</p>
-                <p class="text-light-slate text-sm">
-                  Check out our <a href="/docs/onboarding" class="underline">detailed onboarding guide</a> 
-                  or join our <a href="/community" class="underline">community discussions</a>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Help Section -->
-  <section class="py-20 bg-midnight-navy">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-white mb-6">Need Help?</h2>
-        <p class="text-xl text-light-slate max-w-3xl mx-auto">
-          Our community is here to help you succeed with ICN.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-accent-primary to-accent-glow rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Community Discussions</h3>
-          <p class="text-slate-gray text-sm mb-4">Ask questions and get help from the community</p>
-          <a href="https://github.com/InterCooperative-Network/icn/discussions" class="text-accent-glow hover:underline text-sm" target="_blank" rel="noopener noreferrer">
-            Join Discussions →
-          </a>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Report Issues</h3>
-          <p class="text-slate-gray text-sm mb-4">Found a bug or have a feature request?</p>
-          <a href="https://github.com/InterCooperative-Network/icn/issues" class="text-accent-glow hover:underline text-sm" target="_blank" rel="noopener noreferrer">
-            Report Issue →
-          </a>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-accent-purple to-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Contribute</h3>
-          <p class="text-slate-gray text-sm mb-4">Help improve ICN for everyone</p>
-          <a href="/contribute" class="text-accent-glow hover:underline text-sm">
-            Contribution Guide →
-          </a>
-        </div>
       </div>
     </div>
   </section>
 </Layout>
 
-<script>
-  // Scroll reveal animation
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
+<style>
+  .docs-index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-      }
-    });
-  }, observerOptions);
+  .docs-section-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
 
-  // Observe all scroll-reveal elements
-  document.querySelectorAll('.scroll-reveal').forEach(el => {
-    observer.observe(el);
-  });
+  .docs-section-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-glow-teal);
+  }
 
-  // Copy to clipboard function
-  document.getElementById('copy-btn')?.addEventListener('click', function() {
-    const codeElement = document.querySelector('pre code');
-    if (!codeElement?.textContent) return;
-    
-    navigator.clipboard.writeText(codeElement.textContent).then(() => {
-      // Show temporary success message
-      const button = this;
-      const originalText = button.textContent;
-      button.textContent = 'Copied!';
-      setTimeout(() => {
-        button.textContent = originalText;
-      }, 2000);
-    });
-  });
-</script>
+  .docs-section-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-md);
+    color: var(--accent-teal);
+  }
+
+  .docs-section-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .docs-section-card li a {
+    display: block;
+    padding: 0.35rem var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    transition: all var(--duration-fast);
+  }
+
+  .docs-section-card li a:hover {
+    background: var(--accent-teal-glow);
+    color: var(--accent-teal);
+  }
+</style>

@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "sync": "bash scripts/sync-from-icn.sh",
+    "prebuild": "npm run sync",
+    "dev": "npm run sync && astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -14,10 +16,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.16.5",
-    "tailwindcss": "^3.4.3",
+    "marked": "^17.0.3",
     "typescript": "^5.8.3"
   },
   "devDependencies": {

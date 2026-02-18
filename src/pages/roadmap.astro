@@ -1,308 +1,127 @@
 ---
+// src/pages/roadmap.astro — Project Roadmap
 import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+import { renderMarkdown } from '../lib/markdown';
 
-// Roadmap data aligned with docs/dev-journal/ROADMAP.md
-const completedPhases = [
-  {
-    range: "1-10",
-    name: "Foundation",
-    completed: "2025-Q3",
-    items: ["DIDs with Ed25519", "Trust graph", "QUIC/TLS networking", "Mutual credit ledger", "CCL contracts", "Gossip protocol"]
-  },
-  {
-    range: "11",
-    name: "Multi-Device Identity",
-    completed: "2025-11-14",
-    items: ["DID Document v2", "Device sync", "Key rotation"]
-  },
-  {
-    range: "12",
-    name: "Economic Safety Rails",
-    completed: "2025-11-14",
-    items: ["Dynamic credit limits", "Dispute resolution", "Progressive limits"]
-  },
-  {
-    range: "13",
-    name: "Governance Primitives",
-    completed: "2025-11-15",
-    items: ["Domain-based proposals", "Voting coordination", "Liquid delegation"]
-  },
-  {
-    range: "14",
-    name: "Gateway API",
-    completed: "2025-11-17",
-    items: ["REST API (60+ endpoints)", "WebSocket events", "SDK integration"]
-  },
-  {
-    range: "15",
-    name: "Distributed Compute",
-    completed: "2025-11-20",
-    items: ["Trust-gated execution", "WASM sandboxing", "Resource profiles"]
-  },
-  {
-    range: "16",
-    name: "Scheduler Evolution",
-    completed: "2025-11-24",
-    items: ["Background tasks", "Periodic scheduling", "Task coordination"]
-  },
-  {
-    range: "17",
-    name: "Storage Replication",
-    completed: "2025-11-25",
-    items: ["Content replication", "Replica health", "Proof-of-storage"]
-  },
-  {
-    range: "18",
-    name: "Pre-Pilot Hardening",
-    completed: "2025-11-27",
-    items: ["Byzantine detection", "Witness signatures", "Fork resolution", "BFT hardening"]
-  }
-];
-
-const plannedPhases = [
-  {
-    phase: "19",
-    name: "Release Infrastructure",
-    goal: "CI/CD pipeline ready for production releases",
-    items: ["Binary signing", "SBOM generation", "Health validation", "Benchmark regression CI", "Auto-scaling"]
-  },
-  {
-    phase: "20",
-    name: "Testing Foundation",
-    goal: "Comprehensive testing infrastructure",
-    items: ["Chaos engineering", "Performance benchmarks", "CCL fuzz testing", "Multi-node test harness", "Load testing"]
-  },
-  {
-    phase: "21",
-    name: "Network Connectivity",
-    goal: "ICN works over the internet, not just LAN",
-    items: ["NAT traversal (STUN/TURN)", "Dynamic Bloom filters", "Connection pooling", "Adaptive gossip fanout"]
-  },
-  {
-    phase: "22",
-    name: "Security Hardening",
-    goal: "Production-grade security posture",
-    items: ["Sybil resistance", "Secure-by-default gossip", "Reputation persistence", "Trust-aware rate limiting"]
-  },
-  {
-    phase: "23",
-    name: "Identity & Trust Evolution",
-    goal: "Identity and trust that reflect reality",
-    items: ["Key rotation gossip", "Multi-device sync", "Trust score caching", "Privacy-preserving routing"]
-  },
-  {
-    phase: "24",
-    name: "SDK Completion",
-    goal: "SDK ready for application developers",
-    items: ["Type-safe TypeScript SDK", "Economic API coverage", "Analytics API", "Notifications"]
-  },
-  {
-    phase: "25",
-    name: "Observability",
-    goal: "Production monitoring and debugging",
-    items: ["OpenTelemetry tracing", "Operational dashboard", "Performance trends", "Trace sampling"]
-  },
-  {
-    phase: "26",
-    name: "Documentation",
-    goal: "Operators and developers can use ICN",
-    items: ["Production runbooks", "SLOs and alerting", "Security procedures", "Setup guides"]
-  },
-  {
-    phase: "27",
-    name: "Ledger & Economics",
-    goal: "Complete economic functionality",
-    items: ["Oracle rate validation", "Bilateral clearing", "Inter-coop agreements", "Demurrage scheduler"]
-  },
-  {
-    phase: "28",
-    name: "CCL & Governance",
-    goal: "Contract ecosystem ready",
-    items: ["State isolation", "Tunable fuel costs", "Contract templates", "Gas estimation API"]
-  },
-  {
-    phase: "29-33",
-    name: "Production Polish",
-    goal: "Enterprise-ready deployment",
-    items: ["Mobile SDK", "Multi-region K8s", "Federation hierarchy", "CLI polish"]
-  },
-  {
-    phase: "34",
-    name: "Release Candidate",
-    goal: "Releasable software",
-    items: ["All tests passing", "Docs complete", "Performance validated", "Security audited"]
-  },
-  {
-    phase: "35",
-    name: "Pilot Deployment",
-    goal: "Real cooperative using ICN",
-    items: ["Pilot community selected", "Onboarding", "3-month operation", "Feedback integration"]
-  }
-];
-
-const milestones = [
-  { name: "Testing Ready", phases: "19-20", description: "CI/CD + test infrastructure" },
-  { name: "Internet Ready", phases: "21-22", description: "NAT traversal + security" },
-  { name: "Developer Ready", phases: "23-26", description: "Identity + SDK + observability + docs" },
-  { name: "Feature Complete", phases: "27-29", description: "Economics + contracts + cleanup" },
-  { name: "Production Ready", phases: "30-33", description: "Mobile + infra + federation + UX" },
-  { name: "Release", phases: "34", description: "RC validation" },
-  { name: "Pilot", phases: "35", description: "Real-world deployment" }
-];
+// Try to load phase history from synced docs
+const phaseHistoryPath = path.join(process.cwd(), 'src/content/docs/PHASE_HISTORY.md');
+let phaseHtml = '';
+if (fs.existsSync(phaseHistoryPath)) {
+  phaseHtml = renderMarkdown(fs.readFileSync(phaseHistoryPath, 'utf-8'));
+}
 ---
 
-<Layout title="ICN Roadmap" description="The development roadmap for the InterCooperative Network">
-  <section class="pt-32 pb-16">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="bg-accent-primary/20 text-accent-primary border border-accent-primary/30 text-sm font-bold px-4 py-2 rounded-full mb-4 inline-block">
-          ROADMAP
-        </span>
-        <h1 class="text-4xl font-bold mb-4">ICN Development Roadmap</h1>
-        <p class="text-xl text-light-slate max-w-3xl mx-auto">
-          18 phases complete, ~75% of planned features. Live on K3s since December 2025.
-        </p>
+<Layout title="Roadmap" activeNav="roadmap">
+  <section class="section" style="padding-top: calc(64px + var(--space-3xl));">
+    <div class="container">
+      <div class="section-header" style="text-align: left; max-width: none;">
+        <span class="badge badge-amber">Project Roadmap</span>
+        <h1>Development Roadmap</h1>
+        <p>ICN is developed in phases, each building on the last. The project has gone through 18+ development phases covering identity, networking, governance, ledger, federation, and more.</p>
       </div>
+    </div>
+  </section>
 
-      <div class="max-w-5xl mx-auto space-y-8">
-        <!-- Status Banner -->
-        <div class="bg-accent-primary/10 p-6 rounded-lg border border-accent-primary/30">
-          <div class="flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <h3 class="text-xl font-bold text-accent-primary">Current Status: Phase 19 Next</h3>
-              <p class="text-light-slate mt-1">Core infrastructure complete. Building toward production release.</p>
-            </div>
-            <div class="flex gap-4 text-center">
-              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
-                <div class="text-2xl font-bold text-accent-primary">18</div>
-                <div class="text-xs text-slate-gray">Phases Done</div>
-              </div>
-              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
-                <div class="text-2xl font-bold text-accent-primary">2,400+</div>
-                <div class="text-xs text-slate-gray">Tests</div>
-              </div>
-              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
-                <div class="text-2xl font-bold text-accent-primary">26</div>
-                <div class="text-xs text-slate-gray">Crates</div>
-              </div>
-              <div class="bg-midnight-navy/50 px-4 py-2 rounded-lg">
-                <div class="text-2xl font-bold text-accent-glow">LIVE</div>
-                <div class="text-xs text-slate-gray">K3s</div>
-              </div>
-            </div>
+  <!-- Vision roadmap stages -->
+  <section class="section-alt">
+    <div class="container">
+      <h2 style="margin-bottom: var(--space-xl);">Product Vision Stages</h2>
+      <div class="roadmap-timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker" style="background: var(--accent-teal);"></div>
+          <div class="timeline-content">
+            <span class="badge badge-teal">Stage A — Now</span>
+            <h3>Institution-in-a-Box</h3>
+            <p>One-click cooperative creation, default charter templates, membership onboarding, treasury ledger, and proposal-to-vote loop. The minimum viable institution.</p>
           </div>
         </div>
-
-        <!-- Milestones Overview -->
-        <div class="bg-midnight-navy/30 p-6 rounded-lg border border-accent-blue/20">
-          <h3 class="text-xl font-bold text-accent-blue mb-4">Milestone Overview</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {milestones.map((milestone) => (
-              <div class="bg-soft-black/50 p-4 rounded-lg">
-                <div class="text-sm text-accent-primary font-mono mb-1">Phases {milestone.phases}</div>
-                <div class="font-bold text-white mb-1">{milestone.name}</div>
-                <div class="text-xs text-light-slate">{milestone.description}</div>
-              </div>
-            ))}
+        <div class="timeline-item">
+          <div class="timeline-marker" style="background: var(--accent-blue);"></div>
+          <div class="timeline-content">
+            <span class="badge badge-blue">Stage B</span>
+            <h3>Federation Layer</h3>
+            <p>Inter-cooperative agreements with treaty-based governance, cross-group trust propagation, and federation clearing for mutual credit networks.</p>
           </div>
         </div>
-
-        <!-- Completed Phases -->
-        <div>
-          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-            <span class="text-accent-primary">✓</span> Completed Phases (1-18)
-          </h2>
-
-          <div class="space-y-4">
-            {completedPhases.map((phase) => (
-              <div class="bg-midnight-navy/50 p-5 rounded-lg border border-accent-primary/20 hover:border-accent-primary/40 transition-colors">
-                <div class="flex items-start justify-between mb-3">
-                  <div>
-                    <span class="text-accent-primary font-mono text-sm">Phase {phase.range}</span>
-                    <h3 class="text-lg font-bold text-white">{phase.name}</h3>
-                  </div>
-                  <span class="text-xs text-slate-gray bg-midnight-navy px-2 py-1 rounded">{phase.completed}</span>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  {phase.items.map((item) => (
-                    <span class="text-xs bg-accent-primary/10 text-accent-primary px-2 py-1 rounded">{item}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+        <div class="timeline-item">
+          <div class="timeline-marker" style="background: var(--accent-purple);"></div>
+          <div class="timeline-content">
+            <span class="badge badge-purple">Stage C</span>
+            <h3>Compute Commons</h3>
+            <p>Shared compute resources contributed to a commons and allocated via mana. Members contribute hardware; the network rewards them with cooperative capacity.</p>
           </div>
         </div>
-
-        <!-- Planned Phases -->
-        <div>
-          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-            <span class="text-accent-blue">→</span> Planned Phases (19-35)
-          </h2>
-
-          <div class="space-y-4">
-            {plannedPhases.map((phase, index) => (
-              <div class={`p-5 rounded-lg border transition-colors ${index === 0 ? 'bg-accent-glow/10 border-accent-glow/30' : 'bg-midnight-navy/30 border-accent-blue/20 hover:border-accent-blue/40'}`}>
-                <div class="flex items-start justify-between mb-2">
-                  <div>
-                    <span class={`font-mono text-sm ${index === 0 ? 'text-accent-glow' : 'text-accent-blue'}`}>Phase {phase.phase}</span>
-                    <h3 class="text-lg font-bold text-white">{phase.name}</h3>
-                  </div>
-                  {index === 0 && (
-                    <span class="text-xs bg-accent-glow/20 text-accent-glow px-2 py-1 rounded font-bold">NEXT</span>
-                  )}
-                </div>
-                <p class="text-light-slate text-sm mb-3">{phase.goal}</p>
-                <div class="flex flex-wrap gap-2">
-                  {phase.items.map((item) => (
-                    <span class="text-xs bg-midnight-navy/50 text-slate-gray px-2 py-1 rounded">{item}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+        <div class="timeline-item">
+          <div class="timeline-marker" style="background: var(--accent-amber);"></div>
+          <div class="timeline-content">
+            <span class="badge" style="background: rgba(251, 191, 36, 0.12); color: var(--accent-amber); border: 1px solid rgba(251, 191, 36, 0.25);">Stage D</span>
+            <h3>Civilization Tools</h3>
+            <p>Municipal governance platforms, participatory budgeting at city scale, public infrastructure coordination, and democratic technology governance.</p>
           </div>
-        </div>
-
-        <!-- Recent Highlights -->
-        <div class="bg-gradient-to-r from-accent-primary/10 via-accent-blue/10 to-accent-purple/10 p-6 rounded-lg border border-accent-glow/30">
-          <h3 class="text-xl font-bold text-accent-glow mb-4">Recent Highlights (Jan 2026)</h3>
-          <div class="grid md:grid-cols-2 gap-4 text-sm">
-            <div>
-              <h4 class="font-bold text-white mb-2">BFT Hardening Complete</h4>
-              <ul class="text-light-slate space-y-1">
-                <li>• Witness signatures for material transactions</li>
-                <li>• Timestamp validation with clock skew tolerance</li>
-                <li>• Fork resolution by witness count</li>
-                <li>• Proof-of-storage challenges</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-bold text-white mb-2">Infrastructure Updates</h4>
-              <ul class="text-light-slate space-y-1">
-                <li>• Live K3s deployment since December 2025</li>
-                <li>• 26 specialized crates</li>
-                <li>• 2,400+ passing tests</li>
-                <li>• TypeScript SDK improvements</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-16 text-center">
-        <h2 class="text-3xl font-bold mb-6">Building the Cooperative Internet</h2>
-        <p class="text-xl text-light-slate mb-8 max-w-3xl mx-auto">
-          ICN is a substrate daemon for cooperative coordination. 18 phases complete,
-          2,400+ tests passing, live on K3s cluster.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/get-started" class="inline-flex items-center justify-center px-8 py-4 bg-accent-primary text-midnight-navy font-medium rounded-lg hover:bg-accent-primary/90 transition-all">
-            Get Started
-          </a>
-          <a href="https://github.com/InterCooperative-Network/icn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-accent-primary text-accent-primary font-medium rounded-lg hover:bg-accent-primary hover:text-midnight-navy transition-all">
-            View Source Code
-          </a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Phase history from repo -->
+  {phaseHtml && (
+    <section class="section">
+      <div class="container-narrow">
+        <span class="badge badge-teal mb-lg">From PHASE_HISTORY.md</span>
+        <article class="prose" set:html={phaseHtml} />
+      </div>
+    </section>
+  )}
 </Layout>
+
+<style>
+  .roadmap-timeline {
+    position: relative;
+    padding-left: var(--space-2xl);
+  }
+
+  .roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-teal), var(--accent-blue), var(--accent-purple), var(--accent-amber));
+    border-radius: 1px;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: var(--space-2xl);
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-marker {
+    position: absolute;
+    left: calc(var(--space-2xl) * -1);
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+  }
+
+  .timeline-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+  }
+
+  .timeline-content h3 {
+    margin: var(--space-sm) 0 var(--space-sm);
+  }
+
+  .timeline-content p {
+    margin: 0;
+  }
+</style>

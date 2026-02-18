@@ -1,11 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  integrations: [tailwind()],
+  integrations: [sitemap()],
   site: 'https://intercooperative.network',
   base: '',
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+    },
+  },
 });
