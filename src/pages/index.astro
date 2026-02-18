@@ -1,6 +1,7 @@
 ---
 // src/pages/index.astro — ICN Homepage
 import Layout from '../layouts/Layout.astro';
+import NetworkGraph from '../components/NetworkGraph.astro';
 import stats from '../data/stats.json';
 
 // Format large numbers nicely
@@ -12,9 +13,13 @@ function fmt(n: number): string {
 
 <Layout title="A Substrate Daemon for the Cooperative Internet" activeNav="home">
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content animate-in">
+  <section class="hero relative overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-60 pointer-events-auto">
+      <NetworkGraph client:idle />
+    </div>
+    
+    <div class="container relative z-10 pointer-events-none">
+      <div class="hero-content animate-in pointer-events-auto">
         <div class="badge badge-teal mb-lg">
           <span class="badge-dot"></span>
           Active Development · {stats.crates} crates · {fmt(stats.testCount)} tests passing

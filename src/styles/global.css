@@ -67,6 +67,29 @@
   --shadow-glow-blue: 0 0 20px rgba(56, 189, 248, 0.15);
 }
 
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-surface: #f1f5f9;
+  --bg-code: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-heading: #020617;
+  --text-muted: #64748b;
+
+  --border-subtle: rgba(148, 163, 184, 0.2);
+  --border-default: rgba(148, 163, 184, 0.3);
+  --border-accent: rgba(45, 212, 191, 0.5);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow-teal: 0 0 20px rgba(45, 212, 191, 0.25);
+}
+
 /* ─── Reset & Base ───────────────────────────────────────────── */
 *,
 *::before,
