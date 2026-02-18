@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: InterCooperative-Network/icn
-          path: ../icn
+          path: icn-repo
 
       - name: 🧰 Setup Node.js
         uses: actions/setup-node@v4
@@ -35,7 +35,7 @@ jobs:
       - name: 🔄 Sync content from ICN repo
         run: bash scripts/sync-from-icn.sh
         env:
-          ICN_REPO: ${{ github.workspace }}/../icn
+          ICN_REPO: ${{ github.workspace }}/icn-repo
 
       - name: 🛠️ Build Astro site
         run: npx astro build
