@@ -32,7 +32,20 @@ const currentPath = Astro.url.pathname;
   <nav class="nav" id="main-nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <div class="nav-logo-icon">⬡</div>
+        <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 128 128" fill="none">
+          <rect width="128" height="128" rx="28" fill="url(#nav-bg)"/>
+          <line x1="64" y1="30" x2="34" y2="82" stroke="url(#nav-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+          <line x1="64" y1="30" x2="94" y2="82" stroke="url(#nav-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+          <line x1="34" y1="82" x2="94" y2="82" stroke="url(#nav-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="64" cy="30" r="11" fill="url(#nav-teal)"/>
+          <circle cx="34" cy="82" r="11" fill="url(#nav-teal)"/>
+          <circle cx="94" cy="82" r="11" fill="url(#nav-teal)"/>
+          <circle cx="64" cy="64" r="4" fill="url(#nav-teal)" opacity="0.8"/>
+          <defs>
+            <linearGradient id="nav-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f2027"/><stop offset="1" stop-color="#0a1628"/></linearGradient>
+            <linearGradient id="nav-teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+          </defs>
+        </svg>
         <span>ICN</span>
       </a>
 
@@ -68,7 +81,20 @@ const currentPath = Astro.url.pathname;
       <div class="footer-inner">
         <div class="footer-brand">
           <a href="/" class="nav-logo">
-            <div class="nav-logo-icon">⬡</div>
+            <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 128 128" fill="none">
+              <rect width="128" height="128" rx="28" fill="url(#ft-bg)"/>
+              <line x1="64" y1="30" x2="34" y2="82" stroke="url(#ft-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+              <line x1="64" y1="30" x2="94" y2="82" stroke="url(#ft-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+              <line x1="34" y1="82" x2="94" y2="82" stroke="url(#ft-teal)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+              <circle cx="64" cy="30" r="11" fill="url(#ft-teal)"/>
+              <circle cx="34" cy="82" r="11" fill="url(#ft-teal)"/>
+              <circle cx="94" cy="82" r="11" fill="url(#ft-teal)"/>
+              <circle cx="64" cy="64" r="4" fill="url(#ft-teal)" opacity="0.8"/>
+              <defs>
+                <linearGradient id="ft-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f2027"/><stop offset="1" stop-color="#0a1628"/></linearGradient>
+                <linearGradient id="ft-teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+              </defs>
+            </svg>
             <span>InterCooperative Network</span>
           </a>
           <p>A substrate daemon for the cooperative internet. Infrastructure for cooperatives, communities, and federations.</p>
@@ -115,6 +141,21 @@ const currentPath = Astro.url.pathname;
     // Mobile nav toggle
     document.getElementById('nav-toggle')?.addEventListener('click', () => {
       document.getElementById('nav-links')?.classList.toggle('open');
+    });
+
+    // Scroll-reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.card, .section-header, .arch-box, .stage-item, .docs-section-card, .primitive').forEach(el => {
+      el.classList.add('reveal');
+      revealObserver.observe(el);
     });
   </script>
 </body>

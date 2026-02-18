@@ -98,13 +98,22 @@ const totalDocs = sections.reduce((sum, s) => sum + s.docs.length, 0);
         <p>Everything you need to understand, deploy, and contribute to the InterCooperative Network. These docs are synced directly from the main repository.</p>
       </div>
 
-      <div class="docs-index-grid">
+      <!-- Search -->
+      <div class="docs-search">
+        <svg class="docs-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="text" id="docs-search" placeholder="Search documentation..." autocomplete="off" />
+        <span class="docs-search-count" id="docs-search-count"></span>
+      </div>
+
+      <div class="docs-index-grid" id="docs-grid">
         {sections.map(section => (
-          <div class="docs-section-card">
+          <div class="docs-section-card" data-section>
             <h3>{section.name}</h3>
             <ul>
               {section.docs.map(doc => (
-                <li><a href={doc.path}>{doc.title}</a></li>
+                <li data-title={doc.title.toLowerCase()}><a href={doc.path}>{doc.title}</a></li>
               ))}
             </ul>
           </div>
@@ -112,9 +121,89 @@ const totalDocs = sections.reduce((sum, s) => sum + s.docs.length, 0);
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    const searchInput = document.getElementById('docs-search');
+    const searchCount = document.getElementById('docs-search-count');
+    const sections = document.querySelectorAll('[data-section]');
+
+    searchInput?.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      sections.forEach(section => {
+        const items = section.querySelectorAll('li[data-title]');
+        let sectionVisible = 0;
+
+        items.forEach(item => {
+          const title = item.getAttribute('data-title') || '';
+          if (!query || title.includes(query)) {
+            item.style.display = '';
+            sectionVisible++;
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        section.style.display = sectionVisible === 0 ? 'none' : '';
+      });
+
+      if (searchCount) {
+        searchCount.textContent = query ? `${visibleCount} result${visibleCount !== 1 ? 's' : ''}` : '';
+      }
+    });
+  </script>
 </Layout>
 
 <style>
+  .docs-search {
+    position: relative;
+    margin-bottom: var(--space-xl);
+  }
+
+  .docs-search-icon {
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  #docs-search {
+    width: 100%;
+    padding: 0.875rem var(--space-lg) 0.875rem 3rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  #docs-search::placeholder {
+    color: var(--text-muted);
+  }
+
+  #docs-search:focus {
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 3px var(--accent-teal-glow);
+  }
+
+  .docs-search-count {
+    position: absolute;
+    right: var(--space-lg);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
   .docs-index-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
